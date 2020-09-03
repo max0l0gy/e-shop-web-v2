@@ -1,0 +1,65 @@
+{
+  "id": 100,
+  "version": 0,
+  "amount": 3,
+  "price": 45.0,
+  "currency": "EUR",
+  "attributeSet": [
+    {
+      "id": 101,
+      "attribute": {
+        "id": 101,
+        "name": "color",
+        "dataType": "String",
+        "measure": null,
+        "values": [
+          {
+            "id": 101,
+            "string": "#58eb34",
+            "text": null,
+            "real": null,
+            "integer": null,
+            "value": "#58eb34"
+          }
+        ]
+      },
+      "attributeValue": {
+        "id": 101,
+        "string": "#58eb34",
+        "text": null,
+        "real": null,
+        "integer": null,
+        "value": "#58eb34"
+      }
+    },
+    {
+      "id": 100,
+      "attribute": {
+        "id": 100,
+        "name": "size",
+        "dataType": "String",
+        "measure": null,
+        "values": [
+          {
+            "id": 100,
+            "string": "s",
+            "text": null,
+            "real": null,
+            "integer": null,
+            "value": "s"
+          }
+        ]
+      },
+      "attributeValue": {
+        "id": 100,
+        "string": "s",
+        "text": null,
+        "real": null,
+        "integer": null,
+        "value": "s"
+      }
+    }
+  ],
+  "commodityId": 100,
+  "code": "100-100"
+}

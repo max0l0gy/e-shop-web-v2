@@ -1,0 +1,20 @@
+{
+  "id": 100,
+  "version": 0,
+  "shoppingSet": [
+    {
+      "id": {
+        "branchId": 100,
+        "shoppingCartId": 100
+      },
+      "purchaseInfo": {
+        "amount": 1,
+        "price": 45.0,
+        "commodityName": "Octopus Deram #1",
+        "commodityImageUri": "http://io.titsonfire.store/io/file/eshop/dhd01.jpg"
+      },
+      "amount": 1
+    }
+  ],
+  "itemsAmount": 1
+}

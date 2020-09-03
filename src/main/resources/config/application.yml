@@ -1,0 +1,60 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: eshop-web-v2
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
+  metrics:
+    export:
+      atlas:
+  enabled: false
+
+#external feign services URI`s
+external:
+  ses:
+    url: http://aws-ses-rest-api:8080
+  commodityApi:
+    url: http://eshop-commodity-api:8080
+  customerApi:
+    url: http://eshop-customer-api:8080
+  customerOrderApi:
+    url: http://eshop-customer-order-api:8080
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+#File upload/download service use Environment variables
+fileioservice:
+  endpoint: ${file_upload_endpoint}
+  accessKey: ${file_upload_accessKey}
+
+order:
+  expiredMinutes: 15
+
+server:
+  port: 8080
+
+manager:
+  email: ${MANAGER_EMAIL}
+  password: ${MANAGER_PASSWORD}
+  fullName: ${MANAGER_FULL_NAME}
+  country: ${MANAGER_COUNTRY}
+  postcode: ${MANAGER_POSTCODE}
+  city: ${MANAGER_CITY}
+  address: ${MANAGER_ADDRESS}

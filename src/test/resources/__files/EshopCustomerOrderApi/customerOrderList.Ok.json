@@ -1,0 +1,25 @@
+[
+  {
+    "id": 302,
+    "version": 1,
+    "dateOfCreation": "2020-04-09T14:32:14.830+0000",
+    "status": "PAYMENT_APPROVED",
+    "paymentProvider": "Paypal",
+    "paymentID": "3M39942691511910K",
+    "customerId": 100,
+    "purchases": [
+      {
+        "id": {
+          "branchId": 100,
+          "orderId": 302
+        },
+        "purchaseInfo": {
+          "amount": 1,
+          "price": 45.0,
+          "commodityName": "Octopus Deram #1",
+          "commodityImageUri": "http://io.titsonfire.store/io/file/eshop/dhd01.jpg"
+        }
+      }
+    ]
+  }
+]

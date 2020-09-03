@@ -1,0 +1,27 @@
+{
+  "id": 100,
+  "email": "test@gmail.com",
+  "fullName": "Test Test",
+  "country": "Russia",
+  "postcode": "111199",
+  "city": "Moscow",
+  "address": "Moskovskaaya str, 9k5, 9",
+  "password": "hKZQEH02dA0tMqOlmpW4rJvJEDG",
+  "verifyCode": "iuHHO",
+  "dateOfCreation": "2020-03-29T19:02:32.038+0000",
+  "verified": true,
+  "shoppingCartId": 100,
+  "authorities": [
+    {
+      "authority": "ADMIN"
+    },
+    {
+      "authority": "CUSTOMER"
+    }
+  ],
+  "enabled": true,
+  "username": "test@gmail.com",
+  "accountNonExpired": true,
+  "accountNonLocked": true,
+  "credentialsNonExpired": true
+}

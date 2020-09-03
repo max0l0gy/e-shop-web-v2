@@ -1,0 +1,72 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+    id 'idea'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = 'ru.maxmorev.eshop'
+version = '0.0.2'
+sourceCompatibility = '11'
+
+configurations {
+    all*.exclude group: 'javassist', module: 'javassist' // get rid of hibernate-incompatible javassist
+}
+
+ext {
+    set('springCloudVersion', "Hoxton.SR1")
+}
+
+dependencies {
+
+    compile 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation group: 'com.google.guava', name: 'guava', version: '26.0-jre'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+
+    implementation group: 'org.apache.poi', name: 'poi', version: '3.16'
+    implementation group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+
+    implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.20'
+
+    //spring
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    //java11
+    implementation group: 'javassist', name: 'javassist', version: '3.25.0-GA'
+
+    //TEST
+    testAnnotationProcessor('org.projectlombok:lombok')
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation('org.springframework.security:spring-security-test')
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.6.0')
+    testImplementation('org.junit.jupiter:junit-jupiter-engine:5.6.0')
+    testImplementation('com.github.tomakehurst:wiremock-jre8:2.26.1')
+    testImplementation('org.springframework.cloud:spring-cloud-contract-wiremock')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+

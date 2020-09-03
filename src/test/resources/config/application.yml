@@ -1,0 +1,42 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: eshop-web-v2
+  profiles:
+    active: test
+  messages:
+    basename: i18n/messages, 18n/application # for multiple properties just use comma separated values
+    encoding: UTF-8
+
+external:
+  ses:
+    url: http://localhost:4555
+  commodityApi:
+    url: http://localhost:4555
+  customerApi:
+    url: http://localhost:4555
+  customerOrderApi:
+    url: http://localhost:4555
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+server:
+  port: 8888
+#SMTP from env
+manager:
+  email: manager@manager.test
+  password: testPassword
+  fullName: Teset Manager
+  country: Russia
+  postcode: 111123
+  city: Moscow
+  address: Test Address
+

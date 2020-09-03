@@ -1,0 +1,40 @@
+{
+  "id": 100,
+  "name": "Octopus Deram #1",
+  "shortDescription": "Hand-made, 100% cotton, unique print",
+  "overview": "The octopus Osya ate mushrooms, climbed onto the most beautiful palm tree and watched the warm leather bags melt under the sun and the bass of the chill-out sound of the Balian surf. Around the breeze was swarming and the Martins were buzzing, having dried out and sunbathed a little, Osia jumped from a palm tree into the azure of the ocean and disappeared into the abyss of bliss.",
+  "dateOfCreation": 1586097379021,
+  "type": {
+    "id": 100,
+    "name": "T-SHiRT",
+    "description": "Handmade street style t-shirt with uniq prints from Artist."
+  },
+  "images": [
+    "http://io.titsonfire.store/io/file/eshop/dhd01.jpg",
+    "http://io.titsonfire.store/io/file/eshop/sgsgs02.jpg",
+    "http://io.titsonfire.store/io/file/eshop/dnanan03.jpg",
+    "http://io.titsonfire.store/io/file/eshop/octopusn-big.jpg",
+    "http://io.titsonfire.store/io/file/eshop/ananand02.jpg",
+    "http://io.titsonfire.store/io/file/eshop/kakakadjdjd04.jpg"
+  ],
+  "branches": [
+    {
+      "id": 100,
+      "amount": 3,
+      "price": 45.0,
+      "currency": "EUR",
+      "attributes": [
+        {
+          "name": "size",
+          "value": "s",
+          "measure": null
+        },
+        {
+          "name": "color",
+          "value": "#58eb34",
+          "measure": null
+        }
+      ]
+    }
+  ]
+}
