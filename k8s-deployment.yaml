@@ -40,8 +40,8 @@ spec:
               memory: "200Mi"
               cpu: "250m" # 1/4 core
             limits:
-              memory: "380Mi"
-              cpu: "500m" # 1/2 core
+              memory: "250Mi"
+              cpu: "250m" # 1/4 core
           readinessProbe:
             httpGet:
               path: /actuator/health
