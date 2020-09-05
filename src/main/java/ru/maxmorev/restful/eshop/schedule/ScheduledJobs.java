@@ -15,7 +15,7 @@ public class ScheduledJobs {
 
     private final OrderPurchaseService orderPurchaseService;
 
-    @Scheduled(fixedRate = INTERVAL)
+    //@Scheduled(fixedRate = INTERVAL)
     public void cleanExpiredOrders() {
         log.info("cleanExpiredOrders ");
         orderPurchaseService.cleanExpiredOrders();
