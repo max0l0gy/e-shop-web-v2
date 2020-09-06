@@ -5,6 +5,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+    <spring:theme code="webRoot" var="webRoot" />
     <spring:message code="label_buy" var="labelBuy"/>
     <spring:message code="label_price" var="labelPrice"/>
     <spring:message code="label_checkout" var="labelCheckout"/>
@@ -14,7 +15,7 @@
     <spring:message code="label_size" var="labelSize"/>
     <spring:message code="label_amount" var="labelAmount"/>
     <spring:message code="label_VendorCode" var="labelVendorCode"/>
-    <spring:url value="/shopping/cart/checkout/" var="proceedToCheckoutUrl"/>
+    <spring:url value="${webRoot}/shopping/cart/checkout/" var="proceedToCheckoutUrl"/>
 
 
 <script type="text/javascript">

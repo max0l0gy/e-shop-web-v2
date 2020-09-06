@@ -58,3 +58,5 @@ manager:
   postcode: ${MANAGER_POSTCODE}
   city: ${MANAGER_CITY}
   address: ${MANAGER_ADDRESS}
+
+web.root: https://titsonfire.store/

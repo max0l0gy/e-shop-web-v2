@@ -5,7 +5,8 @@
      <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
      <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-    <spring:url value="/commodity" var="showCommodityUrl"/>
+    <spring:theme code="webRoot" var="webRoot" />
+    <spring:url value="${webRoot}/commodity" var="showCommodityUrl"/>
     <spring:message code="label_price" var="labelPrice"/>
     <spring:message code="label_colors" var="labelColors"/>
     <spring:message code="label_sizes" var="labelSizes"/>

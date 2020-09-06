@@ -27,11 +27,12 @@
 <html>
 
 <head>
+    <spring:theme code="webRoot" var="webRoot" />
     <spring:theme code="styleSheet" var="app_css" />
     <spring:theme code="styleSheetApp" var="app_css_app" />
-    <spring:url value="/${app_css}" var="app_css_urlapp_css_url" />
-    <spring:url value="/${app_css_app}" var="app_css_app_url" />
-    <spring:url value="/images" var="app_img_url" />
+    <spring:url value="${webRoot}/${app_css}" var="app_css_urlapp_css_url" />
+    <spring:url value="${webRoot}/${app_css_app}" var="app_css_app_url" />
+    <spring:url value="${webRoot}/images" var="app_img_url" />
     <spring:message code="application_name" var="app_name" htmlEscape="false"/>
 
 
@@ -45,8 +46,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"/>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-pink.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet" href="https://titsonfire.store/web/styles/application.css" />
-    <link rel="stylesheet" href="https://titsonfire.store/web/styles/style.css" />
+    <link rel="stylesheet" href="${webRoot}/styles/application.css" />
+    <link rel="stylesheet" href="${webRoot}/styles/style.css" />
 
     <!-- Get the user locale from the page context (it was set by Spring MVC's locale resolver) -->
     <c:set var="userLocale">
@@ -56,23 +57,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="https://titsonfire.store/web/scripts/common.js"></script>
-    <script src="https://titsonfire.store/web/scripts/application.js"></script>
+    <script src="${webRoot}/scripts/common.js"></script>
+    <script src="${webRoot}/scripts/application.js"></script>
 
 
     <script type="text/javascript">
-        const URL_SERVICES = "<%=request.getContextPath().equals("")?"":request.getContextPath()%>/rest/api";
+        const URL_SERVICES = "${webRoot}<%=request.getContextPath().equals("")?"":request.getContextPath()%>/rest/api";
         var SHOPPING_CART_ITEMS_AMOUNT = ${shoppingCartItemsAmount};
     </script>
 
     <style>
     .portfolio-header {
       position: relative;
-      background-image: url(${app_img_url}/header-bg.jpg);
+      background-image: url(${webRoot}${app_img_url}/header-bg.jpg);
     }
 
     .portfolio-logo {
-      background: url(${app_img_url}/logo.png) 50% no-repeat;
+      background: url(${webRoot}${app_img_url}/logo.png) 50% no-repeat;
       background-size: cover;
       height: 150px;
       width: 150px;
@@ -80,7 +81,7 @@
     }
 
     footer {
-      background-image: url(${app_img_url}/footer-background.png);
+      background-image: url(${webRoot}${app_img_url}/footer-background.png);
       background-size: cover;
     }
     </style>

@@ -5,9 +5,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<spring:theme code="webRoot" var="webRoot" />
 <spring:theme code="mdlPath" var="mdl_Path" />
-<spring:url value="/${mdl_Path}" var="mdl_url" />
+<spring:url value="${webRoot}${mdl_Path}" var="mdl_url" />
 
 <html>
 <head>
@@ -22,15 +22,15 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.yellow-pink.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 
-    <link rel="stylesheet" href="https://titsonfire.store/web/styles/application.css" />
-    <link rel="stylesheet" href="https://titsonfire.store/web/styles/admin-page.css" />
-    <link rel="stylesheet" href="https://titsonfire.store/web/styles/style.css" />
+    <link rel="stylesheet" href="${webRoot}/styles/application.css" />
+    <link rel="stylesheet" href="${webRoot}/styles/admin-page.css" />
+    <link rel="stylesheet" href="${webRoot}/styles/style.css" />
 
     <!-- Get the user locale from the page context (it was set by Spring MVC's locale resolver) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script type="text/javascript">
-        var URL_SERVICES = "<%=request.getContextPath().equals("")?"":request.getContextPath()%>/rest/api";
+        var URL_SERVICES = "${webRoot}<%=request.getContextPath().equals("")?"":request.getContextPath()%>/rest/api";
     </script>
 
 </head>

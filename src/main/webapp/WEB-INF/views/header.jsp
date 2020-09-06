@@ -5,13 +5,14 @@
      <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
      <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+    <spring:theme code="webRoot" var="webRoot" />
     <spring:message code="header_text" var="headerText"/>
     <spring:message code="label_about" var="labelAbout"/>
     <spring:message code="label_contacts" var="labelContacts"/>
-    <spring:url var="logoutUrl" value="/logout" />
-    <spring:url value="/commodity/type" var="showCommoditiesByTypeUrl"/>
-    <spring:url value="/shopping/cart/" var="shoppingCartUrl"/>
-    <spring:url value="/customer/account/update/" var="accountUrl"/>
+    <spring:url var="logoutUrl" value="${webRoot}/logout" />
+    <spring:url value="${webRoot}/commodity/type" var="showCommoditiesByTypeUrl"/>
+    <spring:url value="${webRoot}/shopping/cart/" var="shoppingCartUrl"/>
+    <spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
 
     <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
         <div class="mdl-layout__header-row portfolio-logo-row">
