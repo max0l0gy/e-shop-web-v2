@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.yellow-pink.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/application.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/admin-page.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" />
+    <link rel="stylesheet" href="https://titsonfire.store/web/styles/application.css" />
+    <link rel="stylesheet" href="https://titsonfire.store/web/styles/admin-page.css" />
+    <link rel="stylesheet" href="https://titsonfire.store/web/styles/style.css" />
 
     <!-- Get the user locale from the page context (it was set by Spring MVC's locale resolver) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

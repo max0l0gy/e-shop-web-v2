@@ -29,7 +29,7 @@
 <head>
     <spring:theme code="styleSheet" var="app_css" />
     <spring:theme code="styleSheetApp" var="app_css_app" />
-    <spring:url value="/${app_css}" var="app_css_url" />
+    <spring:url value="/${app_css}" var="app_css_urlapp_css_url" />
     <spring:url value="/${app_css_app}" var="app_css_app_url" />
     <spring:url value="/images" var="app_img_url" />
     <spring:message code="application_name" var="app_name" htmlEscape="false"/>
@@ -45,8 +45,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"/>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-pink.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/application.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/style.css" />
+    <link rel="stylesheet" href="https://titsonfire.store/web/styles/application.css" />
+    <link rel="stylesheet" href="https://titsonfire.store/web/styles/style.css" />
 
     <!-- Get the user locale from the page context (it was set by Spring MVC's locale resolver) -->
     <c:set var="userLocale">
@@ -56,8 +56,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="${pageContext.request.contextPath}/scripts/common.js"></script>
-    <script src="${pageContext.request.contextPath}/scripts/application.js"></script>
+    <script src="https://titsonfire.store/web/scripts/common.js"></script>
+    <script src="https://titsonfire.store/web/scripts/application.js"></script>
 
 
     <script type="text/javascript">
