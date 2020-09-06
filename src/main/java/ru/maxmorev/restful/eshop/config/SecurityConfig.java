@@ -2,6 +2,7 @@ package ru.maxmorev.restful.eshop.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,13 +26,16 @@ import ru.maxmorev.restful.eshop.rest.Constants;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${web.root}")
+    private String webRoot;
+
     @Autowired
     private UserDetailsService userDetailsService;
 
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         try {
-            auth.userDetailsService( userDetailsService ).passwordEncoder(passwordEncoder());
+            auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         } catch (Exception e) {
             log.error("Could not configure authentication!", e);
         }
@@ -50,23 +54,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-                http.headers().httpStrictTransportSecurity()
+        http.headers().httpStrictTransportSecurity()
                 .maxAgeInSeconds(0)
                 .includeSubDomains(true);
 
-                http.httpBasic().and()
+        http.httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/adm/**").hasAuthority("ADMIN")
-                .antMatchers(Constants.REST_PRIVATE_URI+"**").hasAuthority("ADMIN")
+                .antMatchers(Constants.REST_PRIVATE_URI + "**").hasAuthority("ADMIN")
                 .antMatchers("/shopping/cart/checkout/").hasAuthority("CUSTOMER")
                 .antMatchers("/customer/account/update/").hasAuthority("CUSTOMER")
-                .antMatchers(Constants.REST_CUSTOMER_URI+"**").hasAuthority("CUSTOMER")
+                .antMatchers(Constants.REST_CUSTOMER_URI + "**").hasAuthority("CUSTOMER")
                 .and()
                 .formLogin()
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .loginProcessingUrl("/login")
-                .loginPage("/security/in/")
+                .loginProcessingUrl(webRoot + "/login")
+                .loginPage(webRoot + "/security/in/")
                 .defaultSuccessUrl("/", false)
                 .and()
                 .csrf().disable();

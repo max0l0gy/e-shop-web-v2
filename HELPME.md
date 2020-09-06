@@ -1,3 +1,4 @@
+ echo 'https://titsonfire.store/web' | base64
 
 ````
 podman build -t maxmorev/e-shop-web-v2 .

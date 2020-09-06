@@ -104,3 +104,8 @@ spec:
                 secretKeyRef:
                   name: eshop-secrets
                   key: file_upload_accessKey
+            - name: WEB_ROOT
+              valueFrom:
+                secretKeyRef:
+                  name: eshop-secrets
+                  key: WEB_ROOT

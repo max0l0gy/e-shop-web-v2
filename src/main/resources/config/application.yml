@@ -59,4 +59,4 @@ manager:
   city: ${MANAGER_CITY}
   address: ${MANAGER_ADDRESS}
 
-web.root: https://titsonfire.store/
+web.root: ${WEB_ROOT}

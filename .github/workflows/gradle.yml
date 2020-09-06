@@ -69,6 +69,9 @@ jobs:
       - name: Update k8s-secrets file_upload_accessKey
         run: sed -i 's|{file_upload_accessKey}|${{secrets.file_upload_accessKey}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
 
+      - name: Update k8s-secrets WEB_ROOT
+        run: sed -i 's|{WEB_ROOT}|${{secrets.WEB_ROOT}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+
       - name: Print image version
         run: cat $GITHUB_WORKSPACE/k8s-deployment.yaml | grep image
 
