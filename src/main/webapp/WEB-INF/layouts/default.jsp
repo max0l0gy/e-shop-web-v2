@@ -69,11 +69,11 @@
     <style>
     .portfolio-header {
       position: relative;
-      background-image: url(${webRoot}${app_img_url}/header-bg.jpg);
+      background-image: url(${app_img_url}/header-bg.jpg);
     }
 
     .portfolio-logo {
-      background: url(${webRoot}${app_img_url}/logo.png) 50% no-repeat;
+      background: url(${app_img_url}/logo.png) 50% no-repeat;
       background-size: cover;
       height: 150px;
       width: 150px;
@@ -81,7 +81,7 @@
     }
 
     footer {
-      background-image: url(${webRoot}${app_img_url}/footer-background.png);
+      background-image: url(${app_img_url}/footer-background.png);
       background-size: cover;
     }
     </style>
