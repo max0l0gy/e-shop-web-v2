@@ -4,9 +4,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<spring:url value="/" var="app_url"/>
-<spring:url value="/customer/account/create/checkout/" var="createAccountUrl"/>
+<spring:theme code="webRoot" var="webRoot" />
+<spring:url value="${webRoot}/login" var="app_url"/>
+<spring:url value="${webRoot}/customer/account/create/checkout/" var="createAccountUrl"/>
 
 <!-- Square card -->
 <style>
@@ -39,7 +39,7 @@ $(document).ready(function () {
     <div class="login-title mdl-cell mdl-cell--12-col">Restful E-Shop 0.1</div>
     <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet mdl-cell--4-col-desktop"></div>
     <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--2-col-desktop login-form-container " >
-        <form name='login' action='${app_url}login' method='POST' class="demo-card-square mdl-card mdl-shadow--2dp login-form ">
+        <form name='login' action='${app_url}' method='POST' class="demo-card-square mdl-card mdl-shadow--2dp login-form ">
             <div class="mdl-card__title mdl-card--expand">
                 <h2 class="mdl-card__title-text">Security</h2>
             </div>
