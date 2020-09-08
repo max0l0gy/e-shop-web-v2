@@ -1,6 +1,5 @@
 package ru.maxmorev.restful.eshop.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,15 +7,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -58,6 +52,18 @@ public class Customer extends CustomerInfo implements UserDetails {
         return verified;
     }
 
+    @Builder
+    public Customer(Long id,
+                    @NotBlank(message = "{validation.customer.email}") String email,
+                    @NotBlank(message = "{validation.customer.fullName}") String fullName,
+                    @NotBlank(message = "{validation.customer.country}") String country,
+                    @NotBlank(message = "{validation.customer.postcode}") String postcode,
+                    @NotBlank(message = "{validation.customer.city}") String city,
+                    @NotBlank(message = "{validation.customer.address}") String address,
+                    @NotBlank(message = "{validation.customer.password}") String password) {
+        super(id, email, fullName, country, postcode, city, address);
+        this.password = password;
+    }
     @Override
     public String toString() {
         ObjectMapper mapper = new ObjectMapper();

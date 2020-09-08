@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "manager")
 public class ManagerConfig {
-    String email;
-    String password;
-    String fullName;
-    String country;
-    String postcode;
-    String city;
-    String address;
+    public String email;
+    public String password;
+    public String fullName;
+    public String country;
+    public String postcode;
+    public String city;
+    public String address;
 }

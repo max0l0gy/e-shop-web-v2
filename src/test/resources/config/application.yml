@@ -40,3 +40,4 @@ manager:
   city: Moscow
   address: Test Address
 
+web.root: ""
