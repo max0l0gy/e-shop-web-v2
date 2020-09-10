@@ -71,4 +71,16 @@ manager:
   city: ${MANAGER_CITY}
   address: ${MANAGER_ADDRESS}
 ````
-
+###Verify default manager email
+````
+http POST {YOUR_HOST}/web/rest/api/public/customer/verify/ id:=100 verifyCode=yIkZG
+````
+###Response
+````
+HTTP/1.1 200 
+{
+    "id": 100,
+    "verified": true,
+    "verifyCode": "yIkZG"
+}
+````

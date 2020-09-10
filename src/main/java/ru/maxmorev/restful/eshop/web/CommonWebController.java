@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Objects;
 
+import static ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor.suppress;
+
 @Slf4j
 @AllArgsConstructor
 public abstract class CommonWebController {
@@ -70,7 +72,8 @@ public abstract class CommonWebController {
             // load shopping cart from shoppingCart service and add to uiModel
             log.info("----- Load existing shopping cart: " + cartCookie.getValue());
             Long cartId = Long.valueOf(cartCookie.getValue());
-            shoppingCart = shoppingCartService.findShoppingCartById(cartId);
+            shoppingCart = suppress(() -> shoppingCartService.findShoppingCartById(cartId))
+                    .orElseGet(() -> setShoppingCartCookie(shoppingCartService.createEmptyShoppingCart(), response));
         }
         return shoppingCart;
     }
