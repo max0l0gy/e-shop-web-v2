@@ -38,7 +38,7 @@ feign:
       default:
         connectTimeout: 10000
         readTimeout: 20000
-        loggerLevel: info
+        loggerLevel: basic
 #File upload/download service use Environment variables
 fileioservice:
   endpoint: ${file_upload_endpoint}
