@@ -23,6 +23,63 @@ jobs:
           java-version: 11
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: set environment variable APP_DOCKER_REPO
+        uses: allenevans/set-env@v1.0.0
+        with:
+          APP_DOCKER_REPO: maxmorev/eshop-web-v2
 
       - name: Print name for docker repository
-        run: echo 'manager password ${{secrets.MANAGER_PASSWORD}}'
+        run: echo ${APP_DOCKER_REPO}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{env.APP_DOCKER_REPO}}
+          tags: 0.0.${{ github.run_number }}
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Update deployment file
+        run: TAG=0.0.$(echo ${{ github.run_number }} | head -c7) && sed -i 's|${{env.APP_DOCKER_REPO}}:latest|${{env.APP_DOCKER_REPO}}:'${TAG}'|' $GITHUB_WORKSPACE/k8s-deployment.yaml
+
+      - name: Update k8s-secrets MANAGER_EMAIL
+        run: sed -i 's|{MANAGER_EMAIL}|${{secrets.MANAGER_EMAIL}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets MANAGER_PASSWORD
+        run: sed -i 's|{MANAGER_PASSWORD}|${{secrets.MANAGER_PASSWORD}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets MANAGER_FULL_NAME
+        run: sed -i 's|{MANAGER_FULL_NAME}|${{secrets.MANAGER_FULL_NAME}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets MANAGER_COUNTRY
+        run: sed -i 's|{MANAGER_COUNTRY}|${{secrets.MANAGER_COUNTRY}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets MANAGER_POSTCODE
+        run: sed -i 's|{MANAGER_POSTCODE}|${{secrets.MANAGER_POSTCODE}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets MANAGER_CITY
+        run: sed -i 's|{MANAGER_CITY}|${{secrets.MANAGER_CITY}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets MANAGER_ADDRESS
+        run: sed -i 's|{MANAGER_ADDRESS}|${{secrets.MANAGER_ADDRESS}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets file_upload_endpoint
+        run: sed -i 's|{file_upload_endpoint}|${{secrets.file_upload_endpoint}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets file_upload_accessKey
+        run: sed -i 's|{file_upload_accessKey}|${{secrets.file_upload_accessKey}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+
+      - name: Update k8s-secrets WEB_ROOT
+        run: sed -i 's|{WEB_ROOT}|${{secrets.WEB_ROOT}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+
+      - name: Print image version
+        run: cat $GITHUB_WORKSPACE/k8s-deployment.yaml | grep image
+
+      - name: Save DigitalOcean kubeconfig
+        run: doctl kubernetes cluster kubeconfig save k8s-eshop
+
+      #k8s deploy
+      - name: Deploy to DigitalOcean Kubernetes secrets
+        run: kubectl apply -f $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Deploy to DigitalOcean Kubernetes
+        run: kubectl apply -f $GITHUB_WORKSPACE/k8s-deployment.yaml
