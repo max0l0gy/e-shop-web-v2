@@ -31,12 +31,12 @@ public class FileUploadController {
         if (file == null) {
             throw new IllegalArgumentException("You must select the a file for uploading");
         }
-        String tempFileName = "/tmp/" + file.getOriginalFilename();
-        FileOutputStream fo = new FileOutputStream(tempFileName);
-        fo.write(file.getBytes());
-        fo.close();
-        File fileUpload = new File(tempFileName);
-        return minioRestApi.uploadFile(fileUploadConfiguration.getAccessKey(), fileUpload);
+//        String tempFileName = "/tmp/" + file.getOriginalFilename();
+//        FileOutputStream fo = new FileOutputStream(tempFileName);
+//        fo.write(file.getBytes());
+//        fo.close();
+//        File fileUpload = new File(tempFileName);
+        return minioRestApi.uploadFile(fileUploadConfiguration.getAccessKey(), file);
     }
 
 }

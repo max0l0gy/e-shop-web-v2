@@ -1,19 +1,16 @@
 package ru.maxmorev.restful.eshop.feignclient;
 
-import feign.Headers;
 import feign.Param;
-import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import ru.maxmorev.restful.eshop.feignclient.domain.FileUploadResponse;
-
-import java.io.File;
 
 @FeignClient(name = "eshop-minio-api", url = "${external.minioApi.url}")
 public interface MinioRestApi {
-    @RequestLine("POST /file/eshop")
-    @Headers("Content-Type: multipart/form-data")
+    @PostMapping(path ="/file/eshop" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     FileUploadResponse uploadFile(@Param("key") String key,
-                                  @Param("file") File file);
+                                  @RequestPart("file") MultipartFile file);
 }
