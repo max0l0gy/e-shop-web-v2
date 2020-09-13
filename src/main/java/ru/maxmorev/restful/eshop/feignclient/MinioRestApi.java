@@ -12,5 +12,5 @@ import ru.maxmorev.restful.eshop.feignclient.domain.FileUploadResponse;
 public interface MinioRestApi {
     @PostMapping(path ="/eshop" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     FileUploadResponse uploadFile(@RequestParam("key") String key,
-                                  @RequestParam("file") MultipartFile file);
+                                  @RequestPart("file") MultipartFile file);
 }
