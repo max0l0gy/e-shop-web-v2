@@ -84,3 +84,13 @@ HTTP/1.1 200
     "verifyCode": "yIkZG"
 }
 ````
+
+### Sending multipart requests using Spring Boot and Feign
+````
+   @PostMapping(
+            path = "/fileupload-path",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    FileUploadResponse uploadFile(@RequestParam("key") String key,
+                                  @RequestPart("file") MultipartFile file);
+````
