@@ -10,7 +10,10 @@ import ru.maxmorev.restful.eshop.feignclient.domain.FileUploadResponse;
 
 @FeignClient(name = "eshop-minio-api", url = "${external.minioApi.url}")
 public interface MinioRestApi {
-    @PostMapping(path ="/eshop", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(
+            path = "/eshop",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     FileUploadResponse uploadFile(@RequestParam("key") String key,
-                                  @RequestParam("file") MultipartFile file);
+                                  @RequestPart("file") MultipartFile file);
 }
