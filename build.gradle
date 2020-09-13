@@ -36,7 +36,6 @@ dependencies {
 
     implementation group: 'com.google.guava', name: 'guava', version: '26.0-jre'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
-    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
 
     implementation group: 'org.apache.poi', name: 'poi', version: '3.16'
     implementation group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
@@ -51,6 +50,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'io.github.openfeign.form:feign-form'
+    implementation 'io.github.openfeign.form:feign-form-spring'
+
 
     //java11
     implementation group: 'javassist', name: 'javassist', version: '3.25.0-GA'
