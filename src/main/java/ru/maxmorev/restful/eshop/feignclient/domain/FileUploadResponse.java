@@ -1,4 +1,4 @@
-package ru.maxmorev.restful.eshop.rest.response;
+package ru.maxmorev.restful.eshop.feignclient.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,13 +7,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class FileUploadResponse {
 
-    public enum Status{
-        OK, FAIL
+    public enum Status {
+        OK, ERROR
     }
 
     private String status;
     private String uri;
-
+    private String message;
 
 
 }

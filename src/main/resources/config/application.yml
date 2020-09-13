@@ -31,6 +31,8 @@ external:
     url: http://eshop-customer-api:8080
   customerOrderApi:
     url: http://eshop-customer-order-api:8080
+  minioApi:
+    url: https://titsonfire.store
 
 feign:
   client:
