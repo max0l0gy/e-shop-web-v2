@@ -13,6 +13,6 @@ public interface ShoppingCartService {
     ShoppingCartDto addBranchToShoppingCart(ShoppingCartSetRequest requestShoppingCartSet);
     //ShoppingCart mergeFromTo(ShoppingCart from, ShoppingCart to);
     //ShoppingCart checkAvailabilityByBranches(ShoppingCart sc);
-    ShoppingCartDto mergeCartFromTo(Long shoppingCartCookie, Long customerId);
+    ShoppingCartDto mergeCartFromTo(Long shoppingCartCookie, Long shoppingCartCustomerId);
 
 }

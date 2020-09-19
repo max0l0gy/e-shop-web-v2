@@ -94,6 +94,7 @@ public abstract class CommonWebController {
     ShoppingCartDto mergeShoppingCartFromCookieWithCustomerIfNeed(Cookie cartCookie, HttpServletResponse response, Model uiModel) {
         ShoppingCartDto scFromCookie = getShoppingCartFromCookie(cartCookie, response);
         String id = getAuthenticationCustomerId();
+        log.info("user id {}", id);
         if ("anonymousUser".equals(id)) {
             uiModel.addAttribute(ShoppingCookie.SHOPPiNG_CART_NAME, scFromCookie.getId());
             uiModel.addAttribute(ShoppingCookie.SHOPPiNG_CART_ITEMS_AMOUNT, scFromCookie.getItemsAmount());
@@ -102,7 +103,7 @@ public abstract class CommonWebController {
         Customer authCustomer = customerService.findByEmail(id).get();
         log.info("mergeShoppingCartFromCookieWithCustomerIfNeed");
         if (!Objects.equals(scFromCookie.getId(), authCustomer.getShoppingCartId())) {
-            scFromCookie = shoppingCartService.mergeCartFromTo(scFromCookie.getId(), authCustomer.getId());
+            scFromCookie = shoppingCartService.mergeCartFromTo(scFromCookie.getId(), authCustomer.getShoppingCartId());
         }
         setShoppingCartCookie(scFromCookie, response);
         uiModel.addAttribute(ShoppingCookie.SHOPPiNG_CART_NAME, scFromCookie.getId());
