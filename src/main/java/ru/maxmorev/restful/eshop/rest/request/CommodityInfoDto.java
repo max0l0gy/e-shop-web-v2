@@ -1,5 +1,7 @@
 package ru.maxmorev.restful.eshop.rest.request;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +20,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommodityInfoDto {
+public class CommodityInfoDto extends JsonMapped {
+
+    protected static ObjectMapper MAPPER = new ObjectMapper();
 
     @NotNull(message = "{branch.commodityId.notNull}")
     private Long id;

@@ -2,6 +2,7 @@ package ru.maxmorev.restful.eshop.rest.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ru.maxmorev.restful.eshop.rest.request.CommodityBranchDto;
