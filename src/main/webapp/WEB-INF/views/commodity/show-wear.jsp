@@ -159,11 +159,19 @@ function loadCartSuccess(json){
     drawButtonProceed();
 }
 
+function ifAmountIsOneAutoSelectFirstSize() {
+    if(AMOUNT==1) {
+        var element = document.getElementById('size-0');
+        showColors(element);
+    }
+}
+
 $(document).ready(function () {
 getShoppingCart(shoppingCartId, loadCartSuccess);
 <c:if test="${not empty commodity}">
 var str_branches = '${commodity.branches}';
 var objJson = JSON.parse(str_branches);
+AMOUNT = 0;
 for(var i=0; i<objJson.length; i++){
     var br = objJson[i];
     var sizes = [];
@@ -180,12 +188,14 @@ for(var i=0; i<objJson.length; i++){
         colors :  colors
       };
     BRANCHES.push(branch);
+    AMOUNT += br.amount;
 }
 </c:if>
 
 var btnPropertyBack = document.querySelector('#btn-add-to-basket');
 btnPropertyBack.addEventListener('click', addToShoppingCart);
 showSizes();
+ifAmountIsOneAutoSelectFirstSize();
 
 var btnProceed = document.querySelector('#btn-proceed');
 btnProceed.addEventListener('click', function() {
