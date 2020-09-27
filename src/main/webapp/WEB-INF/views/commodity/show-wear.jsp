@@ -161,7 +161,8 @@ function loadCartSuccess(json){
 
 function ifAmountIsOneAutoSelectFirstSize() {
     if(AMOUNT==1) {
-        var element = document.getElementById('size-0');
+        var elementRadioBtn = document.getElementById('size-0');
+        elementRadioBtn.checked = true;
         showColors(element);
     }
 }
