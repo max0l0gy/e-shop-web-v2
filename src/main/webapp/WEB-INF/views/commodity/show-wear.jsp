@@ -163,7 +163,7 @@ function ifAmountIsOneAutoSelectFirstSize() {
     if(AMOUNT==1) {
         var elementRadioBtn = document.getElementById('size-0');
         elementRadioBtn.checked = true;
-        showColors(element);
+        showColors(elementRadioBtn);
     }
 }
 
