@@ -1,0 +1,719 @@
+/**
+ * Copyright 2021 Tits on Fire Store. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+body {
+  margin: 0;
+}
+
+/* Disable ugly boxes around images in IE10 */
+a img{
+  border: 0px;
+}
+
+::-moz-selection {
+  background-color: #d435b4;
+  color: #fff;
+}
+
+::selection {
+  background-color: #d435b4;
+  color: #fff;
+}
+
+.titsonfire-search-box .mdl-textfield__input {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.titsonfire-header .mdl-menu__container {
+  z-index: 50;
+  margin: 0 !important;
+}
+
+
+.mdl-textfield--expandable {
+  width: auto;
+}
+
+.titsonfire-fab {
+  position: absolute;
+  right: 20%;
+  bottom: -26px;
+  z-index: 3;
+  background: #64ffda !important;
+  color: black !important;
+}
+
+.titsonfire-mobile-title {
+  display: none !important;
+}
+
+
+.titsonfire-logo-image {
+  height: 63px;
+  width: 63px;
+}
+
+
+.titsonfire-header {
+  overflow: visible;
+  background-color: white;
+}
+
+  .titsonfire-header .material-icons {
+    color: #767777 !important;
+  }
+
+  .titsonfire-header .mdl-layout__drawer-button {
+    background: transparent;
+    color: #767777;
+  }
+
+  .titsonfire-header .mdl-navigation__link {
+    color: #757575;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .titsonfire-navigation-container {
+    /* Simple hack to make the overflow happen to the left instead... */
+    direction: rtl;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+    width: 500px;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .titsonfire-navigation {
+    /* ... and now make sure the content is actually LTR */
+    direction: ltr;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    width: 800px;
+  }
+
+  .titsonfire-search-box.is-focused + .titsonfire-navigation-container {
+    opacity: 0;
+    width: 100px;
+  }
+
+
+  .titsonfire-navigation .mdl-navigation__link {
+    display: inline-block;
+    height: 60px;
+    line-height: 68px;
+    background-color: transparent !important;
+    border-bottom: 4px solid transparent;
+  }
+
+    .titsonfire-navigation .mdl-navigation__link:hover {
+      border-bottom: 4px solid #d435b4;
+    }
+
+    .titsonfire-navigation .mdl-navigation__link--active {
+       border-bottom: 4px solid #c135d4;
+       padding-left: 3px;
+       padding-right: 3px;
+    }
+
+  .titsonfire-search-box {
+    -webkit-order: 2;
+        -ms-flex-order: 2;
+            order: 2;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .titsonfire-more-button {
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+
+
+.titsonfire-drawer {
+  border-right: none;
+}
+
+  .titsonfire-drawer-separator {
+    height: 1px;
+    background-color: #d435b4;
+    margin: 8px 0;
+  }
+
+  .titsonfire-drawer .mdl-navigation__link.mdl-navigation__link {
+    font-size: 14px;
+    color: #757575;
+  }
+
+  .titsonfire-drawer .mdl-navigation__link.mdl-navigation__link--active {
+    font-size: 14px;
+    color: #d435b4;
+    background-color: #e6e6e6;
+  }
+
+  .titsonfire-drawer span.mdl-navigation__link.mdl-navigation__link {
+    color: #d435b4;
+  }
+
+  .titsonfire-drawer .mdl-layout-title {
+    position: relative;
+    background: #ee89f0;
+    height: 160px;
+  }
+
+    .titsonfire-drawer .titsonfire-logo-image {
+      position: absolute;
+      bottom: 16px;
+    }
+
+.titsonfire-be-together-section {
+  position: relative;
+  height: 800px;
+  width: auto;
+  background-color: #f3f3f3;
+  background: url('images/slide01.jpg') center 30% no-repeat;
+  background-size: cover;
+}
+
+.logo-font {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #767777;
+  font-weight: 500;
+}
+
+.titsonfire-slogan {
+  font-size: 60px;
+  padding-top: 160px;
+}
+
+.titsonfire-sub-slogan {
+  font-size: 21px;
+  padding-top: 24px;
+}
+
+.titsonfire-create-character {
+  font-size: 21px;
+  padding-top: 400px;
+}
+
+  .titsonfire-create-character a {
+    text-decoration: none;
+    color: #767777;
+    font-weight: 300;
+  }
+
+.titsonfire-screen-section {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+.titsonfire-screens {
+  text-align: right;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.titsonfire-screen {
+  text-align: center;
+}
+
+.titsonfire-screen .titsonfire-link {
+  margin-top: 16px;
+  display: block;
+  z-index: 2;
+}
+
+.titsonfire-image-link {
+  text-decoration: none;
+}
+
+.titsonfire-wear {
+  display: inline-block;
+  width: 160px;
+  margin-right: 32px;
+}
+
+  .titsonfire-wear .titsonfire-screen-image {
+    width: 40%;
+    z-index: 1;
+  }
+
+
+.titsonfire-phone {
+  display: inline-block;
+  width: 64px;
+  margin-right: 48px;
+}
+
+  .titsonfire-phone .titsonfire-screen-image {
+    width: 100%;
+    z-index: 1;
+  }
+
+
+.titsonfire-tablet {
+  display: inline-block;
+  width: 110px;
+  margin-right: 64px;
+}
+
+  .titsonfire-tablet .titsonfire-screen-image {
+    width: 100%;
+    z-index: 1;
+  }
+
+  .titsonfire-tablet .titsonfire-link {
+    display: block;
+    z-index: 2;
+  }
+
+
+.titsonfire-tv {
+  display: inline-block;
+  width: 300px;
+  margin-right: 80px;
+}
+
+  .titsonfire-tv .titsonfire-screen-image {
+    width: 100%;
+    z-index: 1;
+  }
+
+
+.titsonfire-auto {
+  display: inline-block;
+  width: 300px;
+  overflow: hidden;
+}
+
+  .titsonfire-auto .titsonfire-screen-image {
+    display: block;
+    height: 300px;
+    z-index: 1;
+  }
+
+
+.titsonfire-wear-section {
+  position: relative;
+  background: url('images/wear.png') center top no-repeat;
+  background-size: cover;
+  height: 800px;
+}
+
+.titsonfire-wear-band {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #37474f;
+}
+
+.titsonfire-wear-band-text {
+  max-width: 800px;
+  margin-left: 25%;
+  padding: 24px;
+  text-align: left;
+  color: white;
+}
+
+  .titsonfire-wear-band-text p {
+    padding-top: 8px;
+  }
+
+.titsonfire-link {
+  text-decoration: none;
+  color: #8bc34a !important;
+}
+
+  .titsonfire-link:hover {
+    color: #7cb342 !important;
+  }
+
+  .titsonfire-link .material-icons {
+    position: relative;
+    top: -1px;
+    vertical-align: middle;
+  }
+
+.titsonfire-alt-link {
+  text-decoration: none;
+  color: #64ffda !important;
+  font-size: 16px;
+}
+
+  .titsonfire-alt-link:hover {
+    color: #00bfa5 !important;
+  }
+
+  .titsonfire-alt-link .material-icons {
+    position: relative;
+    top: 6px;
+  }
+
+.titsonfire-customized-section {
+  text-align: center;
+}
+
+.titsonfire-customized-section-text {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 80px 16px 0 16px;
+}
+
+  .titsonfire-customized-section-text p {
+    padding-top: 16px;
+  }
+
+.titsonfire-customized-section-image {
+  background: url('images/devices.jpg') center top no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
+.titsonfire-about-section-image {
+  background: url('images/devices.jpg') center top no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
+.titsonfire-more-section {
+  padding: 80px 0;
+  max-width: 1044px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  .titsonfire-more-section .titsonfire-section-title {
+    margin-left: 12px;
+    padding-bottom: 24px;
+  }
+
+  .titsonfire-more-section .titsonfire-section-path {
+      margin-left: 12px;
+      padding-bottom: 0px;
+      font-size: 16px;
+    }
+
+.titsonfire-card-container {
+}
+
+  .titsonfire-card-container .mdl-card__media {
+    overflow: hidden;
+    background: transparent;
+  }
+
+    .titsonfire-card-container .mdl-card__media img {
+      width: 100%;
+    }
+
+  .titsonfire-card-container .mdl-card__title {
+    background: transparent;
+    height: auto;
+  }
+
+  .titsonfire-card-container .mdl-card__title-text {
+    color: black;
+    height: auto;
+  }
+
+  .titsonfire-card-container .mdl-card__supporting-text {
+    height: auto;
+    color: black;
+    padding-bottom: 56px;
+  }
+
+  .titsonfire-card-container .mdl-card__actions {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .titsonfire-card-container .mdl-card__actions a {
+    border-top: none;
+    font-size: 16px;
+  }
+
+.titsonfire-footer {
+  background-color: #fafafa;
+  position: relative;
+}
+
+  .titsonfire-footer a:hover {
+    color: #8bc34a;
+  }
+
+  .titsonfire-footer .mdl-mega-footer--top-section::after {
+    border-bottom: none;
+  }
+
+  .titsonfire-footer .mdl-mega-footer--middle-section::after {
+    border-bottom: none;
+  }
+
+  .titsonfire-footer .mdl-mega-footer--bottom-section {
+    position: relative;
+  }
+
+  .titsonfire-footer .mdl-mega-footer--bottom-section a {
+    margin-right: 2em;
+  }
+
+  .titsonfire-footer .mdl-mega-footer--right-section a .material-icons {
+    position: relative;
+    top: 6px;
+  }
+
+
+.titsonfire-link-menu:hover {
+  cursor: pointer;
+}
+
+.titsonfire-card-content {
+    padding: 30px;
+}
+
+/**** Mobile layout ****/
+@media (max-width: 900px) {
+  .titsonfire-navigation-container {
+    display: none;
+  }
+
+  .titsonfire-title {
+    display: none !important;
+  }
+
+  .titsonfire-mobile-title {
+    display: block !important;
+    position: absolute;
+    left: calc(50% - 70px);
+    top: 12px;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* WebViews in iOS 9 break the "~" operator, and WebViews in OS X 10.10 break
+     consecutive "+" operators in some cases. Therefore, we need to use both
+     here to cover all the bases. */
+  .android.titsonfire-search-box.is-focused ~ .titsonfire-mobile-title,
+  .titsonfire-search-box.is-focused + .titsonfire-navigation-container + .titsonfire-mobile-title {
+    opacity: 0;
+  }
+
+  .titsonfire-more-button {
+    display: none;
+  }
+
+  .titsonfire-search-box.is-focused {
+    width: calc(100% - 48px);
+  }
+
+  .titsonfire-search-box .mdl-textfield__expandable-holder {
+    width: 100%;
+  }
+
+  .titsonfire-be-together-section {
+    height: 350px;
+  }
+
+  .titsonfire-slogan {
+    font-size: 26px;
+    margin: 0 16px;
+    padding-top: 24px;
+  }
+
+  .titsonfire-sub-slogan {
+    font-size: 16px;
+    margin: 0 16px;
+    padding-top: 8px;
+  }
+
+  .titsonfire-create-character {
+    padding-top: 200px;
+    font-size: 16px;
+  }
+
+  .titsonfire-create-character img {
+    height: 12px;
+  }
+
+  .titsonfire-fab {
+    display: none;
+  }
+
+  .titsonfire-wear-band-text {
+    margin-left: 0;
+    padding: 16px;
+  }
+
+  .titsonfire-footer .mdl-mega-footer--bottom-section {
+    display: none;
+  }
+}
+/**** Item Layout ****/
+.item-container {
+  max-width: 700px;
+}
+
+.commodity-name {
+    text-transform: uppercase;
+}
+
+img.article-image {
+  width: 100%;
+  height: auto;
+}
+.images {
+    border:0;
+    height: 100%;
+    margin: 5px auto;
+    padding: 5px;
+    max-width: 650px;
+    min-width: 320px;
+}
+.card-image {
+    height: 99%;
+}
+
+.item-image {
+    width: 100%;
+}
+
+.gallery-navigation img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 3px solid gray;
+    margin: 3px;
+    align: center;
+}
+
+.circleImgUnselected {
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    border: 3px solid gray;
+    margin: 3px;
+    align: center;
+}
+
+.circleImgSelection {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 3px;
+    align: center;
+    border:3px solid rgb(255,64,129);
+}
+
+.images-navi {
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+
+.commodity-overview {
+    font-size: 14pt;
+}
+
+.textCircle {
+    width: 23px;
+    height: 23px;
+    line-height: 23px;
+    border-radius: 50%;
+    text-align: center;
+    /*font-size: 32px;*/
+    font-weight: bold;
+    border: 0.5px solid #666;
+    display: inline;
+    -moz-border-radius: 23px;
+    -webkit-border-radius: 23px;
+    text-transform: uppercase;
+}
+
+.colorCircleSml {
+    width: 30px;
+    height: 30px;
+    background: red;
+    border: 1px solid gray;
+    border-radius: 23px;
+    -moz-border-radius: 23px;
+    -webkit-border-radius: 23px;
+    display: inline;
+}
+
+.colorCircleSelect {
+     border: 2px solid gray;
+     /*background-color: #FFFFFF;*/
+     height: 22px;
+     width: 22px;
+     border-radius:50%;
+     display: inline;
+}
+
+.circleSelection{
+    border: 3px solid rgb(255,64,129);
+    height: 32px;
+    width: 32px
+}
+
+.data-holder{
+    display: inline;
+}
+
+.overlaySpinner {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+    background-color:white;
+  }
+
+.portfolio-header {
+      position: relative;
+      background-image: url(${app_img_url}/header-bg.jpg);
+    }
+
+    .portfolio-logo {
+      background: url(${app_img_url}/logo.png) 50% no-repeat;
+      background-size: cover;
+      height: 150px;
+      width: 150px;
+      margin: auto auto 10px;
+    }
+
+    footer {
+      background-image: url(${app_img_url}/footer-background.png);
+      background-size: cover;
+    }
+
+.orders-info {
+    width: 100%;
+}
+
+.mdl-card-small {
+    height:200px;
+}
+.cart-container {
+    width: 100%;
+}
