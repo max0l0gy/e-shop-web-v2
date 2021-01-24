@@ -86,7 +86,7 @@ a img{
     font-weight: 700;
     font-size: 14px;
   }
-
+/* tab section */
   .titsonfire-navigation-container {
     /* Simple hack to make the overflow happen to the left instead... */
     direction: rtl;
@@ -130,7 +130,9 @@ a img{
        padding-left: 3px;
        padding-right: 3px;
     }
+   /* subsection tabs*/
 
+  /* search section */
   .titsonfire-search-box {
     -webkit-order: 2;
         -ms-flex-order: 2;
@@ -397,7 +399,7 @@ a img{
 }
 
 .titsonfire-more-section {
-  padding: 80px 0;
+  padding: 30px 0;
   max-width: 1044px;
   margin-left: auto;
   margin-right: auto;
