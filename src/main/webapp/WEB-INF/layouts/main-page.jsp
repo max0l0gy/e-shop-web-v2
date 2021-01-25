@@ -85,6 +85,7 @@
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Artist Statement / CV</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Contacts</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href=""><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav" >shopping_cart</div></a>
             </nav>
           </div>
           <span class="titsonfire-mobile-title mdl-layout-title">
@@ -117,6 +118,7 @@
           <a class="mdl-navigation__link" href="">Canvases</a>
           <a class="mdl-navigation__link" href="">Archive</a>
           <a class="mdl-navigation__link" href="">Order a custom</a>
+          <a class="mdl-navigation__link" href=""><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav" >shopping_cart</div></a>
           <div class="titsonfire-drawer-separator"></div>
           <span class="mdl-navigation__link" href="">Portfolio</span>
           <a class="mdl-navigation__link" href="">Dracula series</a>
