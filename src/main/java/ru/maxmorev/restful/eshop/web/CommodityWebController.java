@@ -41,7 +41,7 @@ public class CommodityWebController extends CommonWebController {
         addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         uiModel.addAttribute("commodities", commodities );
         log.info("No. of commodities: " + commodities.size());
-        return "commodity/list";
+        return "main-page";
     }
 
     @GetMapping(path = {"/commodity/type/{name}"})
