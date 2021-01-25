@@ -24,18 +24,16 @@
                   See the License for the specific language governing permissions and
                   limitations under the License
 -->
+<spring:theme code="webRoot" var="webRoot" />
+<spring:theme code="styleSheet" var="app_css" />
+<spring:theme code="styleSheetApp" var="app_css_app" />
+<spring:url value="${webRoot}/${app_css}" var="app_css_urlapp_css_url" />
+<spring:url value="${webRoot}/${app_css_app}" var="app_css_app_url" />
+<spring:url value="${webRoot}/images" var="app_img_url" />
+<spring:message code="application_name" var="app_name" htmlEscape="false"/>
+
 <html>
-
 <head>
-    <spring:theme code="webRoot" var="webRoot" />
-    <spring:theme code="styleSheet" var="app_css" />
-    <spring:theme code="styleSheetApp" var="app_css_app" />
-    <spring:url value="${webRoot}/${app_css}" var="app_css_urlapp_css_url" />
-    <spring:url value="${webRoot}/${app_css_app}" var="app_css_app_url" />
-    <spring:url value="${webRoot}/images" var="app_img_url" />
-    <spring:message code="application_name" var="app_name" htmlEscape="false"/>
-
-
     <meta charset="utf-8"/>
     <meta name="description" content="A portfolio template that uses Material Design Lite."/>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
