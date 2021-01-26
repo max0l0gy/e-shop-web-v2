@@ -42,6 +42,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.purple-pink.min.css" />
     <link rel="stylesheet" href="${webRoot}/styles.css">
+    <!-- Page scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>
     <script src="${webRoot}/scripts/common.js"></script>
     <script src="${webRoot}/scripts/application.js"></script>
     <script type="text/javascript">

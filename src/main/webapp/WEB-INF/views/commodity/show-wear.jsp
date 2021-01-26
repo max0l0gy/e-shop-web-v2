@@ -206,9 +206,8 @@ btnProceed.addEventListener('click', function() {
 
 
 });
-
-
 </script>
+
 <div class="titsonfire-more-section">
     <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">${commodity.type.name}&#160;<b>${commodity.name}</b></div>
     <div class="titsonfire-card-container mdl-grid">
@@ -265,10 +264,10 @@ btnProceed.addEventListener('click', function() {
                                 <!-- ACTIONS WITH commodity -->
                                 <!-- Accent-colored raised button with ripple -->
                                 <button id="btn-add-to-basket" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                    ADD TO BASKET
+                                   ${labelBasket}
                                 </button>&#160;<br/><br/>
                                 <button id="btn-proceed" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                    CHECKOUT
+                                    ${labelCheckout}
                                 </button>
                             </div>
                         </div>

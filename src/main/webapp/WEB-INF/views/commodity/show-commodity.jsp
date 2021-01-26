@@ -5,20 +5,17 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-    <spring:theme code="webRoot" var="webRoot" />
-    <spring:message code="label_buy" var="labelBuy"/>
-    <spring:message code="label_price" var="labelPrice"/>
-    <spring:message code="label_checkout" var="labelCheckout"/>
-    <spring:message code="label_add_to_basket" var="labelBasket"/>
-    <spring:message code="label_choose_props" var="labelChooseProps"/>
-    <spring:message code="label_color" var="labelColor"/>
-    <spring:message code="label_size" var="labelSize"/>
-    <spring:message code="label_amount" var="labelAmount"/>
-    <spring:message code="label_VendorCode" var="labelVendorCode"/>
-
-    <spring:url value="${webRoot}/shopping/cart/checkout/" var="proceedToCheckoutUrl"/>
-
-
+<spring:theme code="webRoot" var="webRoot" />
+<spring:message code="label_buy" var="labelBuy"/>
+<spring:message code="label_price" var="labelPrice"/>
+<spring:message code="label_checkout" var="labelCheckout"/>
+<spring:message code="label_add_to_basket" var="labelBasket"/>
+<spring:message code="label_choose_props" var="labelChooseProps"/>
+<spring:message code="label_color" var="labelColor"/>
+<spring:message code="label_size" var="labelSize"/>
+<spring:message code="label_amount" var="labelAmount"/>
+<spring:message code="label_VendorCode" var="labelVendorCode"/>
+<spring:url value="${webRoot}/shopping/cart/checkout/" var="proceedToCheckoutUrl"/>
 
 <script type="text/javascript">
 const shoppingCartId = ${ShoppingCartCookie};
@@ -95,41 +92,41 @@ $(document).ready(function () {
 });
 </script>
 
-    <div class="mdl-grid portfolio-max-width">
-        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-            <c:if test="${not empty commodity}">
-                <div class="mdl-card__title">
-                                    <h2 class="mdl-card__title-text commodity-name">${commodity.type.name}&#160;<b>${commodity.name}</b></h2>
-                                </div>
-                                <div class="mdl-card__media card-image" style="background-color:white" >
-                                    <div class="images">
-                                        <img id="mainImage" class="item-image" src="${commodity.images[0]}"/>
-                                    <div class="images-navi">
-                                        <c:forEach items="${commodity.images}" var="image" varStatus="loop">
-                                            <c:if test="${loop.index==0}">
-                                                <img  id="img-nav" src="${image}" onClick="mark(this, '${image}');" class="circleImgSelection"/>
-                                            </c:if>
-                                            <c:if test="${loop.index>0}">
-                                                <img id="img-nav" src="${image}" onClick="mark(this, '${image}');" class="circleImgUnselected"/>
-                                            </c:if>
-                                        </c:forEach>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <strong>${commodity.type.name}</strong>&#160;<span>${commodity.shortDescription}</span>
-                                </div>
-                <div class="mdl-grid portfolio-copy">
+<div class="titsonfire-more-section">
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">${commodity.type.name}&#160;<b>${commodity.name}</b></div>
+    <div class="titsonfire-card-container mdl-grid">
+        <!-- commodity card -->
+        <!-- ITEM IMAGES -->
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--1dp">
+            <div class="images" id="images">
+                <img id="mainImage" class="item-image" src="${commodity.images[0]}"/>
+                <div class="images-navi mdl-grid">
+                    <c:forEach items="${commodity.images}" var="image" varStatus="loop">
+                        <c:if test="${loop.index==0}">
+                            <img  id="img-nav" src="${image}" onClick="mark(this, '${image}');" class="circleImgSelection"/>
+                        </c:if>
+                        <c:if test="${loop.index>0}">
+                            <img id="img-nav" src="${image}" onClick="mark(this, '${image}');" class="circleImgUnselected"/>
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+        <!-- END: ITEM IMAGES -->
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+            <div class="mdl-grid titsonfire-card-content">
+                <div class="mdl-cell mdl-cell--12-col mdl-typography--font-light mdl-typography--subhead">
+                    <strong>${commodity.type.name}</strong>&#160;<span>${commodity.shortDescription}</span>
+                </div>
                     <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline commodity-name">${commodity.type.name}&#160; ${commodity.name}</h3>
                     <div id="vendor-code" class="mdl-cell mdl-cell--12-col mdl-typography--headline">${labelVendorCode}: ${commodity.id}-${commodity.branches[0].id}</div>
                     <div class="mdl-cell mdl-cell--12-col mdl-typography--headline" >${labelPrice} &#160;<b>${commodity.branches[0].price} ${commodity.branches[0].currency}</b></div>
-                    <div class="mdl-cell mdl-cell--6-col mdl-card__supporting-text no-padding">
-                        <p class="commodity-overview">${commodity.overview}</p>
+                    <div class="mdl-cell mdl-cell--6-col mdl-typography--font-light no-padding">
+                        <span class="mdl-typography--font-light mdl-typography--subhead">${commodity.overview}</span>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
-                        <img class="article-image" src="${commodity.lastImageUri}" width="200px" border="0" alt=""/>
+                         <img class="article-image" src="${commodity.lastImageUri}" width="200px" border="0" alt=""/>
                     </div>
-
                     <div class="mdl-grid mdl-cell--12-col">
                         <div class="mdl-cell mdl-cell--8-col">
                             <h3 class="mdl-typography--headline">Attributes:</h3>
@@ -140,27 +137,29 @@ $(document).ready(function () {
 
                             </div>
                             <div id="vendor-code-container">
-                            ${labelVendorCode}: ${commodity.id}-${commodity.branches[0].id}
+                                ${labelVendorCode}: ${commodity.id}-${commodity.branches[0].id}
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--4-col">
                             <div id="action-container">
                                 <br/><br/>
-                                    <!-- ACTIONS WITH commodity -->
+                                <!-- ACTIONS WITH commodity -->
                                 <!-- Accent-colored raised button with ripple -->
                                 <button id="btn-add-to-basket" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                ${labelBasket}
+                                     ${labelBasket}
                                 </button>&#160;<br/><br/>
                                 <button id="btn-proceed" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                  ${labelCheckout}
+                                    ${labelCheckout}
                                 </button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </c:if>
+
+            </div>
         </div>
+        <!--end: commodity card-->
     </div>
+</div>
 
 <script type="text/javascript">
 initGallery();
