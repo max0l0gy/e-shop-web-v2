@@ -18,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -36,7 +37,9 @@ public class CommodityWebController extends CommonWebController {
             Model uiModel){
 
         log.info("Listing branches");
-        List<CommodityDto> commodities = commodityDtoService.findWithBranchesAmountGt0();
+        //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
+        List<CommodityDto> commodities = commodityDtoService.findWithBranchesAmountGt0()
+                .stream().limit(4l).collect(Collectors.toList());
         addCommonAttributesToModel(uiModel);
         addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         uiModel.addAttribute("commodities", commodities );
