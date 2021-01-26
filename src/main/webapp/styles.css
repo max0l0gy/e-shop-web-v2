@@ -691,24 +691,6 @@ img.article-image {
     background-color:white;
   }
 
-.portfolio-header {
-      position: relative;
-      background-image: url(${app_img_url}/header-bg.jpg);
-    }
-
-    .portfolio-logo {
-      background: url(${app_img_url}/logo.png) 50% no-repeat;
-      background-size: cover;
-      height: 150px;
-      width: 150px;
-      margin: auto auto 10px;
-    }
-
-    footer {
-      background-image: url(${app_img_url}/footer-background.png);
-      background-size: cover;
-    }
-
 .orders-info {
     width: 100%;
 }
@@ -718,10 +700,4 @@ img.article-image {
 }
 .cart-container {
     width: 100%;
-}
-
-.portfolio-list-action {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
 }
