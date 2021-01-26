@@ -39,7 +39,7 @@ public class CommodityWebController extends CommonWebController {
         log.info("Listing branches");
         //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
         List<CommodityDto> commodities = commodityDtoService.findWithBranchesAmountGt0()
-                .stream().limit(4l).collect(Collectors.toList());
+                .stream().limit(4L).collect(Collectors.toList());
         addCommonAttributesToModel(uiModel);
         addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         uiModel.addAttribute("commodities", commodities );
