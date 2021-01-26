@@ -85,7 +85,7 @@ $(document).ready(function () {
     <div class="titsonfire-customized-section-image"></div>
 </div>
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">More from Store</div>
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">New from Store</div>
     <c:if test="${not empty commodities}">
         <div class="titsonfire-card-container mdl-grid">
             <c:forEach items="${commodities}" var="commodity">
