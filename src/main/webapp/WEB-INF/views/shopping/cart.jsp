@@ -86,23 +86,3 @@ $(document).ready(function () {
         <!--end: shopping cart -->
     </div>
 </div>
-
-<div class="mdl-grid portfolio-max-width">
-     <div class="mdl-cell mdl-cell--12-col ">
-     SHOPPING CART
-     </div>
-     <div id="cart-empty" class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
-        <h4>Cart is Empty image</h4>
-     </div>
-
-     <div class="mdl-cell mdl-cell--12-col" id="cart-title">
-     <h4>Items will be reserved for ${labelExpiredMinutes} minutes</h4>
-     Shopping Cart Subtotal (<div class="data-holder" id="total-items">5</div> items):&nbsp;<div class="data-holder" id="total-cart-price">£</div>
-     </div>
-
-     <tiles:insertAttribute name="cart-container"/>
-     <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-phone">&nbsp;</div>
-     <button id="cart-btn-proceed" class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-     ${labelProceedCheckout}
-     </button>
-</div>
