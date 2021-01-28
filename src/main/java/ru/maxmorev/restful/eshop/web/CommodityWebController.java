@@ -30,7 +30,7 @@ public class CommodityWebController extends CommonWebController {
         super(shoppingCartService, customerService, commodityDtoService);
     }
 
-    @GetMapping(path = {"/commodity/","/"})
+    @GetMapping(path = "/")
     public String commodityList(
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
@@ -47,7 +47,7 @@ public class CommodityWebController extends CommonWebController {
         return "main-page";
     }
 
-    @GetMapping(path = {"/commodity/type/{name}"})
+    @GetMapping(path = {"/commodities/type/{name}"})
     public String commodityListByType(
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
