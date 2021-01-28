@@ -23,7 +23,7 @@
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link" href="${commoditiesUrl}">Store</a>
     <a class="mdl-navigation__link" href="">Portfolio</a>
-    <a class="mdl-navigation__link" href="">Artist Statement / CV</a>
+    <a class="mdl-navigation__link" href="">Artist Statement&#160;/&#160;CV</a>
     <a class="mdl-navigation__link" href="${aboutUrl}">About</a>
     <a class="mdl-navigation__link" href="">Contacts</a>
     <div class="titsonfire-drawer-separator"></div>
