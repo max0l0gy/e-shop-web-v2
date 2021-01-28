@@ -47,7 +47,7 @@
     <a class="mdl-navigation__link" href="">Canvases</a>
     <a class="mdl-navigation__link" href="">Archive</a>
     <a class="mdl-navigation__link" href="">Order a custom</a>
-    <a class="mdl-navigation__link" href=""><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav">shopping_cart</div></a>
+    <a class="mdl-navigation__link" href="${shoppingCartUrl}"><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav">shopping_cart</div></a>
     <a class="mdl-navigation__link" href="${accountUrl}"><div class="material-icons">account_circle</div></a>
     <div class="titsonfire-drawer-separator"></div>
     <span class="mdl-navigation__link" href="">Portfolio</span>
