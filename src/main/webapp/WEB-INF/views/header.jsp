@@ -36,7 +36,7 @@
      <nav class="titsonfire-navigation mdl-navigation">
        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${commoditiesUrl}">Store</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Portfolio</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Artist Statement</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Artist Statement / CV</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${aboutUrl}">About</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Contacts</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${shoppingCartUrl}"><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav" >shopping_cart</div></a>
