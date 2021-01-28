@@ -104,12 +104,12 @@ a img{
     -webkit-justify-content: flex-end;
         -ms-flex-pack: end;
             justify-content: flex-end;
-    width: 800px;
+    width: 900px;
   }
 
   .titsonfire-search-box.is-focused + .titsonfire-navigation-container {
     opacity: 0;
-    width: 100px;
+    width: 150px;
   }
 
 
