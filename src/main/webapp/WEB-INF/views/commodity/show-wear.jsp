@@ -168,6 +168,7 @@ function ifAmountIsOneAutoSelectFirstSize() {
 }
 
 $(document).ready(function () {
+activateTab('tab-store');
 getShoppingCart(shoppingCartId, loadCartSuccess);
 <c:if test="${not empty commodity}">
 var str_branches = '${commodity.branches}';

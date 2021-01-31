@@ -43,8 +43,24 @@ public class CommodityWebController extends CommonWebController {
         addCommonAttributesToModel(uiModel);
         addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         uiModel.addAttribute("commodities", commodities );
-        log.info("No. of commodities: " + commodities.size());
+        log.info("Number of commodities: " + commodities.size());
         return "main-page";
+    }
+
+    @GetMapping(path = "/commodities")
+    public String commodities(
+            HttpServletResponse response,
+            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
+            Model uiModel){
+
+        log.info("Listing branches");
+        //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
+        List<CommodityDto> commodities = commodityDtoService.findWithBranchesAmountGt0();
+        addCommonAttributesToModel(uiModel);
+        addShoppingCartAttributesToModel(cartCookie, response, uiModel);
+        uiModel.addAttribute("commodities", commodities );
+        log.info("Number of commodities: " + commodities.size());
+        return "commodities";
     }
 
     @GetMapping(path = {"/commodities/type/{name}"})

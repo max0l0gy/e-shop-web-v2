@@ -10,10 +10,10 @@
 <spring:message code="label_about" var="labelAbout"/>
 <spring:message code="label_contacts" var="labelContacts"/>
 <spring:url value="${webRoot}/logout" var="logoutUrl"/>
-<spring:url value="${webRoot}/commodities/" var="commoditiesUrl"/>
+<spring:url value="${webRoot}/commodities" var="commoditiesUrl"/>
 <spring:url value="${webRoot}/commodities/type" var="commoditiesByTypeUrl"/>
-<spring:url value="${webRoot}/shopping/cart/" var="shoppingCartUrl"/>
-<spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
+<spring:url value="${webRoot}/shopping/cart" var="shoppingCartUrl"/>
+<spring:url value="${webRoot}/customer/account/update" var="accountUrl"/>
 <spring:url value="${webRoot}/about" var="aboutUrl"/>
 
 <div class="titsonfire-header mdl-layout__header mdl-layout__header--waterfall">
@@ -34,13 +34,13 @@
    <!-- Navigation -->
    <div class="titsonfire-navigation-container">
      <nav class="titsonfire-navigation mdl-navigation">
-       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${commoditiesUrl}">Store</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Portfolio</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Artist Statement/CV</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${aboutUrl}">About</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Contacts</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${shoppingCartUrl}"><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav" >shopping_cart</div></a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase" href="${accountUrl}"><div class="material-icons" >account_circle</div></a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-store" href="${commoditiesUrl}">Store</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-portfolio" href="">Portfolio</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-cv" href="">Artist Statement/CV</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-about" href="${aboutUrl}">About</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-contacts" href="">Contacts</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-shopping-cart" href="${shoppingCartUrl}"><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav" >shopping_cart</div></a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-account" href="${accountUrl}"><div class="material-icons" >account_circle</div></a>
      </nav>
    </div>
    <span class="titsonfire-mobile-title mdl-layout-title">

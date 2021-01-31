@@ -32,7 +32,7 @@ public class ShoppingCartWebController extends CommonWebController {
         this.orderPurchaseService = orderPurchaseService;
     }
 
-    @GetMapping(path = {"/shopping/cart/"})
+    @GetMapping(path = {"/shopping/cart"})
     public String getShoppingCart(
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
@@ -43,7 +43,7 @@ public class ShoppingCartWebController extends CommonWebController {
         return "shopping/cart";
     }
 
-    @GetMapping(path = {"/shopping/cart/checkout/"})
+    @GetMapping(path = {"/shopping/cart/checkout"})
     public String proceedToCheckout(
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
@@ -52,7 +52,7 @@ public class ShoppingCartWebController extends CommonWebController {
         ShoppingCartDto scFromCookie = mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
         if (scFromCookie.getShoppingSet().size() == 0) {
             //redirect to cart
-            response.sendRedirect("/shopping/cart/");
+            response.sendRedirect("/shopping/cart");
         }
 
         //create transaction order and hold items for 10 minutes

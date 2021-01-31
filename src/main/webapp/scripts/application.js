@@ -91,17 +91,15 @@ function removeFromShoppingCartSet(cartId, branchId, amount, callBack){
         sendDataAsJson(urlService, "DELETE", data, callBack);
 }
 
-
 function activateTab(className){
     var elements = document.getElementsByClassName(className);
     var i;
     for (i = 0; i < elements.length; i++) {
         var element = elements[i];
-        element.className = className+ ' mdl-navigation__link is-active';
+        element.className = className + ' mdl-navigation__link mdl-typography--text-uppercase mdl-navigation__link--active';
     }
     componentHandler.upgradeDom();
 }
-
 function isWear(name){
     if( name=="size" || name=="color" ) {
         return true;

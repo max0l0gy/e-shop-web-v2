@@ -75,6 +75,7 @@ function loadCartSuccess(json){
 }
 
 $(document).ready(function () {
+    activateTab('tab-store');
     getShoppingCart(shoppingCartId, loadCartSuccess);
     var branches_str = '${commodity.branches}';
     branches = JSON.parse(branches_str);
