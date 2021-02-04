@@ -12,8 +12,4 @@ public class AdminWebController {
         return "admin/login";
     }
 
-    @GetMapping(path = {"/adm/"})
-    public String mainPage(Model uiModel){
-        return "admin/page";
-    }
 }

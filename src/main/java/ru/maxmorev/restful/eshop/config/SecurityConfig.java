@@ -57,7 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().httpStrictTransportSecurity()
                 .maxAgeInSeconds(0)
                 .includeSubDomains(true);
-
+        log.info("---- web root is {}", webRoot);
+        log.info("---- loginProcessingUrl is {}", webRoot + "/login");
         http.httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/adm/**").hasAuthority("ADMIN")
