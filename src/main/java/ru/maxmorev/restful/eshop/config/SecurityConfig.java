@@ -59,6 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .includeSubDomains(true);
         log.info("---- web root is {}", webRoot);
         log.info("---- loginProcessingUrl is {}", webRoot + "/login");
+        /**
+         * 21:20:16.934 [main] INFO  r.m.r.e.c.SecurityConfig - ---- web root is https://titsonfire.store/web
+         * 21:20:16.935 [main] INFO  r.m.r.e.c.SecurityConfig - ---- loginProcessingUrl is https://titsonfire.store/web/login
+         */
         http.httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/adm/**").hasAuthority("ADMIN")
@@ -70,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .loginProcessingUrl(webRoot + "/login")
+                .loginProcessingUrl("/login")
                 .loginPage(webRoot + "/security/in/")
                 .defaultSuccessUrl("/", false)
                 .and()
