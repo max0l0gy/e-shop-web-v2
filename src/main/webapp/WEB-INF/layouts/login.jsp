@@ -28,7 +28,7 @@
 
     <!-- Get the user locale from the page context (it was set by Spring MVC's locale resolver) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script type="text/javascript">
         var URL_SERVICES = "${webRoot}<%=request.getContextPath().equals("")?"":request.getContextPath()%>/rest/api";
     </script>
