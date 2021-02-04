@@ -4,21 +4,22 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-    <spring:message code="label_buy" var="labelBuy"/>
-    <spring:message code="label_price" var="labelPrice"/>
-    <spring:message code="label_checkout" var="labelCheckout"/>
-    <spring:message code="label_add_to_basket" var="labelBasket"/>
-    <spring:message code="label_choose_props" var="labelChooseProps"/>
-    <spring:message code="label_color" var="labelColor"/>
-    <spring:message code="label_size" var="labelSize"/>
-    <spring:message code="label_amount" var="labelAmount"/>
-    <spring:message code="label_back" var="labelBack"/>
-    <spring:message code="label_checkout" var="labelWelcome"/>
-    <spring:message code="label_verify_email" var="labelVerifyEmail"/>
+<spring:message code="label_buy" var="labelBuy"/>
+<spring:message code="label_price" var="labelPrice"/>
+<spring:message code="label_checkout" var="labelCheckout"/>
+<spring:message code="label_add_to_basket" var="labelBasket"/>
+<spring:message code="label_choose_props" var="labelChooseProps"/>
+<spring:message code="label_color" var="labelColor"/>
+<spring:message code="label_size" var="labelSize"/>
+<spring:message code="label_amount" var="labelAmount"/>
+<spring:message code="label_back" var="labelBack"/>
+<spring:message code="label_checkout" var="labelWelcome"/>
+<spring:message code="label_verify_email" var="labelVerifyEmail"/>
 
-    <spring:url value="/shopping/cart/" var="backUrl"/>
-    <spring:url value="/customer/account/update/" var="profileUrl"/>
-    <spring:url value="/commodity" var="showCommodityUrl"/>
+<spring:theme code="webRoot" var="webRoot" />
+<spring:url value="${webRoot}/shopping/cart" var="backUrl"/>
+<spring:url value="${webRoot}/customer/account/update" var="profileUrl"/>
+<spring:url value="${webRoot}/commodity" var="showCommodityUrl"/>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AZLBDto98XnkWuOsGr78XH78ohzsHneaQY9vzVdWu9w5xSKRhv1HQl2KSCBvtIDoEEQpXzLcCvJ8d9BG&currency=USD"></script>
 

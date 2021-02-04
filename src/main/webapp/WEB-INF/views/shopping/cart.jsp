@@ -16,14 +16,14 @@
 <spring:message code="label_shoppingCartWelcome" var="labelWelcome"/>
 <spring:message code="label_choosePM" var="labelChoosePM"/>
 <spring:message code="label_checkout_proceed" var="labelProceedCheckout"/>
-
-<spring:url value="/commodity" var="showCommodityUrl"/>
-<spring:url value="/shopping/cart/checkout/" var="proceedToCheckoutUrl"/>
-<spring:url value="/customer/account/create/cart/" var="createAccountUrl"/>
+<spring:theme code="webRoot" var="webRoot" />
+<spring:url value="${webRoot}/commodity" var="commodityUrl"/>
+<spring:url value="${webRoot}/shopping/cart/checkout" var="proceedToCheckoutUrl"/>
+<spring:url value="${webRoot}/customer/account/create/cart" var="createAccountUrl"/>
 
 <script type="text/javascript">
 const shoppingCartId = ${ShoppingCartCookie};
-const showCommodityUrl = '${showCommodityUrl}';
+const showCommodityUrl = '${commodityUrl}';
 
 var shoppingCartObj;
 var currentBranchId; //current branchId for update

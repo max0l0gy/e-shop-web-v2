@@ -32,7 +32,7 @@ public class CustomerWebController extends CommonWebController {
         this.orderPurchaseService = orderPurchaseService;
     }
 
-    @GetMapping(path = {"/customer/account/create", "/customer/account/create/{from}/"})
+    @GetMapping(path = {"/customer/account/create", "/customer/account/create/{from}"})
     public String createAccount(
             @PathVariable(name = "from", required = false) Optional<String> from,
             HttpServletResponse response,
