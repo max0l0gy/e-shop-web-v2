@@ -35,7 +35,7 @@ jobs:
         run: echo "APP_DOCKER_REPO=$APP_DOCKER_REPO"
 
       - name: Print WEB_ROOT Variable
-        Brun: echo "WEB_ROOT=${{ secrets.WEB_ROOT }}"
+        run: echo "WEB_ROOT=${{ secrets.WEB_ROOT }}"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v1
