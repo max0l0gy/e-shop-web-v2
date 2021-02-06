@@ -19,8 +19,6 @@
   color: #fff;
   background: #ea38ff;
 }
-
-
 </style>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -32,44 +30,46 @@ $(document).ready(function () {
   } );
 
 });
-
-
 </script>
-
-<div class="mdl-grid">
-    <div class="login-title mdl-cell mdl-cell--12-col">TiTS ON FIRE LOGIN PAGE</div>
-    <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet mdl-cell--4-col-desktop"></div>
-    <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--4-col mdl-cell--6-col-tablet mdl-cell--2-col-desktop login-form-container " >
-        <form name='login' action='${app_url}login' method='POST' class="demo-card-square mdl-card mdl-shadow--2dp login-form ">
-            <div class="mdl-card__title mdl-card--expand">
-                <h2 class="mdl-card__title-text">Security</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="username" name='username'>
-                    <label class="mdl-textfield__label" for="username">username</label>
-                </div>
-                <br/>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="password" id="password" name='password'>
-                    <label class="mdl-textfield__label" for="password">password</label>
-                </div>
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                    Login
-                </button>
-
-            </div>
-        </form>
-        <div class="mdl-card__actions mdl-card--border">
-            <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                CREATE ACCOUNT
-            </button>
+<div class="titsonfire-more-section">
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">TiTS ON FIRE SECURITY</div>
+    <div class="titsonfire-card-container mdl-grid">
+        <!-- static card -->
+        <div class="mdl-cell mdl-cell--12-col" style="height:150px">
         </div>
+        <div class="mdl-cell mdl-cell--12-col mdl-card">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12 login-form demo-card-square mdl-card mdl-shadow--2dp " >
+                    <form name='login' action='${app_url}login' method='POST'>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Welcome</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="username" name='username'>
+                                <label class="mdl-textfield__label" for="username">username</label>
+                            </div>
+                            <br/>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="password" id="password"
+                                       name='password'>
+                                <label class="mdl-textfield__label" for="password">password</label>
+                            </div>
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <button class="mdl-cell mdl-cell--12 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="mdl-cell mdl-cell--12">
+                    <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        CREATE ACCOUNT
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--end: static card-->
     </div>
-    <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone mdl-cell--2-col-tablet mdl-cell--4-col-desktop"></div>
-    <div class="mdl-cell mdl-cell--12-col"></div>
 </div>
-

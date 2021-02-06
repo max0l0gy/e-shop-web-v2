@@ -9,7 +9,7 @@ public class AdminWebController {
 
     @GetMapping(path = {"/security/in/"})
     public String securityPage(Model uiModel){
-        return "admin/login";
+        return "customer/login";
     }
 
 }

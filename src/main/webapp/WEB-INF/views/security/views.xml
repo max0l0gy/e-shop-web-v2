@@ -3,7 +3,7 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-    <definition extends="login" name="admin/login">
+    <definition extends="default" name="customer/login">
         <put-attribute name="body" value="/WEB-INF/views/security/login.jsp" />
     </definition>
 
