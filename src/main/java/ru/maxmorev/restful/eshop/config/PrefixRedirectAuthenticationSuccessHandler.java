@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 public class PrefixRedirectAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+    public static String REQUESTED_URL_BEFORE_LOGIN = "requested_url_before_login";
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     @Value("${web.root}")
     private String webRoot;
@@ -25,7 +26,7 @@ public class PrefixRedirectAuthenticationSuccessHandler implements Authenticatio
         String targetUrl = request.getRequestURL().toString();
         log.info("webRoot is {}", webRoot);
         log.info("request.getRequestURL() is {}", targetUrl);
-        log.info("request.getContextPath() is {}", request.getContextPath());
+        log.info("requested_url_before_login is ", request.getSession().getAttribute(REQUESTED_URL_BEFORE_LOGIN));
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 }
