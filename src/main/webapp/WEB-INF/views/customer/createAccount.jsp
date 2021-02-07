@@ -4,16 +4,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-    <spring:message code="label_buy" var="labelBuy"/>
-    <spring:message code="label_price" var="labelPrice"/>
-    <spring:message code="label_checkout" var="labelCheckout"/>
-    <spring:message code="label_back_to_cart" var="labelBack"/>
-    <spring:message code="label_back" var="labelBackVerify"/>
-    <spring:message code="label_create_account" var="labelWelcome"/>
-    <spring:message code="label_create_account" var="labelCreateAccount"/>
-    <spring:message code="label_verify_email" var="labelVerifyEmail"/>
-    <spring:url value="/shopping/cart/" var="backUrl"/>
-    <spring:url value="/shopping/cart/checkout/" var="checkOutUrl"/>
+<spring:message code="label_buy" var="labelBuy"/>
+<spring:message code="label_price" var="labelPrice"/>
+<spring:message code="label_checkout" var="labelCheckout"/>
+<spring:message code="label_back_to_cart" var="labelBack"/>
+<spring:message code="label_back" var="labelBackVerify"/>
+<spring:message code="label_create_account" var="labelWelcome"/>
+<spring:message code="label_create_account" var="labelCreateAccount"/>
+<spring:message code="label_verify_email" var="labelVerifyEmail"/>
+<spring:url value="/shopping/cart/" var="backUrl"/>
+<spring:url value="/shopping/cart/checkout/" var="checkOutUrl"/>
 
 <script type="text/javascript">
 const shoppingCartId = ${ShoppingCartCookie};
@@ -171,87 +171,89 @@ $(document).ready(function () {
   });
 
 });
-
 </script>
-<div class="mdl-grid portfolio-max-width">
-     <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
 
-            <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text commodity-name"></b></h2>
-            </div>
-            <div class="mdl-card__media" style="background-color:white" >
+<div class="titsonfire-more-section">
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">Create Account</div>
+    <div class="titsonfire-card-container mdl-grid">
+        <!-- customer card -->
+         <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                 <div class="mdl-card__title">
+                     <h2 class="mdl-card__title-text commodity-name"></b></h2>
+                 </div>
+                 <div class="mdl-card__media" style="background-color:white" >
 
-            </div>
-            <div class="mdl-card__supporting-text">
-            <span>Create an account to place an order and delivery</span>
-            </div>
-            <div class="mdl-grid">
-                <div id="error-container" class="mdl-cell mdl-cell--12-col">
-                    <h4>Error</h4>
-                    <p id="error-message"></p>
-                </div>
-                <div class="mdl-cell mdl-cell--12-col">
-                <h4>Create account</h4>
-                </div>
+                 </div>
+                 <div class="mdl-card__supporting-text">
+                 <span>Create an account to place an order and delivery</span>
+                 </div>
+                 <div class="mdl-grid">
+                     <div id="error-container" class="mdl-cell mdl-cell--12-col">
+                         <h4>Error</h4>
+                         <p id="error-message"></p>
+                     </div>
+                     <div class="mdl-cell mdl-cell--12-col">
+                     <h4>Create account</h4>
+                     </div>
 
-                <tiles:insertAttribute name="customer_info"/>
+                     <tiles:insertAttribute name="customer_info"/>
 
-                <div id="customer-buttons" class="mdl-cell mdl-cell--12-col">
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                    <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelWelcome}</button>
-                    </div>
+                     <div id="customer-buttons" class="mdl-cell mdl-cell--12-col">
+                     <div class="mdl-grid">
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">
+                         <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelWelcome}</button>
+                         </div>
 
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                    <button id="btn-proceed-back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelBack}</button>
-                    </div>
-                </div>
-                </div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">
+                         <button id="btn-proceed-back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelBack}</button>
+                         </div>
+                     </div>
+                     </div>
 
-                <div id="consumer-verify-email" class="mdl-cell mdl-cell--12-col">
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                    <h2 class="mdl-card__title-text">Check your mail to get a verification code.</h2>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                     <div id="consumer-verify-email" class="mdl-cell mdl-cell--12-col">
+                     <div class="mdl-grid">
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">
+                         <h2 class="mdl-card__title-text">Check your mail to get a verification code.</h2>
+                         </div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
 
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                    <h2 class="mdl-card__title-text">Verify your email</h2>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">
+                         <h2 class="mdl-card__title-text">Verify your email</h2>
+                         </div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
 
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card__actions mdl-card--border">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="verifyCode" maxlength="5">
-                        <label class="mdl-textfield__label" for="verifyCode">Code</label>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">
+                             <div class="mdl-card__actions mdl-card--border">
+                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                             <input class="mdl-textfield__input" type="text" id="verifyCode" maxlength="5">
+                             <label class="mdl-textfield__label" for="verifyCode">Code</label>
+                             </div>
+                             </div>
+                         </div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
 
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <button id="btn-verify-email" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelVerifyEmail}</button>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">
+                             <button id="btn-verify-email" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelVerifyEmail}</button>
+                         </div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
 
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <button id="btn-verify-email-back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelBackVerify}</button>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                </div>
-                </div>
-
-            </div>
-
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                         <div class="mdl-cell mdl-cell--4-col">
+                             <button id="btn-verify-email-back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelBackVerify}</button>
+                         </div>
+                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                     </div>
+                     </div>
+                 </div>
+         </div>
+        <!-- end: customer card -->
     </div>
 </div>

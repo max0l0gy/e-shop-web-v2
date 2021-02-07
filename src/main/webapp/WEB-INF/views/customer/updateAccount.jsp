@@ -81,57 +81,64 @@ $(document).ready(function () {
 });
 
 </script>
-<div class="mdl-grid portfolio-max-width">
-     <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-phone">
-     <button id="show-update" class="mdl-button mdl-js-button mdl-button--accent">
-       Update delivery info
-     </button>
-     <button id="show-orders" class="mdl-button mdl-js-button mdl-button--accent">
-       My Orders
-     </button>
-     </div>
-     <div id="update-info" class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
-        <c:if test="${not empty customer}">
-            <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text commodity-name"></b></h2>
-            </div>
-            <div class="mdl-card__media" style="background-color:white" >
 
-            </div>
-            <div class="mdl-card__supporting-text">
-            <span>Update your account info to place an order and delivery</span>
-            </div>
-            <div class="mdl-grid">
-                <div id="error-container" class="mdl-cell mdl-cell--12-col">
-                    <h4>Error</h4>
-                    <p id="error-message"></p>
-                </div>
-                <div class="mdl-cell mdl-cell--12-col">
-                <h4>Update account info</h4>
-                </div>
-
-                <tiles:insertAttribute name="customer_info"/>
-
-                <div id="customer-buttons" class="mdl-cell mdl-cell--12-col">
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                    <button id="btn-update-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelWelcome}</button>
+<div class="titsonfire-more-section">
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">Update Account Information</div>
+    <div class="titsonfire-card-container mdl-grid">
+        <!-- customer card -->
+             <div class="mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-phone">
+                 <button id="show-update" class="mdl-button mdl-js-button mdl-button--accent">
+                   Update delivery info
+                 </button>
+                 <button id="show-orders" class="mdl-button mdl-js-button mdl-button--accent">
+                   My Orders
+                 </button>
+             </div>
+             <div id="update-info" class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+                <c:if test="${not empty customer}">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text commodity-name"></b></h2>
                     </div>
-                </div>
+                    <div class="mdl-card__media" style="background-color:white" >
+
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                    <span>Update your account info to place an order and delivery</span>
+                    </div>
+                    <div class="mdl-grid">
+                        <div id="error-container" class="mdl-cell mdl-cell--12-col">
+                            <h4>Error</h4>
+                            <p id="error-message"></p>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                        <h4>Update account info</h4>
+                        </div>
+
+                        <tiles:insertAttribute name="customer_info"/>
+
+                        <div id="customer-buttons" class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                            <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                            <div class="mdl-cell mdl-cell--4-col">
+                            <button id="btn-update-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelWelcome}</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </c:if>
             </div>
 
-        </c:if>
-    </div>
-
-    <div id="orders-info">
-        <c:if test="${not empty orders}">
-        <tiles:insertAttribute name="orders_container"/>
-        </c:if>
-        <c:if test="${empty orders}">
-        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
-        <h2>You have no orders yet</h2>
-        </div>
-        </c:if>
+            <div id="orders-info">
+                <c:if test="${not empty orders}">
+                <tiles:insertAttribute name="orders_container"/>
+                </c:if>
+                <c:if test="${empty orders}">
+                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+                <h2>You have no orders yet</h2>
+                </div>
+                </c:if>
+            </div>
+        <!-- end: customer card -->
     </div>
 </div>
+<!-- OLD -->

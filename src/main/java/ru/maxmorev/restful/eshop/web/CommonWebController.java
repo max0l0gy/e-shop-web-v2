@@ -102,6 +102,8 @@ public abstract class CommonWebController {
         }
         Customer authCustomer = customerService.findByEmail(id).get();
         log.info("mergeShoppingCartFromCookieWithCustomerIfNeed");
+        log.info("authCustomer.getShoppingCartId() = {}", authCustomer.getShoppingCartId() );
+        log.info("scFromCookie.getId() = {}", authCustomer.getShoppingCartId() );
         if (!Objects.equals(scFromCookie.getId(), authCustomer.getShoppingCartId())) {
             scFromCookie = shoppingCartService.mergeCartFromTo(scFromCookie.getId(), authCustomer.getShoppingCartId());
         }

@@ -32,7 +32,7 @@ public class CustomerWebController extends CommonWebController {
         this.orderPurchaseService = orderPurchaseService;
     }
 
-    @GetMapping(path = {"/customer/account/create", "/customer/account/create/{from}"})
+    @GetMapping(path = {"/customer/account/create/", "/customer/account/create/{from}"})
     public String createAccount(
             @PathVariable(name = "from", required = false) Optional<String> from,
             HttpServletResponse response,
@@ -44,7 +44,7 @@ public class CustomerWebController extends CommonWebController {
         return "customer/createAccount";
     }
 
-    @GetMapping(path = {"/customer/account/update"})
+    @GetMapping(path = {"/customer/account/update/"})
     public String updateAccount(
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
