@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import ru.maxmorev.restful.eshop.rest.Constants;
@@ -41,16 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
     }
 
-    /*@Bean(name = { "userDetailsService" })
-    public UserDetailsService getUserDetailsService(){ return new CustomerServiceImpl();}
-*/
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    //@Autowired
-    //WebApplicationContext ctx;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -77,8 +72,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 .loginPage(webRoot + "/security/in/")
                 .defaultSuccessUrl("/", false)
+                .successHandler(prefixRedirectAuthenticationSuccessHandler())
                 .and()
                 .csrf().disable();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler prefixRedirectAuthenticationSuccessHandler(){
+        return new PrefixRedirectAuthenticationSuccessHandler();
     }
 
     //@Bean
@@ -88,4 +89,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         repo.setHeaderName("X-CSRF-TOKEN");
         return repo;
     }
+
+
 }
