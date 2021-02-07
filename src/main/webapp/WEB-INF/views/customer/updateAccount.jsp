@@ -134,7 +134,8 @@ $(document).ready(function () {
                 </c:if>
                 <c:if test="${empty orders}">
                 <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
-                <h2>You have no orders yet</h2>
+                <span class="mdl-typography--font-light mdl-typography--subhead">You have no orders yet</span>
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/72b80c113022029.601fdc86e7615.png" alt="You have no orders yet">
                 </div>
                 </c:if>
             </div>

@@ -29,7 +29,7 @@ function createAccountSuccess(json){
     customer = json;
     customerId = json.id;
     $('#error-message').hide();
-    $('#consumer-verify-email').show();
+    $('#customer-verify-email').show();
     $('#customer-info').hide();
     $('#customer-buttons').hide();
     componentHandler.upgradeDom();
@@ -60,7 +60,7 @@ function createAccount(){
 
 function showCreateForm(){
     $('#error-container').hide();
-    $('#consumer-verify-email').hide();
+    $('#customer-verify-email').hide();
     $('#customer-info').show();
     $('#customer-buttons').show();
     componentHandler.upgradeDom();
@@ -68,7 +68,7 @@ function showCreateForm(){
 
 function showVerifyForm(){
     $('#error-container').hide();
-    $('#consumer-verify-email').show();
+    $('#customer-verify-email').show();
     $('#customer-info').hide();
     $('#customer-buttons').hide();
     componentHandler.upgradeDom();
@@ -214,7 +214,7 @@ $(document).ready(function () {
                      </div>
                      </div>
 
-                     <div id="consumer-verify-email" class="mdl-cell mdl-cell--12-col">
+                     <div id="customer-verify-email" class="mdl-cell mdl-cell--12-col">
                          <div class="mdl-grid">
                              <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
                              <div class="mdl-cell mdl-cell--4-col">
