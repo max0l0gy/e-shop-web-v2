@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Value;
+import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 
 import java.util.List;
 import java.util.Set;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ShoppingCartDto {
+public class ShoppingCartDto  extends JsonMappedValue {
     private Long id;
     private List<ShoppingCartSetDto> shoppingSet;
 
@@ -33,16 +34,5 @@ public class ShoppingCartDto {
     private String getCurrencyCode() {
         return shoppingSet != null ? shoppingSet.stream().findFirst().map(scs->scs.getBranch().getCurrency()).orElse(""):"";
     }
-
-    @Override
-    public String toString() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            return e.getMessage();
-        }
-    }
-
 
 }

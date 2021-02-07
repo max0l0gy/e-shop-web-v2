@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
 import lombok.Value;
+import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 import ru.maxmorev.restful.eshop.rest.request.AttributeDto;
 
 import java.util.Currency;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Value
 @Builder
-public class PurchaseDto {
+public class PurchaseDto extends JsonMappedValue {
     private Integer amount;//amount of items
     private Long branchId;//branchId
     private Long commodityId;
@@ -26,14 +27,4 @@ public class PurchaseDto {
     private Currency currency; //current price currency
     private List<AttributeDto> attributes;
 
-
-    @Override
-    public String toString() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            return e.getMessage();
-        }
-    }
 }

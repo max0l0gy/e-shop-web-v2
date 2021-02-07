@@ -53,7 +53,7 @@ public class CustomerWebController extends CommonWebController {
         mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
         String id = getAuthenticationCustomerId();
         CustomerDTO customerDTO = customerService.findByEmail(id).map(CustomerDTO::of).get();
-        uiModel.addAttribute("customer", customerDTO);
+        uiModel.addAttribute("customer", customerDTO.toJsonString());
         uiModel.addAttribute(
                 "orders",
                 orderPurchaseService

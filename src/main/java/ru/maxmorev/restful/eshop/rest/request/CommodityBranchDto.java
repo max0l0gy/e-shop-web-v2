@@ -1,12 +1,11 @@
 package ru.maxmorev.restful.eshop.rest.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.maxmorev.restful.eshop.rest.JsonMapped;
+import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 import ru.maxmorev.restful.eshop.validation.AttributeDuplicationValues;
 
 import javax.validation.Valid;
@@ -22,7 +21,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommodityBranchDto extends JsonMapped {
+public class CommodityBranchDto extends JsonMappedValue {
     @NotNull(message = "{branch.id.notNull}")
     private Long id;
     @NotNull(message = "{branch.commodityId.notNull}")

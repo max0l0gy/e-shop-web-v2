@@ -1,12 +1,11 @@
 package ru.maxmorev.restful.eshop.rest.request;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.maxmorev.restful.eshop.rest.JsonMapped;
+import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 import ru.maxmorev.restful.eshop.rest.response.CommodityTypeDto;
 
 import javax.validation.constraints.NotBlank;
@@ -20,7 +19,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommodityInfoDto extends JsonMapped {
+public class CommodityInfoDto extends JsonMappedValue {
 
     protected static ObjectMapper MAPPER = new ObjectMapper();
 

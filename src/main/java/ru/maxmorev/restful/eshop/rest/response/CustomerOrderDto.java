@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
 import ru.maxmorev.restful.eshop.annotation.PaymentProvider;
+import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Getter
 @Builder
-public class CustomerOrderDto {
+public class CustomerOrderDto extends JsonMappedValue {
     private Long id;
     private Long customerId;
     private Date dateOfCreation;

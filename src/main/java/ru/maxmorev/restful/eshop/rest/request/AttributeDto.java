@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.maxmorev.restful.eshop.rest.JsonMapped;
+import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 
 import javax.validation.constraints.NotNull;
 
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AttributeDto extends JsonMapped {
+public class AttributeDto extends JsonMappedValue {
     @NotNull
     private String name;
     @NotNull

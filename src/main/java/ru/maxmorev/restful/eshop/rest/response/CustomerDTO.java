@@ -6,13 +6,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ru.maxmorev.restful.eshop.domain.CustomerInfo;
+import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CustomerDTO {
+public class CustomerDTO extends JsonMappedValue {
     private Long id;
     private String email;
     private String fullName;
