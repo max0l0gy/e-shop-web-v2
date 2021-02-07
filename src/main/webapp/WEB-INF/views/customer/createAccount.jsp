@@ -215,42 +215,40 @@ $(document).ready(function () {
                      </div>
 
                      <div id="consumer-verify-email" class="mdl-cell mdl-cell--12-col">
-                     <div class="mdl-grid">
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                         <div class="mdl-cell mdl-cell--4-col">
-                         <h2 class="mdl-card__title-text">Check your mail to get a verification code.</h2>
-                         </div>
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                         <div class="mdl-cell mdl-cell--4-col">
-                         <h2 class="mdl-card__title-text">Verify your email</h2>
-                         </div>
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                         <div class="mdl-cell mdl-cell--4-col">
-                             <div class="mdl-card__actions mdl-card--border">
-                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                             <input class="mdl-textfield__input" type="text" id="verifyCode" maxlength="5">
-                             <label class="mdl-textfield__label" for="verifyCode">Code</label>
+                         <div class="mdl-grid">
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                             <div class="mdl-cell mdl-cell--4-col">
+                             <h2 class="mdl-card__title-text">Check your mail to get a verification code.</h2>
                              </div>
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                             <div class="mdl-cell mdl-cell--4-col">
+                             <h2 class="mdl-card__title-text">Verify your email</h2>
                              </div>
-                         </div>
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
 
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                         <div class="mdl-cell mdl-cell--4-col">
-                             <button id="btn-verify-email" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelVerifyEmail}</button>
-                         </div>
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                             <div class="mdl-cell mdl-cell--4-col">
+                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                 <input class="mdl-textfield__input" type="text" id="verifyCode" maxlength="5">
+                                 <label class="mdl-textfield__label" for="verifyCode">Code</label>
+                                 </div>
+                             </div>
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
 
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                         <div class="mdl-cell mdl-cell--4-col">
-                             <button id="btn-verify-email-back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelBackVerify}</button>
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                             <div class="mdl-cell mdl-cell--4-col">
+                                 <button id="btn-verify-email" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelVerifyEmail}</button>
+                             </div>
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
+                             <div class="mdl-cell mdl-cell--4-col">
+                                 <button id="btn-verify-email-back" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">${labelBackVerify}</button>
+                             </div>
+                             <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
                          </div>
-                         <div class="mdl-cell mdl-cell--4-col">&nbsp;</div>
-                     </div>
                      </div>
                  </div>
          </div>

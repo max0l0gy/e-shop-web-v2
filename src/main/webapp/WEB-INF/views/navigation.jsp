@@ -12,9 +12,9 @@
 <spring:url value="${webRoot}/logout" var="logoutUrl"/>
 <spring:url value="${webRoot}/commodities" var="commoditiesUrl"/>
 <spring:url value="${webRoot}/commodities/type" var="commoditiesByTypeUrl"/>
-<spring:url value="${webRoot}/shopping/cart" var="shoppingCartUrl"/>
-<spring:url value="${webRoot}/customer/account/update" var="accountUrl"/>
-<spring:url value="${webRoot}/about" var="aboutUrl"/>
+<spring:url value="${webRoot}/shopping/cart/" var="shoppingCartUrl"/>
+<spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
+<spring:url value="${webRoot}/about/" var="aboutUrl"/>
 
 <div class="titsonfire-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">

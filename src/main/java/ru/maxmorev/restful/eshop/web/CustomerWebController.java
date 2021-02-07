@@ -49,9 +49,10 @@ public class CustomerWebController extends CommonWebController {
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel) throws IOException {
+        String id = getAuthenticationCustomerId();
+        log.info("customerId {}", id);
         addCommonAttributesToModel(uiModel);
         mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
-        String id = getAuthenticationCustomerId();
         CustomerDTO customerDTO = customerService.findByEmail(id).map(CustomerDTO::of).get();
         uiModel.addAttribute("customer", customerDTO.toJsonString());
         uiModel.addAttribute(
