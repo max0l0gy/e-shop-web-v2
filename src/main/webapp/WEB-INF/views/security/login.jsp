@@ -76,22 +76,32 @@ $(document).ready(function () {
         <div class="mdl-cell mdl-cell--4">
         </div>
         <!-- end: security card -->
+
         <!-- CREATE LOGIN -->
-        <div class="mdl-cell mdl-cell--6">
+        <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4">
+            </div>
+            <div class="mdl-cell mdl-cell--4">
+                <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    CREATE ACCOUNT
+                </button>
+            </div>
+            <div class="mdl-cell mdl-cell--4">
+            </div>
+            <!-- Forgot password -->
+            <div class="mdl-cell mdl-cell--4">
+            </div>
+            <div class="mdl-cell mdl-cell--4">
+                <button id="btn-forgot-password" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    FORGOT PASSWORD
+                </button>
+            </div>
+            <div class="mdl-cell mdl-cell--4">
+            </div>
+            <!--end: sForgot password-->
         </div>
-        <div class="mdl-cell mdl-cell--6">
-            <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                CREATE ACCOUNT
-            </button>
         </div>
-        <!-- Forgot password -->
-        <div class="mdl-cell mdl-cell--6">
-        </div>
-        <div class="mdl-cell mdl-cell--6">
-            <button id="btn-forgot-password" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                FORGOT PASSWORD
-            </button>
-        </div>
-        <!--end: sForgot password-->
+
     </div>
 </div>
