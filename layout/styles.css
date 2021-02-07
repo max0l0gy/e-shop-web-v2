@@ -721,19 +721,7 @@ img.article-image {
 }
 
 /* security login page */
-.demo-card-square.mdl-card {
-  width: 420px;
-  height: 320px;
-}
-.demo-card-square > .mdl-card__title {
-  color: #fff;
-  background: #ea38ff;
-}
-
-.titsonfire-card-container-security {
-    height: 800px;
-}
-
-.login-form {
-    height: 300px;
+.titsonfire-security-error {
+     width: 320px;
+     margin-left: 250px;
 }

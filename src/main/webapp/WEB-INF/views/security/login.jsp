@@ -8,21 +8,15 @@
 <spring:theme code="webRoot" var="webRoot"/>
 <spring:url value="${webRoot}/" var="app_url"/>
 <spring:url value="${webRoot}/customer/account/create/checkout" var="createAccountUrl"/>
-
-<!-- Square card -->
-<style>
-.demo-card-square.mdl-card {
-  width: 320px;
-  height: 320px;
-}
-.demo-card-square > .mdl-card__title {
-  color: #fff;
-  background: #ea38ff;
-}
-</style>
 <script type="text/javascript">
 $(document).ready(function () {
-
+  const queryString = window.location.search;
+  console.log('queryString = ' + queryString);
+  if( queryString.includes('error') ) {
+    $("#security-error").show();
+  } else {
+    $("#security-error").hide();
+  }
   var btnCreateAcc = document.querySelector('#btn-create-account');
   btnCreateAcc.addEventListener('click', function() {
     console.log("${createAccountUrl}");
@@ -37,39 +31,67 @@ $(document).ready(function () {
         <!-- static card -->
         <div class="mdl-cell mdl-cell--12-col" style="height:150px">
         </div>
-        <div class="mdl-cell mdl-cell--12-col mdl-card">
+        <div  id="security-error"  class="mdl-cell mdl-cell--12-col">
             <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--12 login-form demo-card-square mdl-card mdl-shadow--2dp " >
-                    <form name='login' action='${app_url}login' method='POST'>
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">Welcome</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="username" name='username'>
-                                <label class="mdl-textfield__label" for="username">username</label>
-                            </div>
-                            <br/>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="password" id="password"
-                                       name='password'>
-                                <label class="mdl-textfield__label" for="password">password</label>
-                            </div>
-                        </div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <button class="mdl-cell mdl-cell--12 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                Login
-                            </button>
-                        </div>
-                    </form>
+                <div class="mdl-cell mdl-cell--4">
                 </div>
-                <div class="mdl-cell mdl-cell--12">
-                    <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                        CREATE ACCOUNT
-                    </button>
+                <div class="mdl-cell mdl-cell--4">
+                    <!-- Contact Chip -->
+                    <span class="mdl-chip mdl-chip--contact">
+                        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="material-icons">warning_amber</i></span>
+                        <span class="mdl-chip__text">Wrong login information</span>
+                    </span>
+                </div>
+                <div class="mdl-cell mdl-cell--4">
                 </div>
             </div>
         </div>
-        <!--end: static card-->
+        <!-- security card -->
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+            <form name='login' action='${app_url}login' method='POST' class="mdl-card">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text ">Welcome</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="username" name='username'>
+                        <label class="mdl-textfield__label" for="username">username</label>
+                    </div>
+                    <br/>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="password" id="password"
+                               name='password'>
+                        <label class="mdl-textfield__label" for="password">password</label>
+                    </div>
+                </div>
+                <div class="mdl-card__actions">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+        <!-- end: security card -->
+        <!-- CREATE LOGIN -->
+        <div class="mdl-cell mdl-cell--6">
+        </div>
+        <div class="mdl-cell mdl-cell--6">
+            <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                CREATE ACCOUNT
+            </button>
+        </div>
+        <!-- Forgot password -->
+        <div class="mdl-cell mdl-cell--6">
+        </div>
+        <div class="mdl-cell mdl-cell--6">
+            <button id="btn-forgot-password" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                FORGOT PASSWORD
+            </button>
+        </div>
+        <!--end: sForgot password-->
     </div>
 </div>

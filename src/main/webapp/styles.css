@@ -701,3 +701,15 @@ img.article-image {
 .cart-container {
     width: 100%;
 }
+/* security card */
+.titsonfire-security-error {
+     width: 320px;
+}
+.titsonfire-security-card.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.titsonfire-security-card > .mdl-card__title {
+  color: #fff;
+  background: #ea38ff;
+}

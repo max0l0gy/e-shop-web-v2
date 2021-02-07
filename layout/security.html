@@ -147,45 +147,56 @@ var SHOPPING_CART_ITEMS_AMOUNT = 1;
             <div class="titsonfire-card-container mdl-grid">
                 <!-- static card -->
 
-                <!-- END: ITEM IMAGES -->
-                <div class="mdl-cell mdl-cell--12-col" style="height:150px">
+                <div class="mdl-cell mdl-cell--12-col" style="height:50px">
                 </div>
-                <div class="mdl-cell mdl-cell--12-col mdl-card">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--12 login-form demo-card-square mdl-card mdl-shadow--2dp " >
-                            <form name='login' action='https://titsonfire.store/web/login' method='POST'>
-                                <div class="mdl-card__title">
-                                    <h2 class="mdl-card__title-text">Welcome</h2>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input" type="text" id="username" name='username'>
-                                        <label class="mdl-textfield__label" for="username">username</label>
-                                    </div>
-                                    <br/>
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input class="mdl-textfield__input" type="password" id="password"
-                                               name='password'>
-                                        <label class="mdl-textfield__label" for="password">password</label>
-                                    </div>
-                                </div>
-                                <div class="mdl-card__actions mdl-card--border">
-                                    <button class="mdl-cell mdl-cell--12 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                        Login
-                                    </button>
-                                </div>
-                            </form>
+                <div class="mdl-cell mdl-cell--4">
+                </div>
+                <div class="mdl-cell mdl-cell--4">
+                    <!-- Contact Chip -->
+                    <span class="mdl-chip mdl-chip--contact">
+                            <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white"><i class="material-icons">warning_amber</i></span>
+                            <span class="mdl-chip__text">Wrong login information</span>
+                            </span>
+                </div>
+                <div class="mdl-cell mdl-cell--4">
+                </div>
+
+                <div class="mdl-cell mdl-cell--4">
+                </div>
+                <div class="mdl-cell mdl-cell--4">
+                    <form name='login' action='https://titsonfire.store/web/login' method='POST' class="mdl-card">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text ">Welcome</h2>
                         </div>
-                        <div class="mdl-cell mdl-cell--12">
-                            <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                CREATE ACCOUNT
+                        <div class="mdl-card__supporting-text">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="username" name='username'>
+                                <label class="mdl-textfield__label" for="username">username</label>
+                            </div>
+                            <br/>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="password" id="password"
+                                       name='password'>
+                                <label class="mdl-textfield__label" for="password">password</label>
+                            </div>
+                        </div>
+                        <div class="mdl-card__actions">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                Login
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
-
-                <!--end: static card-->
-
+                <div class="mdl-cell mdl-cell--4">
+                </div>
+                <!-- CREATE LOGIN -->
+                <div class="mdl-cell mdl-cell--6">
+                </div>
+                <div class="mdl-cell mdl-cell--6">
+                    <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        CREATE ACCOUNT
+                    </button>
+                </div>
             </div>
         </div>
         <!-- end: body -->
