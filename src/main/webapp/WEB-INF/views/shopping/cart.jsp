@@ -70,7 +70,7 @@ $(document).ready(function () {
     <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">SHOPPiNG CART</div>
     <div class="titsonfire-card-container mdl-grid">
         <!-- shopping cart -->
-        <div id="cart-empty" class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
+        <div id="cart-empty" class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--1dp" style="padding:10px;">
            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/72b80c113022029.601fdc86e7615.png" alt="Shopping cart is Empty"/>
         </div>
         <div class="mdl-cell mdl-cell--12-col" id="cart-title">
