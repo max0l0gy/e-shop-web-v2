@@ -109,3 +109,8 @@ spec:
                 secretKeyRef:
                   name: eshop-secrets
                   key: WEB_ROOT
+            - name: WEB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: eshop-secrets
+                  key: WEB_HOST
