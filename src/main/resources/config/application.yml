@@ -63,3 +63,4 @@ manager:
 
 web.root: ${WEB_ROOT}
 web.host: ${WEB_HOST}
+security.defaultRedirectPage: /customer/account/update/
