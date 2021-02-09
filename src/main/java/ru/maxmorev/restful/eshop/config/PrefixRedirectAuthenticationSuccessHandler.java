@@ -30,8 +30,8 @@ public class PrefixRedirectAuthenticationSuccessHandler implements Authenticatio
         log.info("webRoot is {}", webRoot);
 
         HttpSession session = request.getSession();
-        SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
-
+        SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST_KEY");
+        log.info("SPRING_SECURITY_SAVED_REQUEST_KEY : {}", savedRequest);
         if(savedRequest != null) {
             log.info("savedRequest.getRedirectUrl() is {}", savedRequest.getRedirectUrl());
             response.sendRedirect(savedRequest.getRedirectUrl());

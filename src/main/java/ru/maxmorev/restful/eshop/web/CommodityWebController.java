@@ -17,6 +17,7 @@ import ru.maxmorev.restful.eshop.services.ShoppingCartService;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,15 +37,15 @@ public class CommodityWebController extends CommonWebController {
             HttpServletRequest request,
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
-            Model uiModel){
+            Model uiModel) {
         log.info("----- commodityList");
-        log.info("URL IS {}", request.getRequestURL());
+        log.info("URL PARAMETERS {}", Collections.list(request.getParameterNames()));
         //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
         List<CommodityDto> commodities = commodityDtoService.findWithBranchesAmountGt0()
                 .stream().limit(4L).collect(Collectors.toList());
         addCommonAttributesToModel(uiModel);
         addShoppingCartAttributesToModel(cartCookie, response, uiModel);
-        uiModel.addAttribute("commodities", commodities );
+        uiModel.addAttribute("commodities", commodities);
         log.info("Number of commodities: " + commodities.size());
         return "main-page";
     }
@@ -53,14 +54,14 @@ public class CommodityWebController extends CommonWebController {
     public String commodities(
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
-            Model uiModel){
+            Model uiModel) {
 
         log.info("Listing branches");
         //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
         List<CommodityDto> commodities = commodityDtoService.findWithBranchesAmountGt0();
         addCommonAttributesToModel(uiModel);
         addShoppingCartAttributesToModel(cartCookie, response, uiModel);
-        uiModel.addAttribute("commodities", commodities );
+        uiModel.addAttribute("commodities", commodities);
         log.info("Number of commodities: " + commodities.size());
         return "commodities";
     }
@@ -73,7 +74,7 @@ public class CommodityWebController extends CommonWebController {
             Model uiModel) {
 
         CommodityTypeDto type = commodityDtoService.findTypeByName(name)
-                .orElseThrow(()->new IllegalArgumentException("Invalid type"));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid type"));
         List<CommodityDto> commodities = commodityDtoService.findWithBranchesAmountGt0AndType(name);
         uiModel.addAttribute("currentType", type);
         addCommonAttributesToModel(uiModel);
@@ -90,7 +91,7 @@ public class CommodityWebController extends CommonWebController {
             @PathVariable(value = "id", required = true) Long id,
             Model uiModel) {
         Optional<CommodityDto> cm = commodityDtoService.findCommodityById(id);
-        if(cm.isEmpty()){
+        if (cm.isEmpty()) {
             //TODO message like "The product you are looking for no longer exists."
             return "commodity/error-item";
         }
@@ -99,13 +100,11 @@ public class CommodityWebController extends CommonWebController {
         addCommonAttributesToModel(uiModel);
         addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         //TODO improve this part and remove from the code the definition of special type of commodity "wear" t-shirt
-        if(cm.get().getType().getName().toLowerCase().equals("t-shirt")){
+        if (cm.get().getType().getName().toLowerCase().equals("t-shirt")) {
             return "commodity/show-wear";
         }
         return "commodity/show-commodity";
     }
-
-
 
 
 }
