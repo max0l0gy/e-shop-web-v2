@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.util.Collections;
+
 import static ru.maxmorev.restful.eshop.config.PrefixRedirectAuthenticationSuccessHandler.REQUESTED_URL_BEFORE_LOGIN;
 
 @Slf4j
@@ -16,7 +18,7 @@ public class AdminWebController {
     @GetMapping(path = {"/security/in/"})
     public String securityPage(HttpServletRequest request, Model uiModel) {
         String referrer = request.getHeader("Referer");
-        log.info("-- headers : {}", request.getHeaderNames());
+        log.info("-- headers : {}", Collections.list(request.getHeaderNames()));
         if (referrer != null) {
             request.getSession().setAttribute(REQUESTED_URL_BEFORE_LOGIN, referrer);
         }
