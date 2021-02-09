@@ -27,12 +27,12 @@ public class AdminWebController {
             String redirectUrl = savedRequest.getRedirectUrl();
             log.info("savedRequest.getRedirectUrl() is {}", redirectUrl);
             request.getSession().setAttribute(REQUESTED_URL_BEFORE_LOGIN, redirectUrl);
-                setRequestPage(redirectUrl, response);
+                setRequestedPageToCookie(redirectUrl, response);
         }
         return "customer/login";
     }
 
-    private void setRequestPage(String requestPage, HttpServletResponse response) {
+    private void setRequestedPageToCookie(String requestPage, HttpServletResponse response) {
         Cookie requestedUrlCookie = new Cookie(REQUESTED_URL_BEFORE_LOGIN, requestPage);
         requestedUrlCookie.setComment("Requested page for usability of our web shop UI. Thank you.");
         requestedUrlCookie.setMaxAge(60 * 60 * 24);//1 days in seconds

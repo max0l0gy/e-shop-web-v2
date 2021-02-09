@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 @Slf4j
 public class PrefixRedirectAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-    public static String REQUESTED_URL_BEFORE_LOGIN = "REQUESTED_URL";
+    public static String REQUESTED_URL_BEFORE_LOGIN = "REQUESTED_URL_BEFORE_LOGIN";
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     @Value("${web.root}")
     private String webRoot;
