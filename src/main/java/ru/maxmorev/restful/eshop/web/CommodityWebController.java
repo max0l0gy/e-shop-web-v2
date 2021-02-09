@@ -15,6 +15,7 @@ import ru.maxmorev.restful.eshop.services.CustomerService;
 import ru.maxmorev.restful.eshop.services.ShoppingCartService;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
@@ -32,11 +33,12 @@ public class CommodityWebController extends CommonWebController {
 
     @GetMapping(path = "/")
     public String commodityList(
+            HttpServletRequest request,
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel){
-
-        log.info("Listing branches");
+        log.info("----- commodityList");
+        log.info("URL IS {}", request.getRequestURL());
         //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
         List<CommodityDto> commodities = commodityDtoService.findWithBranchesAmountGt0()
                 .stream().limit(4L).collect(Collectors.toList());
