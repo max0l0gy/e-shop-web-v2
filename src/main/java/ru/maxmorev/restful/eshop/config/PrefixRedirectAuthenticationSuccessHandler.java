@@ -26,7 +26,7 @@ public class PrefixRedirectAuthenticationSuccessHandler implements Authenticatio
         String targetUrl = request.getRequestURL().toString();
         log.info("webRoot is {}", webRoot);
         log.info("request.getRequestURL() is {}", targetUrl);
-        log.info(REQUESTED_URL_BEFORE_LOGIN + " is ", request.getSession().getAttribute(REQUESTED_URL_BEFORE_LOGIN));
+        log.info(REQUESTED_URL_BEFORE_LOGIN + " is ", request.getSession(false).getAttribute(REQUESTED_URL_BEFORE_LOGIN));
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 }

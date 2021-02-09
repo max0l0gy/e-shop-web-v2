@@ -17,10 +17,11 @@ public class AdminWebController {
 
     @GetMapping(path = {"/security/in/"})
     public String securityPage(HttpServletRequest request, Model uiModel) {
-        String referrer = request.getHeader("Referer");
         log.info("-- headers : {}", Collections.list(request.getHeaderNames()));
-        if (referrer != null) {
-            request.getSession().setAttribute(REQUESTED_URL_BEFORE_LOGIN, referrer);
+        String referer = request.getHeader("referer");
+        log.info("referer : {}", referer);
+        if (referer != null) {
+            request.getSession().setAttribute(REQUESTED_URL_BEFORE_LOGIN, referer);
         }
         return "customer/login";
     }
