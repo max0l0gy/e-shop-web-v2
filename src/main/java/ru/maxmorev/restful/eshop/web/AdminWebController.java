@@ -18,7 +18,7 @@ import static ru.maxmorev.restful.eshop.config.PrefixRedirectAuthenticationSucce
 public class AdminWebController {
 
     @GetMapping(path = {"/security/in/"})
-    public String securityPage(HttpServletRequest request, HttpServletResponse response, Model uiModel, Cookie loginCookie) {
+    public String securityPage(HttpServletRequest request, HttpServletResponse response, Model uiModel) {
         log.info("------------------------ securityPage ------------------------");
         HttpSession session = request.getSession();
         SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
@@ -27,19 +27,19 @@ public class AdminWebController {
             String redirectUrl = savedRequest.getRedirectUrl();
             log.info("savedRequest.getRedirectUrl() is {}", redirectUrl);
             request.getSession().setAttribute(REQUESTED_URL_BEFORE_LOGIN, redirectUrl);
-            setRequestPage(redirectUrl, response);
+                setRequestPage(redirectUrl, response);
         }
         return "customer/login";
     }
 
     private void setRequestPage(String requestPage, HttpServletResponse response) {
-        Cookie requestedUrl = new Cookie(REQUESTED_URL_BEFORE_LOGIN, requestPage);
-        requestedUrl.setComment("Requested page for usability of our web shop UI. Thank you.");
-        requestedUrl.setMaxAge(60 * 60 * 24);//1 days in seconds
-        requestedUrl.setPath("/");
+        Cookie requestedUrlCookie = new Cookie(REQUESTED_URL_BEFORE_LOGIN, requestPage);
+        requestedUrlCookie.setComment("Requested page for usability of our web shop UI. Thank you.");
+        requestedUrlCookie.setMaxAge(60 * 60 * 24);//1 days in seconds
+        requestedUrlCookie.setPath("/");
         //newCartCookie.setDomain();
         log.info("SETTING COOKIE");
-        response.addCookie(requestedUrl);
+        response.addCookie(requestedUrlCookie);
     }
 
 }
