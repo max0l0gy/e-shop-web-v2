@@ -74,6 +74,9 @@ jobs:
 
       - name: Update k8s-secrets WEB_ROOT
         run: sed -i 's|{WEB_ROOT}|${{secrets.WEB_ROOT}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+      - name: Update k8s-secrets WEB_HOST
+        run: sed -i 's|{WEB_HOST}|${{secrets.WEB_HOST}}|' $GITHUB_WORKSPACE/k8s-secrets.yaml
+
 
       - name: Print image version
         run: cat $GITHUB_WORKSPACE/k8s-deployment.yaml | grep image
