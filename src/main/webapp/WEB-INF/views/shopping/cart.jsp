@@ -18,8 +18,8 @@
 <spring:message code="label_checkout_proceed" var="labelProceedCheckout"/>
 <spring:theme code="webRoot" var="webRoot" />
 <spring:url value="${webRoot}/commodity" var="commodityUrl"/>
-<spring:url value="${webRoot}/shopping/cart/checkout" var="proceedToCheckoutUrl"/>
-<spring:url value="${webRoot}/customer/account/create/cart" var="createAccountUrl"/>
+<spring:url value="${webRoot}/shopping/cart/checkout/" var="proceedToCheckoutUrl"/>
+<spring:url value="${webRoot}/customer/account/create/cart/" var="createAccountUrl"/>
 
 <script type="text/javascript">
 const shoppingCartId = ${ShoppingCartCookie};
