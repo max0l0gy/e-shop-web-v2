@@ -54,6 +54,7 @@ function loadCartSuccess(json) {
 }
 
 $(document).ready(function () {
+  $("#cart-empty").hide();
   activateTab('tab-shopping-cart');
   getShoppingCart(shoppingCartId, loadCartSuccess);
   showToast("Welcome to shopping cart!");
