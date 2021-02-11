@@ -149,20 +149,20 @@ $(document).ready(function () {
         <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
             <div class="mdl-grid titsonfire-card-content">
                 <div class="mdl-cell mdl-cell--12-col mdl-typography--font-light mdl-typography--subhead">
-                    <strong><div class="mdl-card__supporting-text"><span>Comment for page</span>
+                    <span>Please check your shipping address and pay</span>
                 </div>
                 <div id="error-container" class="mdl-cell mdl-cell--12-col">
                     <h4>Error</h4>
                     <p id="error-message"></p>
                 </div>
                 <div class="mdl-cell mdl-cell--12-col">
-                Shopping Cart Subtotal (<div class="data-holder" id="total-items">${shoppingCart.itemsAmount}</div> items):&nbsp;<div class="data-holder" id="total-cart-price">${shoppingCart.totalPrice} </div>
+                    Shopping Cart Subtotal (<div class="data-holder" id="total-items">${shoppingCart.itemsAmount}</div> items):&nbsp;<div class="data-holder" id="total-cart-price">${shoppingCart.totalPrice} </div>
                 </div>
                 <div id="delivery-info" class="mdl-cell mdl-cell--6-col">
-                <b>Delivery Address:</b><br/>
-                ${customer.email}<br/>
-                ${customer.fullName}<br/>
-                ${customer.country}, ${customer.postcode}, ${customer.city}, ${customer.address}
+                    <b>Delivery Address:</b><br/>
+                    ${customer.email}<br/>
+                    ${customer.fullName}<br/>
+                    ${customer.country}, ${customer.postcode}, ${customer.city}, ${customer.address}
                 </div>
                 <button id="order-cancel-btn" class="mdl-cell mdl-cell--6-col mdl-cell--6-col-phone mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     Back to Cart
@@ -181,17 +181,17 @@ $(document).ready(function () {
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--2-col">&nbsp;</div>
                         <div class="mdl-cell mdl-cell--8-col">
-                        Thank you for your purchase!<br/>
-                        Order #<b id="order-id"></b> confirmed<br/>
-                        You can track the order status in your <a href="${profileUrl}">profile</a>:
-                        You will receive order status updates by email.<br/>
-                        Estimated time of dispatch: 1-3 days
+                            Thank you for your purchase!<br/>
+                            Order #<b id="order-id"></b> confirmed<br/>
+                            You can track the order status in your <a href="${profileUrl}">profile</a>:
+                            You will receive order status updates by email.<br/>
+                            Estimated time of dispatch: 1-3 days
                         </div>
                         <div class="mdl-cell mdl-cell--2-col">&nbsp;</div>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
         <!--end: commodity card-->
     </div>
 </div>
