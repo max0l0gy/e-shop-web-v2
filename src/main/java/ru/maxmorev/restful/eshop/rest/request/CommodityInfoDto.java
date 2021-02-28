@@ -1,10 +1,7 @@
 package ru.maxmorev.restful.eshop.rest.request;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 import ru.maxmorev.restful.eshop.rest.response.CommodityTypeDto;
 
@@ -16,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

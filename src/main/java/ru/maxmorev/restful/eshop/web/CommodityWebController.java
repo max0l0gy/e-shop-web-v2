@@ -95,8 +95,13 @@ public class CommodityWebController extends CommonWebController {
             //TODO message like "The product you are looking for no longer exists."
             return "commodity/error-item";
         }
-        uiModel.addAttribute("currentType", cm.get().getType());
-        uiModel.addAttribute("commodity", cm.get());
+
+        CommodityDto commodity =  cm.get();
+        String overview = commodity.getOverview().replace("\n", "<br/>");
+        commodity.setOverview(overview);
+        uiModel.addAttribute("commodity", commodity);
+        uiModel.addAttribute("currentType", commodity.getType());
+
         addCommonAttributesToModel(uiModel);
         addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         //TODO improve this part and remove from the code the definition of special type of commodity "wear" t-shirt
