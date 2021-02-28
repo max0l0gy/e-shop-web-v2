@@ -9,7 +9,7 @@ Build docker image and run test
 podman build -t maxmorev/e-shop-web-v2 .
 podman run -p 8080:8080 maxmorev/e-shop-web-v2
 ````
-###Execute shell 'sh' in a pod
+### Execute shell 'sh' in a pod
 ```
 kubectl --namespace example get pod
 shell-demo-pod-name
