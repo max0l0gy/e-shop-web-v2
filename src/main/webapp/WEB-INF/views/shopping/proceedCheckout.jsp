@@ -20,8 +20,8 @@
 <spring:url value="${webRoot}/shopping/cart/" var="backUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="profileUrl"/>
 <spring:url value="${webRoot}/commodity" var="showCommodityUrl"/>
-
-<script src="https://www.paypal.com/sdk/js?client-id=AZLBDto98XnkWuOsGr78XH78ohzsHneaQY9vzVdWu9w5xSKRhv1HQl2KSCBvtIDoEEQpXzLcCvJ8d9BG&currency=USD"></script>
+<%-- sandbox --%>
+<script src="https://www.paypal.com/sdk/js?client-id=AZLBDto98XnkWuOsGr78XH78ohzsHneaQY9vzVdWu9w5xSKRhv1HQl2KSCBvtIDoEEQpXzLcCvJ8d9BG&currency=EUR"></script>
 
 <script type="text/javascript">
 const shoppingCartId = ${ShoppingCartCookie};
@@ -106,18 +106,26 @@ $(document).ready(function () {
       } );
 
     paypal.Buttons({
+
+                //setup style
+                style: {
+                    layout:  'vertical',
+                    color:   'blue',
+                    shape:   'rect',
+                    label:   'paypal'
+                },
+
                 // Set up the transaction
                 createOrder: function(data, actions) {
                     var price = getAmountItemsInShoppingCart(shoppingCartObj).price;
-                    price = 1.0; //test
                     return actions.order.create({
                         purchase_units: [
                         {
                             amount: {
                                 value: ''+ price +'',
-                                currency_code: 'USD'
+                                currency_code: 'EUR'
                             },
-                            description: "titsonfire.store Payment for order #" + orderId + " "
+                            description: "Payment for order #" + orderId + " titsonfire.store"
                         }
                         ]
                     });
@@ -137,7 +145,12 @@ $(document).ready(function () {
                         confirmPaymentOrder(customerId, orderId, data.orderID, "Paypal", paymentConfirm, paymentConfirmError);
                         //confirmOrder
                     });
-                }
+                },
+                //Show a Cancellation Page
+                onCancel: function (data) {
+                    // Show a cancel page, or return to cart
+                    cancelOrderAction();
+                  }
             }).render('#paypal-button-container');
 
 });
