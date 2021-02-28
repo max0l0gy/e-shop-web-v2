@@ -1,5 +1,6 @@
-##Do the right things
-###Encode string to base64 and save it in github secrets, then save it in k8s secrets
+## Do the right things
+## Prepare secrets for k8s 
+Encode string to base64 and save it in github secrets, then save it in k8s secrets
 ```
 echo -n 'https://titsonfire.store/web' | base64
 ```
