@@ -2,7 +2,11 @@
 ## Prepare secrets for k8s 
 Encode string to base64 and save it in github secrets, then save it in k8s secrets
 ```
-echo -n 'https://titsonfire.store/web' | base64
+echo 'https://titsonfire.store/web' | base64
+```
+decode
+```
+echo BASE64-ENCODED | base64 --decode 
 ```
 Build docker image and run test
 ````
