@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: eshop-web-v2
+  profiles:
+    active: test
+  cloud:
+    config:
+      enabled: false

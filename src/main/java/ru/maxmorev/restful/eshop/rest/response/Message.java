@@ -10,14 +10,6 @@ public class Message {
     public final static String SUCCES = "success";
     public final static String ERROR = "error";
     private static  ObjectMapper MAPPER = new ObjectMapper();
-    public static Message fromJsonString(String json){
-        try {
-            return MAPPER.readValue(json, Message.class);
-        } catch (JsonProcessingException e) {
-            return null;
-        }
-    }
-
     private String status;
     private String url;
     private String message;
@@ -81,6 +73,13 @@ public class Message {
         return errors;
     }
 
+    public static Message fromJsonString(String json){
+        try {
+            return MAPPER.readValue(json, Message.class);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
+    }
 
 
 }

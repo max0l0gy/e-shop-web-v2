@@ -1,0 +1,22 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/order/list/expired"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": []
+      }
+    }
+  ]
+}

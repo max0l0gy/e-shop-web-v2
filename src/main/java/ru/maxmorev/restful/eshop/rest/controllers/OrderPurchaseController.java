@@ -2,13 +2,7 @@ package ru.maxmorev.restful.eshop.rest.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
 import ru.maxmorev.restful.eshop.rest.Constants;
 import ru.maxmorev.restful.eshop.rest.request.OrderIdRequest;
@@ -30,7 +24,7 @@ public class OrderPurchaseController {
     private final OrderPurchaseService orderPurchaseService;
 
 
-    @RequestMapping(path = Constants.REST_CUSTOMER_URI + "order/confirm/", method = RequestMethod.POST)
+    @PostMapping(path = Constants.REST_CUSTOMER_URI + "order/confirm/")
     @ResponseBody
     Message confirmOrder(@RequestBody
                          @Valid OrderPaymentConfirmation orderPaymentConfirmation,
@@ -40,7 +34,7 @@ public class OrderPurchaseController {
         return new Message(Message.SUCCES, messageSource.getMessage("message_success", new Object[]{}, locale));
     }
 
-    @RequestMapping(path = Constants.REST_CUSTOMER_URI + "order/{id}/customer/{customerId}", method = RequestMethod.GET)
+    @GetMapping(path = Constants.REST_CUSTOMER_URI + "order/{id}/customer/{customerId}")
     @ResponseBody
     CustomerOrderDto customerOrder(
             @PathVariable(name = "customerId") Long customerId,
@@ -50,14 +44,14 @@ public class OrderPurchaseController {
         return orderPurchaseService.findOrder(orderId, customerId);
     }
 
-    @RequestMapping(path = Constants.REST_CUSTOMER_URI + "order/list/{customerId}", method = RequestMethod.GET)
+    @GetMapping(path = Constants.REST_CUSTOMER_URI + "order/list/{customerId}")
     @ResponseBody
     List<CustomerOrderDto> customerOrderList(@PathVariable(name = "customerId", required = true) Long customerId, Locale locale) {
         //TODO check auth customer.id with id in PathVariable
         return orderPurchaseService.findOrderListForCustomer(customerId);
     }
 
-    @RequestMapping(path = Constants.REST_CUSTOMER_URI + "order/cancellation/", method = RequestMethod.PUT)
+    @PutMapping(path = Constants.REST_CUSTOMER_URI + "order/cancellation/")
     @ResponseBody
     Message customerOrderCancel(
             @Valid @RequestBody OrderIdRequest order,
@@ -67,7 +61,7 @@ public class OrderPurchaseController {
     }
 
 
-    @RequestMapping(path = Constants.REST_PRIVATE_URI + "order/{id}/{status}", method = RequestMethod.PUT)
+    @PutMapping(path = Constants.REST_MANAGER_URI + "order/{id}/{status}")
     @ResponseBody
     public Message setOrderStatus(
             @PathVariable(name = "status", required = true) String status,
@@ -77,7 +71,7 @@ public class OrderPurchaseController {
         return new Message(Message.SUCCES, messageSource.getMessage("message_success", new Object[]{}, locale));
     }
 
-    @RequestMapping(path = Constants.REST_PRIVATE_URI + "order/list/", method = RequestMethod.GET)
+    @GetMapping(path = Constants.REST_MANAGER_URI + "order/list/")
     @ResponseBody
     OrderGridDto adminAllCustomerOrderList(
             @RequestParam(value = "page", required = false) Integer page,

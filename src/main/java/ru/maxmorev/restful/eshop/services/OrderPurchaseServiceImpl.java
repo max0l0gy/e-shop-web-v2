@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
-import ru.maxmorev.restful.eshop.domain.Customer;
-import ru.maxmorev.restful.eshop.domain.CustomerOrder;
-import ru.maxmorev.restful.eshop.domain.OrderGrid;
-import ru.maxmorev.restful.eshop.domain.ShoppingCart;
+import ru.maxmorev.restful.eshop.domain.*;
 import ru.maxmorev.restful.eshop.feignclient.EshopCommodityApi;
 import ru.maxmorev.restful.eshop.feignclient.EshopCustomerOrderApi;
 import ru.maxmorev.restful.eshop.rest.request.CreateOrderRequest;
@@ -66,15 +63,17 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
         return eshopCustomerOrderApi.createOrder(new CreateOrderRequest(customer.getId(), purchases));
     }
 
+    @Override
+    public CapturedOrderStatus checkOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
+        return null;
+    }
 
     @Override
     public CustomerOrder confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
         CustomerOrder order = eshopCustomerOrderApi.confirmOrder(orderPaymentConfirmation);
         Customer customer = customerService.findById(order.getCustomerId());
         ShoppingCart shoppingCart = eshopCustomerOrderApi.getShoppingCart(customer.getShoppingCartId());
-        //clean shopping cart
         eshopCustomerOrderApi.cleanShoppingCart(shoppingCart.getId());
-        //notify customer
         notificationService.orderPaymentConfirmation(
                 customer.getEmail(),
                 customer.getFullName(),

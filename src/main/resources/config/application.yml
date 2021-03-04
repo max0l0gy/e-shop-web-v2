@@ -33,6 +33,8 @@ external:
     url: http://eshop-customer-order-api:8080
   minioApi:
     url: http://minio-rest-api:8080
+  paypal:
+    url: http://paypal-rest-api:8080
 
 feign:
   client:

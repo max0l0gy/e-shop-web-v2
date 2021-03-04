@@ -29,7 +29,7 @@ public class CommodityAttributeController {
     private final EshopCommodityApi commodityService;
     private final MessageSource messageSource;
 
-    @RequestMapping(path = Constants.REST_PRIVATE_URI + "attribute/", method = RequestMethod.POST)
+    @RequestMapping(path = Constants.REST_MANAGER_URI + "attribute/", method = RequestMethod.POST)
     @ResponseBody
     public Message createAttribute(@RequestBody @Valid RequestAttributeValue property, Locale locale) {
         //to prevent duplicated properties
@@ -49,7 +49,7 @@ public class CommodityAttributeController {
         return commodityService.getAvailebleAttributeDataTypes();
     }
 
-    @RequestMapping(path = Constants.REST_PRIVATE_URI + "attributeValue/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = Constants.REST_MANAGER_URI + "attributeValue/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public Message deleteAttributeValue(@PathVariable(name = "id", required = true) Long valueId, Locale locale) {
         commodityService.deleteAttributeValue(valueId);
