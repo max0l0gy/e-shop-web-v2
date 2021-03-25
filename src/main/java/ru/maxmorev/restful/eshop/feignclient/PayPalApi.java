@@ -13,7 +13,7 @@ public interface PayPalApi {
     @GetMapping(path = "/v1/order/{id}")
     Order getOrder(@PathVariable(name = "id") String orderId);
 
-    @PostMapping("/capture/refund/{captureId}")
+    @PostMapping("/v1/capture/refund/{captureId}")
     RefundResponse refund(@PathVariable(name = "captureId") String captureId);
 
 }

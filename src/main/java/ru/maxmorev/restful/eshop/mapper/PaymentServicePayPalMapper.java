@@ -1,15 +1,26 @@
 package ru.maxmorev.restful.eshop.mapper;
 
 import org.springframework.stereotype.Component;
-import ru.maxmorev.restful.eshop.domain.CapturedOrder;
-import ru.maxmorev.restful.eshop.domain.CapturedOrderAmount;
-import ru.maxmorev.restful.eshop.domain.CapturedOrderStatus;
+import ru.maxmorev.restful.eshop.domain.*;
 import ru.maxmorev.restful.eshop.feignclient.domain.paypal.Capture;
 import ru.maxmorev.restful.eshop.feignclient.domain.paypal.Order;
 import ru.maxmorev.restful.eshop.feignclient.domain.paypal.Purchase;
+import ru.maxmorev.restful.eshop.feignclient.domain.paypal.RefundResponse;
 
 @Component
 public class PaymentServicePayPalMapper {
+
+    public CapturedOrderRefundResponse of(RefundResponse refundResponse) {
+        if(refundResponse == null) {
+            return null;
+        }
+        return  new CapturedOrderRefundResponse()
+                .setId(refundResponse.getId())
+                .setStatus(
+                        new CapturedOrderRefundStatus()
+                        .setStatus(refundResponse.getStatus().name())
+                );
+    }
 
     public CapturedOrder of(Order payPalOrder) {
         if (payPalOrder == null) {

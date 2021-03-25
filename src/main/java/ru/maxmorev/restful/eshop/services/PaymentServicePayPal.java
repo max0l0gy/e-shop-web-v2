@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.maxmorev.restful.eshop.domain.CapturedOrder;
+import ru.maxmorev.restful.eshop.domain.CapturedOrderRefundResponse;
 import ru.maxmorev.restful.eshop.feignclient.PayPalApi;
 import ru.maxmorev.restful.eshop.feignclient.domain.paypal.Order;
+import ru.maxmorev.restful.eshop.feignclient.domain.paypal.RefundResponse;
 import ru.maxmorev.restful.eshop.mapper.PaymentServicePayPalMapper;
 
 import java.util.Optional;
@@ -30,7 +32,13 @@ public class PaymentServicePayPal implements PaymentService {
     }
 
     @Override
-    public Optional<CapturedOrder> refundCapturedOrder(String captureId) {
-        return Optional.empty();
+    public Optional<CapturedOrderRefundResponse> refundCapturedOrder(String captureId) {
+        RefundResponse refund = null;
+        try {
+            refund = payPalApi.refund(captureId);
+        } catch (Exception exception) {
+            log.error("PayPal refund capture error", exception);
+        }
+        return Optional.ofNullable(mapper.of(refund));
     }
 }

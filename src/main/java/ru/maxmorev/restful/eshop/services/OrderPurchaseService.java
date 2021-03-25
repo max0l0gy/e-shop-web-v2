@@ -9,6 +9,7 @@ import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 import ru.maxmorev.restful.eshop.rest.response.OrderGridDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderPurchaseService {
 
@@ -18,7 +19,7 @@ public interface OrderPurchaseService {
 
     CapturedOrderStatus checkOrder(OrderPaymentConfirmation orderPaymentConfirmation);
 
-    CustomerOrder confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation);
+    Optional<CustomerOrder> confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation);
 
     void cancelOrderByCustomer(Long orderId, Long customerId);
 

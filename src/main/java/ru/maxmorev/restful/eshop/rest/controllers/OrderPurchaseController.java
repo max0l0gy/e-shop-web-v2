@@ -23,15 +23,25 @@ public class OrderPurchaseController {
     private final MessageSource messageSource;
     private final OrderPurchaseService orderPurchaseService;
 
-
     @PostMapping(path = Constants.REST_CUSTOMER_URI + "order/confirm/")
     @ResponseBody
     Message confirmOrder(@RequestBody
                          @Valid OrderPaymentConfirmation orderPaymentConfirmation,
                          Locale locale) {
-
-        orderPurchaseService.confirmPaymentOrder(orderPaymentConfirmation);
-        return new Message(Message.SUCCES, messageSource.getMessage("message_success", new Object[]{}, locale));
+        return orderPurchaseService.confirmPaymentOrder(orderPaymentConfirmation)
+                .map(order -> new Message(Message.SUCCES, messageSource.getMessage("message_success", new Object[]{}, locale)))
+                .orElseGet(() -> new Message(
+                                Message.ERROR,
+                                messageSource
+                                        .getMessage(
+                                                "order.payment.confirmation.error",
+                                                new Object[]{
+                                                        orderPaymentConfirmation.getOrderId(),
+                                                        orderPaymentConfirmation.getPaymentId()
+                                                },
+                                                locale)
+                        )
+                );
     }
 
     @GetMapping(path = Constants.REST_CUSTOMER_URI + "order/{id}/customer/{customerId}")

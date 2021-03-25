@@ -7,11 +7,7 @@ import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
 import ru.maxmorev.restful.eshop.domain.*;
 import ru.maxmorev.restful.eshop.feignclient.EshopCommodityApi;
 import ru.maxmorev.restful.eshop.feignclient.EshopCustomerOrderApi;
-import ru.maxmorev.restful.eshop.rest.request.CreateOrderRequest;
-import ru.maxmorev.restful.eshop.rest.request.OrderIdRequest;
-import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
-import ru.maxmorev.restful.eshop.rest.request.PurchaseInfoRequest;
-import ru.maxmorev.restful.eshop.rest.request.CommodityBranchDto;
+import ru.maxmorev.restful.eshop.rest.request.*;
 import ru.maxmorev.restful.eshop.rest.response.CommodityDto;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 import ru.maxmorev.restful.eshop.rest.response.OrderGridDto;
@@ -20,6 +16,7 @@ import ru.maxmorev.restful.eshop.rest.response.PurchaseDto;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -31,6 +28,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
     private final NotificationService notificationService;
     private final EshopCustomerOrderApi eshopCustomerOrderApi;
     private final EshopCommodityApi eshopCommodityApi;
+    private final PaymentServiceStrategy paymentServiceStrategy;
 
     @Override
     public CustomerOrder createOrderFor(Customer customer) {
@@ -69,7 +67,18 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
     }
 
     @Override
-    public CustomerOrder confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
+    public Optional<CustomerOrder> confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
+        log.info("Check in payment confirmation. Payment Id: {}", orderPaymentConfirmation.getPaymentId());
+        log.info("orderId: {}", orderPaymentConfirmation.getOrderId());
+        log.info("Payment Provider : {}", orderPaymentConfirmation.getPaymentProvider());
+        return paymentServiceStrategy
+                .getByPaymentProviderName(orderPaymentConfirmation.getPaymentProvider())
+                .flatMap(paymentService -> paymentService.getOrder(orderPaymentConfirmation.getPaymentId()))
+                .filter(capturedOrder -> capturedOrder.getStatus().isCompleted())
+                .map(capturedOrder -> confirmOrder(orderPaymentConfirmation));
+    }
+
+    CustomerOrder confirmOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
         CustomerOrder order = eshopCustomerOrderApi.confirmOrder(orderPaymentConfirmation);
         Customer customer = customerService.findById(order.getCustomerId());
         ShoppingCart shoppingCart = eshopCustomerOrderApi.getShoppingCart(customer.getShoppingCartId());
@@ -80,6 +89,16 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
                 order.getId()
         );
         return order;
+    }
+
+    CustomerOrder orderPaymentNotConfirmedByAPI(OrderPaymentConfirmation orderPaymentConfirmation) {
+        log.info("Payment not confirmed by API paymentId {} ",
+                orderPaymentConfirmation.getPaymentId());
+        return eshopCustomerOrderApi
+                .findCustomerOrder(
+                        orderPaymentConfirmation.getCustomerId(),
+                        orderPaymentConfirmation.getOrderId()
+                );
     }
 
 
