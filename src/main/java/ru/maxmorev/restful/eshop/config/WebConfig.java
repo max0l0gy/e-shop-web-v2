@@ -36,14 +36,16 @@ import java.util.Locale;
 @ComponentScan(basePackages = {"ru.maxmorev.restful.eshop"})
 public class WebConfig implements WebMvcConfigurer {
 
-    @Bean
-    public ReloadableResourceBundleMessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("WEB-INF/i18n/messages", "WEB-INF/i18n/application");
-        messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setFallbackToSystemLocale(false);
-        return messageSource;
-    }
+    private final MessageSource messageSource;
+
+//    @Bean
+//    public ReloadableResourceBundleMessageSource messageSource() {
+//        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+//        messageSource.setBasenames("WEB-INF/i18n/messages", "WEB-INF/i18n/application");
+//        messageSource.setDefaultEncoding("UTF-8");
+//        messageSource.setFallbackToSystemLocale(false);
+//        return messageSource;
+//    }
     //Declare our static resources. I added cache to the java config but it's not required.
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -78,7 +80,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public Validator validator() {
         final LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
-        validator.setValidationMessageSource(messageSource());
+        validator.setValidationMessageSource(messageSource);
         return validator;
     }
 

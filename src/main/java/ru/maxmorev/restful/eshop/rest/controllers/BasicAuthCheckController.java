@@ -5,21 +5,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.maxmorev.restful.eshop.rest.Constants;
-import ru.maxmorev.restful.eshop.rest.request.RequestAttributeValue;
 import ru.maxmorev.restful.eshop.rest.response.CheckAuthResponse;
-import ru.maxmorev.restful.eshop.rest.response.Message;
 import ru.maxmorev.restful.eshop.services.CustomerService;
-
-import javax.validation.Valid;
-import java.util.Locale;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,7 +31,7 @@ public class BasicAuthCheckController {
         return id;
     }
 
-    @GetMapping(path = Constants.REST_PRIVATE_URI + "checkAuth")
+    @GetMapping(path = Constants.REST_MANAGER_URI + "checkAuth")
     @ResponseBody
     public CheckAuthResponse createAttribute() {
         //to prevent duplicated properties

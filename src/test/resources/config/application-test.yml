@@ -1,24 +1,26 @@
 spring:
-  cloud:
-    config:
-      enabled: false
   application:
     name: eshop-web-v2
   profiles:
     active: test
-  messages:
-    basename: i18n/messages, 18n/application # for multiple properties just use comma separated values
-    encoding: UTF-8
 
 external:
   ses:
-    url: http://localhost:4555
+    url: http://localhost:${wiremock.server.port}
   commodityApi:
-    url: http://localhost:4555
+    url: http://localhost:${wiremock.server.port}
   customerApi:
-    url: http://localhost:4555
+    url: http://localhost:${wiremock.server.port}
   customerOrderApi:
-    url: http://localhost:4555
+    url: http://localhost:${wiremock.server.port}
+  minioApi:
+    url: http://localhost:${wiremock.server.port}
+  paypal:
+    url: http://localhost:${wiremock.server.port}
+
+wiremock:
+  server:
+    port: 4567
 
 feign:
   client:
@@ -41,3 +43,4 @@ manager:
   address: Test Address
 
 web.root: ""
+web.host: ""

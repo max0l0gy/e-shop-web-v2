@@ -1,6 +1,7 @@
 package ru.maxmorev.restful.eshop.services;
 
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
+import ru.maxmorev.restful.eshop.domain.CapturedOrderStatus;
 import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.domain.CustomerOrder;
 import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
@@ -8,6 +9,7 @@ import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 import ru.maxmorev.restful.eshop.rest.response.OrderGridDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderPurchaseService {
 
@@ -15,7 +17,9 @@ public interface OrderPurchaseService {
 
     CustomerOrder createOrderFor(Customer customer);
 
-    CustomerOrder confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation);
+    CapturedOrderStatus checkOrder(OrderPaymentConfirmation orderPaymentConfirmation);
+
+    Optional<CustomerOrder> confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation);
 
     void cancelOrderByCustomer(Long orderId, Long customerId);
 

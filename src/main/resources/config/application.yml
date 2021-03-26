@@ -11,6 +11,9 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
       enabled: true
+  messages:
+    basename: i18n/messages,i18n/application # for multiple properties just use comma separated values
+    encoding: UTF-8
 management:
   endpoints:
     web:
@@ -33,6 +36,8 @@ external:
     url: http://eshop-customer-order-api:8080
   minioApi:
     url: http://minio-rest-api:8080
+  paypal:
+    url: http://paypal-rest-api:8080
 
 feign:
   client:

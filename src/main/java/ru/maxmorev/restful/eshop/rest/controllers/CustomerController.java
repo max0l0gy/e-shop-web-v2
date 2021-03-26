@@ -73,7 +73,7 @@ public class CustomerController {
     }
 
     @SneakyThrows
-    @GetMapping(path = Constants.REST_PRIVATE_URI + "customer/id/{id}")
+    @GetMapping(path = Constants.REST_MANAGER_URI + "customer/id/{id}")
     @ResponseBody
     public CustomerDTO findCustomer(@PathVariable(name = "id") Long id, Locale locale) {
         return CustomerDTO.of(customerService.findById(id));

@@ -1,0 +1,129 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/order/list/expired"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": []
+      }
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/order/confirmation/",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.paymentId",
+            "equalsTo": "2CV55440UT6646827"
+          }
+        ]
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 101,
+          "version": 2,
+          "dateOfCreation": "2019-08-25T15:46:23.918+0000",
+          "status": "PAYMENT_APPROVED",
+          "paymentProvider": "Paypal",
+          "paymentID": "2CV55440UT6646827",
+          "customerId": 233,
+          "purchases": [
+            {
+              "id": {
+                "branchId": 5,
+                "orderId": 16
+              },
+              "purchaseInfo": {
+                "amount": 2,
+                "price": 45.0,
+                "commodityName": "T-SHIRT 01",
+                "commodityImageUri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/SSL_Deep_Inspection_Explanation.svg/1050px-SSL_Deep_Inspection_Explanation.svg.png"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/shoppingCart/id/101"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 101,
+          "version": 1,
+          "shoppingSet": [
+            {
+              "id": {
+                "branchId": 105,
+                "shoppingCartId": 101
+              },
+              "purchaseInfo": {
+                "amount": 2,
+                "price": 45.0,
+                "commodityName": "T-SHIRT 01",
+                "commodityImageUri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/SSL_Deep_Inspection_Explanation.svg/1050px-SSL_Deep_Inspection_Explanation.svg.png"
+              },
+              "amount": 2
+            }
+          ],
+          "itemsAmount": 2
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/shoppingCart/101/clear"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 101,
+          "version": 2,
+          "shoppingSet": [
+          ],
+          "itemsAmount": 0
+        }
+      }
+    }
+  ]
+}

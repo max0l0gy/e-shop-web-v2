@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/adm/**").hasAuthority("ADMIN")
-                .antMatchers(Constants.REST_PRIVATE_URI + "**").hasAuthority("ADMIN")
+                .antMatchers(Constants.REST_MANAGER_URI + "**").hasAuthority("ADMIN")
                 .antMatchers("/shopping/cart/checkout/").hasAuthority("CUSTOMER")
                 .antMatchers("/customer/account/update/").hasAuthority("CUSTOMER")
                 .antMatchers(Constants.REST_CUSTOMER_URI + "**").hasAuthority("CUSTOMER")

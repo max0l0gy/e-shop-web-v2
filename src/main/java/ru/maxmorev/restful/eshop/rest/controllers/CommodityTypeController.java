@@ -32,14 +32,14 @@ public class CommodityTypeController {
         return commodityService.getCommodityTypes();
     }
 
-    @RequestMapping(path = Constants.REST_PRIVATE_URI + "type/", method = RequestMethod.POST)
+    @RequestMapping(path = Constants.REST_MANAGER_URI + "type/", method = RequestMethod.POST)
     @ResponseBody
     public Message createCommodityType(@RequestBody @Valid CommodityType type, Locale locale){
         log.info("type : {} ", type);
         return commodityService.createCommodityType(type);
     }
 
-    @RequestMapping(path = Constants.REST_PRIVATE_URI + "type/", method = RequestMethod.PUT)
+    @RequestMapping(path = Constants.REST_MANAGER_URI + "type/", method = RequestMethod.PUT)
     @ResponseBody
     public CommodityType updateCommodityType(@RequestBody @Valid CommodityType type, Locale locale ){
         log.info("updateCommodityType {}", type);
@@ -47,7 +47,7 @@ public class CommodityTypeController {
     }
 
 
-    @RequestMapping(path = Constants.REST_PRIVATE_URI + "type/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = Constants.REST_MANAGER_URI + "type/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public Message deleteCommodityType(@PathVariable(name = "id", required = true) Long id, Locale locale){
         commodityService.deleteCommodityType(id);

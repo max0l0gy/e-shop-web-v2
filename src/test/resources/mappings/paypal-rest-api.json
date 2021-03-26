@@ -1,0 +1,213 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/v1/capture/refund/85W962518S850170V"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": "4BH36132M15490109",
+          "status": "COMPLETED"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/v1/capture/refund/4CE915409W2428342"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 422,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "debug_id": "bc87b88eaa6f5",
+          "details": [
+            {
+              "description": "You are over the time limit to perform a refund on this capture",
+              "issue": "REFUND_TIME_LIMIT_EXCEEDED"
+            }
+          ],
+          "links": [
+            {
+              "href": "https://developer.paypal.com/docs/api/payments/v2/#error-REFUND_TIME_LIMIT_EXCEEDED",
+              "rel": "information_link"
+            }
+          ],
+          "message": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+          "name": "UNPROCESSABLE_ENTITY"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/v1/order/2CV55440UT664REF"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": "2CV55440UT6646827",
+          "intent": "CAPTURE",
+          "purchase_units": [
+            {
+              "amount": {
+                "currency_code": "USD",
+                "value": "1.00"
+              },
+              "description": "titsonfire.store Payment for order #401 ",
+              "payments": {
+                "captures": [
+                  {
+                    "amount": {
+                      "currency_code": "USD",
+                      "value": "1.00"
+                    },
+                    "final_capture": true,
+                    "id": "85W962518S850170V",
+                    "links": [
+                      {
+                        "href": "https://api.sandbox.paypal.com/v2/payments/captures/85W962518S850170V",
+                        "method": "GET",
+                        "rel": "self"
+                      },
+                      {
+                        "href": "https://api.sandbox.paypal.com/v2/payments/captures/85W962518S850170V/refund",
+                        "method": "POST",
+                        "rel": "refund"
+                      },
+                      {
+                        "href": "https://api.sandbox.paypal.com/v2/checkout/orders/2CV55440UT6646827",
+                        "method": "GET",
+                        "rel": "up"
+                      }
+                    ],
+                    "seller_receivable_breakdown": {
+                      "gross_amount": {
+                        "currency_code": "USD",
+                        "value": "1.00"
+                      },
+                      "net_amount": {
+                        "currency_code": "USD",
+                        "value": "0.66"
+                      },
+                      "paypal_fee": {
+                        "currency_code": "USD",
+                        "value": "0.34"
+                      }
+                    },
+                    "status": "REFUNDED"
+                  }
+                ]
+              },
+              "reference_id": "default"
+            }
+          ],
+          "status": "COMPLETED"
+        }
+
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/v1/order/2CV55440UT6646827"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": "2CV55440UT6646827",
+          "intent": "CAPTURE",
+          "purchase_units": [
+            {
+              "amount": {
+                "currency_code": "USD",
+                "value": "1.00"
+              },
+              "description": "titsonfire.store Payment for order #401",
+              "payments": {
+                "captures": [
+                  {
+                    "amount": {
+                      "currency_code": "USD",
+                      "value": "1.00"
+                    },
+                    "final_capture": true,
+                    "id": "85W962518S850170V",
+                    "links": [
+                      {
+                        "href": "https://api.sandbox.paypal.com/v2/payments/captures/85W962518S850170V",
+                        "method": "GET",
+                        "rel": "self"
+                      },
+                      {
+                        "href": "https://api.sandbox.paypal.com/v2/payments/captures/85W962518S850170V/refund",
+                        "method": "POST",
+                        "rel": "refund"
+                      },
+                      {
+                        "href": "https://api.sandbox.paypal.com/v2/checkout/orders/2CV55440UT6646827",
+                        "method": "GET",
+                        "rel": "up"
+                      }
+                    ],
+                    "seller_receivable_breakdown": {
+                      "gross_amount": {
+                        "currency_code": "USD",
+                        "value": "1.00"
+                      },
+                      "net_amount": {
+                        "currency_code": "USD",
+                        "value": "0.66"
+                      },
+                      "paypal_fee": {
+                        "currency_code": "USD",
+                        "value": "0.34"
+                      }
+                    },
+                    "status": "COMPLETED"
+                  }
+                ]
+              },
+              "reference_id": "default"
+            }
+          ],
+          "status": "COMPLETED"
+        }
+
+      }
+    }
+  ]
+}

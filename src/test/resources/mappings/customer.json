@@ -1,0 +1,45 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/customer/id/233"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 233,
+          "email": "test@titsonfire.store",
+          "fullName": "Maxim V Morev",
+          "country": "Russia",
+          "postcode": "111123",
+          "city": "Moscow",
+          "address": "Address test",
+          "password": "$2a$10$um0PcvHczmxeUEbR3vCBGuOvtNdgJffm72knavG/EFE7JDm9QBEha",
+          "verifyCode": "TKYOC",
+          "dateOfCreation": "2019-08-25T15:46:23.918+0000",
+          "verified": false,
+          "shoppingCartId": 101,
+          "authorities": [
+            {
+              "authority": "CUSTOMER"
+            }
+          ],
+          "username": "test@titsonfire.store",
+          "accountNonExpired": false,
+          "accountNonLocked": false,
+          "credentialsNonExpired": false,
+          "enabled": false
+        }
+      }
+    }
+  ]
+}

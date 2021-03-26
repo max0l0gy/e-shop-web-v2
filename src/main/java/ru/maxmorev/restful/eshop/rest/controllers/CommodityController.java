@@ -32,21 +32,21 @@ public class CommodityController {
     private final EshopCommodityApi commodityService;
     private final MessageSource messageSource;
 
-    @PostMapping(path = Constants.REST_PRIVATE_URI + "commodity/")
+    @PostMapping(path = Constants.REST_MANAGER_URI + "commodity/")
     @ResponseBody
     public Message createCommodityFromRequset(@RequestBody @Valid RequestCommodity requestCommodity, Locale locale) {
         log.info("POST -> createCommodityFromRequset");
         return commodityService.createCommodityFromRequset(requestCommodity);
     }
 
-    @PutMapping(path = Constants.REST_PRIVATE_URI + "commodity")
+    @PutMapping(path = Constants.REST_MANAGER_URI + "commodity")
     @ResponseBody
     public Message updateCommodity(@RequestBody @Valid CommodityInfoDto cmInfo) {
         log.info("PUT -> updateCommodity");
         return commodityService.updateCommodity(cmInfo);
     }
 
-    @PutMapping(path = Constants.REST_PRIVATE_URI + "branch")
+    @PutMapping(path = Constants.REST_MANAGER_URI + "branch")
     @ResponseBody
     public Message updateBranch(@RequestBody @Valid CommodityBranchDto branchDto) {
         log.info("PUT -> updateBranch");
