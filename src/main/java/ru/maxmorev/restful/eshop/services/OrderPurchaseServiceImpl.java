@@ -131,8 +131,8 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
     }
 
     @Override
-    public void cancelOrderByCustomer(Long orderId, Long customderId) {
-        CustomerOrder order = eshopCustomerOrderApi.findCustomerOrder(customderId, orderId);
+    public void cancelOrderByCustomer(Long orderId, Long customerId) {
+        CustomerOrder order = eshopCustomerOrderApi.findCustomerOrder(customerId, orderId);
         if (
                 CustomerOrderStatus.AWAITING_PAYMENT.equals(order.getStatus())
                         || CustomerOrderStatus.PAYMENT_APPROVED.equals(order.getStatus())
@@ -140,11 +140,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
             moveItemsFromOrderToBranch(order);
             switch (order.getStatus()) {
                 case PAYMENT_APPROVED:
-                    //send emails to customer and admin
-                    CustomerOrderDto orderDto = convertForCustomer(order);
-                    Customer customer = customerService.findById(customderId);
-                    notificationService.orderCancelCustomer(customer.getEmail(), customer.getFullName(), orderDto);
-                    eshopCustomerOrderApi.customerOrderCancel(new OrderIdRequest(orderId, customderId));
+                    cancelOrderByCustomer(order);
                     //eshopCustomerOrderApi.setOrderStatus(order.getId(), CustomerOrderStatus.CANCELED_BY_CUSTOMER.name());
                     break;
                 case AWAITING_PAYMENT:
@@ -154,6 +150,23 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
             return;
         }
         throw new RuntimeException("Implement logic with other OrderStatus");
+    }
+
+    private void cancelOrderByCustomer(CustomerOrder order) {
+        PaymentService paymentService = paymentServiceStrategy
+                .getByPaymentProviderName(order.getPaymentProvider().name())
+                .orElseThrow(() -> new IllegalArgumentException("Unsupported payment method"));
+
+        CapturedOrderRefundResponse refundResponse = paymentService.getOrder(order.getPaymentID())
+                .filter(capturedOrder -> capturedOrder.getStatus().isCompleted())
+                .flatMap(capturedOrder -> paymentService.refundCapturedOrder(capturedOrder.getCaptureId()))
+                .orElseThrow(() -> new IllegalArgumentException("Refund response fail"));
+        log.info("Refund response: id: {}, status {}", refundResponse.getId(), refundResponse.getStatus());
+
+        CustomerOrderDto orderDto = convertForCustomer(order);
+        Customer customer = customerService.findById(order.getCustomerId());
+        notificationService.orderCancelCustomer(customer.getEmail(), customer.getFullName(), orderDto);
+        eshopCustomerOrderApi.customerOrderCancel(new OrderIdRequest(order.getId(), order.getCustomerId()));
     }
 
     CustomerOrderDto convert(CustomerOrder order) {
