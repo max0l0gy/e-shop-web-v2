@@ -1,0 +1,9 @@
+{
+  "id": 100,
+  "name": "name2",
+  "description": "update description",
+  "shortDescription": "quarkus is so cool",
+  "images": [
+    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/801578113711333.602d50622d83f.jpg"
+  ]
+}

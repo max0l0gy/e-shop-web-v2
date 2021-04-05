@@ -17,6 +17,8 @@ external:
     url: http://localhost:${wiremock.server.port}
   paypal:
     url: http://localhost:${wiremock.server.port}
+  portfolio:
+    url: http://localhost:${wiremock.server.port}
 
 wiremock:
   server:
