@@ -1,0 +1,143 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/api/v1/portfolios"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "success",
+          "data": {
+            "id": 100,
+            "name": "Portfolio one",
+            "description": "Quarkus is so cool",
+            "shortDescription": "quarkus is so cool and ingeniously simple",
+            "images": [
+              "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/cf5ba0113711835.602d51d41b6e6.jpg"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/api/v1/portfolios"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "success",
+          "data": {
+            "id": 100,
+            "name": "name2",
+            "description": "update description",
+            "shortDescription": "quarkus is so cool",
+            "images": [
+              "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/801578113711333.602d50622d83f.jpg"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/portfolios"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "success",
+          "data": [
+            {
+              "id": 100,
+              "name": "Portfolio one",
+              "description": "Quarkus is so cool",
+              "shortDescription": "quarkus is so cool and ingeniously simple",
+              "images": [
+                "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/cf5ba0113711835.602d51d41b6e6.jpg"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/portfolios/100"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "success",
+          "data": {
+            "id": 100,
+            "name": "Portfolio one",
+            "description": "Quarkus is so cool",
+            "shortDescription": "quarkus is so cool and ingeniously simple",
+            "images": [
+              "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/cf5ba0113711835.602d51d41b6e6.jpg"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/portfolios/107"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "fail",
+          "data": null
+        }
+      }
+    }
+  ]
+}
