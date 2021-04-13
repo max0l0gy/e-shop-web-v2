@@ -7,9 +7,6 @@
 
 <spring:theme code="webRoot" var="webRoot" />
 <spring:url value="${webRoot}/portfolios" var="itemUrl"/>
-<spring:message code="label_price" var="labelPrice"/>
-<spring:message code="label_colors" var="labelColors"/>
-<spring:message code="label_sizes" var="labelSizes"/>
 
 <script type="text/javascript">
 
