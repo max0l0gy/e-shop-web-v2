@@ -24,7 +24,7 @@ import static ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor.suppress
 
 @Slf4j
 @AllArgsConstructor
-public abstract class CommonWebController {
+public class CommonWebController {
 
     protected final ShoppingCartService shoppingCartService;
     protected final CustomerService customerService;

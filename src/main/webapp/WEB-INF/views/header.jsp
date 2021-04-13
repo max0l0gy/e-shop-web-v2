@@ -15,6 +15,7 @@
 <spring:url value="${webRoot}/shopping/cart/" var="shoppingCartUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
 <spring:url value="${webRoot}/about/" var="aboutUrl"/>
+<spring:url value="${webRoot}/portfolios" var="portfoliosUrl"/>
 
 <div class="titsonfire-header mdl-layout__header mdl-layout__header--waterfall">
  <div class="mdl-layout__header-row">
@@ -35,7 +36,7 @@
    <div class="titsonfire-navigation-container">
      <nav class="titsonfire-navigation mdl-navigation">
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-store" href="${commoditiesUrl}">Store</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-portfolio" href="">Portfolio</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-portfolios" href="${portfoliosUrl}">Portfolio</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-cv" href="">Artist Statement/CV</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-about" href="${aboutUrl}">About</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-contacts" href="">Contacts</a>
