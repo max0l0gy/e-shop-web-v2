@@ -15,6 +15,7 @@
 <spring:url value="${webRoot}/shopping/cart/" var="shoppingCartUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
 <spring:url value="${webRoot}/about/" var="aboutUrl"/>
+<spring:url value="${webRoot}/portfolios" var="portfoliosUrl"/>
 
 <div class="titsonfire-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">
@@ -22,12 +23,12 @@
   </span>
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link tab-store" href="${commoditiesUrl}">Store</a>
-    <a class="mdl-navigation__link tab-portfolio" href="">Portfolio</a>
+    <a class="mdl-navigation__link tab-portfolios" href="${portfoliosUrl}">Portfolio</a>
     <a class="mdl-navigation__link tab-cv" href="">Artist Statement&#160;/&#160;CV</a>
     <a class="mdl-navigation__link tab-about" href="${aboutUrl}">About</a>
     <a class="mdl-navigation__link tab-contacts" href="">Contacts</a>
     <div class="titsonfire-drawer-separator"></div>
-    <span class="mdl-navigation__link" href="commoditiesUrl">STORE</span>
+    <span class="mdl-navigation__link" href="${commoditiesUrl}">STORE</span>
     <a class="mdl-navigation__link" href=""><b>Please Read</b></a>
     <c:if test="${not empty types}">
         <c:forEach items="${types}" var="type">
@@ -50,7 +51,7 @@
     <a class="mdl-navigation__link tab-shopping-cart" href="${shoppingCartUrl}"><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav">shopping_cart</div></a>
     <a class="mdl-navigation__link tab-account" href="${accountUrl}"><div class="material-icons">account_circle</div></a>
     <div class="titsonfire-drawer-separator"></div>
-    <span class="mdl-navigation__link tab-portfolio" href="">Portfolio</span>
+    <span class="mdl-navigation__link tab-portfolios" href="${portfoliosUrl}">Portfolio</span>
     <a class="mdl-navigation__link tab-portfolio-dracula" href="">Dracula series</a>
     <a class="mdl-navigation__link tab-portfolio-fonts" href="">Fonts</a>
     <a class="mdl-navigation__link tab-portfolio-sketchbook" href="">Sketchbook Pieces</a>
