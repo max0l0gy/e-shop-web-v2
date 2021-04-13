@@ -17,7 +17,7 @@ class PayPalApiTest {
     private PayPalApi payPalApi;
 
     @Test
-    void loadContext() {
+    public void loadContext() {
         //is context ok
     }
 
