@@ -1,5 +1,6 @@
 package ru.maxmorev.restful.eshop.web;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,17 +21,11 @@ import java.io.IOException;
 
 @Slf4j
 @Controller
-public class ShoppingCartWebController extends CommonWebController {
+@RequiredArgsConstructor
+public class ShoppingCartWebController {
 
     private final OrderPurchaseService orderPurchaseService;
-
-    public ShoppingCartWebController(ShoppingCartService shoppingCartService,
-                                     CommodityDtoService commodityDtoService,
-                                     OrderPurchaseService orderPurchaseService,
-                                     CustomerService customerService) {
-        super(shoppingCartService, customerService, commodityDtoService);
-        this.orderPurchaseService = orderPurchaseService;
-    }
+    private final CommonWebController commonWebController;
 
     @GetMapping(path = {"/shopping/cart/"})
     public String getShoppingCart(
@@ -38,8 +33,8 @@ public class ShoppingCartWebController extends CommonWebController {
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel) throws IOException {
         log.info("Listing shopping cart");
-        addCommonAttributesToModel(uiModel);
-        mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
+        commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
         return "shopping/cart";
     }
 
@@ -49,20 +44,20 @@ public class ShoppingCartWebController extends CommonWebController {
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel) throws IOException {
         //merge shopping cart after login
-        ShoppingCartDto scFromCookie = mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
+        ShoppingCartDto scFromCookie = commonWebController.mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
         if (scFromCookie.getShoppingSet().size() == 0) {
             //redirect to cart
             response.sendRedirect("/shopping/cart");
         }
 
         //create transaction order and hold items for 10 minutes
-        String id = getAuthenticationCustomerId();
-        Customer authCustomer = customerService.findByEmail(id).get();
+        String id = commonWebController.getAuthenticationCustomerId();
+        Customer authCustomer = commonWebController.customerService.findByEmail(id).get();
         CustomerOrder order = orderPurchaseService.createOrderFor(authCustomer);
         uiModel.addAttribute("orderId", order.getId());
         uiModel.addAttribute("customer", authCustomer);
 
-        addCommonAttributesToModel(uiModel);
+        commonWebController.addCommonAttributesToModel(uiModel);
         return "shopping/proceedToCheckout";
     }
 

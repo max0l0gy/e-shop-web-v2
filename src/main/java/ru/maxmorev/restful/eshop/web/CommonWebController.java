@@ -1,11 +1,12 @@
 package ru.maxmorev.restful.eshop.web;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
 import ru.maxmorev.restful.eshop.domain.Customer;
@@ -23,7 +24,8 @@ import java.util.Objects;
 import static ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor.suppress;
 
 @Slf4j
-@AllArgsConstructor
+@Component
+@RequiredArgsConstructor
 public class CommonWebController {
 
     protected final ShoppingCartService shoppingCartService;
