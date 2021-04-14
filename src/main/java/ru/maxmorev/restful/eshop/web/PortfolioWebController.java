@@ -6,11 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
 import ru.maxmorev.restful.eshop.feignclient.PortfolioApi;
 import ru.maxmorev.restful.eshop.feignclient.domain.portfolio.PortfolioDto;
 import ru.maxmorev.restful.eshop.feignclient.domain.portfolio.PortfolioResponse;
-import ru.maxmorev.restful.eshop.rest.response.CommodityDto;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +36,21 @@ public class PortfolioWebController {
         uiModel.addAttribute("portfolios", portfolioResponse.getData());
         log.info("Portfolios size: " + portfolioResponse.getData().size());
         return "portfolios";
+    }
+
+    @GetMapping(path = "/portfolios/{id}")
+    public String portfolioById(
+            @PathVariable(value = "id") Long id,
+            HttpServletResponse response,
+            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
+            Model uiModel
+    ) {
+        log.info("Loading portfolio id={}", id);
+        PortfolioResponse<PortfolioDto> portfolioResponse = portfolioApi.find(id);
+        commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
+        uiModel.addAttribute("portfolio", portfolioResponse.getData());
+        return "portfolio";
     }
 
 }
