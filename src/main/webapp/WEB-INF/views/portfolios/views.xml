@@ -5,4 +5,8 @@
     <definition extends="default" name="portfolios">
         <put-attribute name="body" value="/WEB-INF/views/portfolios/portfolios.jsp" />
     </definition>
+
+    <definition extends="default" name="portfolio">
+        <put-attribute name="body" value="/WEB-INF/views/portfolios/portfolio-by-id.jsp" />
+    </definition>
 </tiles-definitions>
