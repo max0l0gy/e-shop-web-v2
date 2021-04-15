@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
-import ru.maxmorev.restful.eshop.feignclient.PortfolioApi;
 import ru.maxmorev.restful.eshop.feignclient.domain.portfolio.PortfolioDto;
-import ru.maxmorev.restful.eshop.feignclient.domain.portfolio.PortfolioResponse;
+import ru.maxmorev.restful.eshop.services.PortfolioService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +21,7 @@ import java.util.List;
 public class PortfolioWebController {
 
     private final CommonWebController commonWebController;
-    private final PortfolioApi portfolioApi;
+    private final PortfolioService portfolioService;
 
     @GetMapping(path = "/portfolios")
     public String portfolios(
@@ -30,11 +29,11 @@ public class PortfolioWebController {
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel) {
         log.info("Loading portfolios");
-        PortfolioResponse<List<PortfolioDto>> portfolioResponse = portfolioApi.list();
+        List<PortfolioDto> portfolios = portfolioService.portfolios();
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
-        uiModel.addAttribute("portfolios", portfolioResponse.getData());
-        log.info("Portfolios size: " + portfolioResponse.getData().size());
+        uiModel.addAttribute("portfolios", portfolios);
+        log.info("Portfolios size: " + portfolios.size());
         return "portfolios";
     }
 
@@ -46,11 +45,15 @@ public class PortfolioWebController {
             Model uiModel
     ) {
         log.info("Loading portfolio id={}", id);
-        PortfolioResponse<PortfolioDto> portfolioResponse = portfolioApi.find(id);
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
-        uiModel.addAttribute("portfolio", portfolioResponse.getData());
-        return "portfolio";
+        return portfolioService.findBy(id)
+                .map(portfolioDto -> {
+                    uiModel.addAttribute("portfolio", portfolioDto);
+                    uiModel.addAttribute("currentPortfolio", portfolioDto);
+                    return "portfolio";
+                })
+                .orElse("itemNotFound");
     }
 
 }

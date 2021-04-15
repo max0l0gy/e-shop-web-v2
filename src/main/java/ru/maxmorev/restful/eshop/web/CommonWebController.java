@@ -10,15 +10,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
 import ru.maxmorev.restful.eshop.domain.Customer;
-import ru.maxmorev.restful.eshop.rest.response.CommodityTypeDto;
 import ru.maxmorev.restful.eshop.rest.response.ShoppingCartDto;
 import ru.maxmorev.restful.eshop.services.CommodityDtoService;
 import ru.maxmorev.restful.eshop.services.CustomerService;
+import ru.maxmorev.restful.eshop.services.PortfolioService;
 import ru.maxmorev.restful.eshop.services.ShoppingCartService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 import java.util.Objects;
 
 import static ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor.suppress;
@@ -31,6 +30,7 @@ public class CommonWebController {
     protected final ShoppingCartService shoppingCartService;
     protected final CustomerService customerService;
     protected final CommodityDtoService commodityDtoService;
+    protected final PortfolioService portfolioService;
 
     /**
      * Add common attributes for UI Layer for header layout and so on
@@ -38,8 +38,8 @@ public class CommonWebController {
      * @param uiModel
      */
     protected void addCommonAttributesToModel(Model uiModel) {
-        List<CommodityTypeDto> typeList = commodityDtoService.findAllTypes();
-        uiModel.addAttribute("types", typeList);
+        uiModel.addAttribute("types", commodityDtoService.findAllTypes());
+        uiModel.addAttribute("portfoliosNews", portfolioService.portfoliosDistinctLimit(5L));
     }
 
     protected void addShoppingCartAttributesToModel(
@@ -104,8 +104,8 @@ public class CommonWebController {
         }
         Customer authCustomer = customerService.findByEmail(id).get();
         log.info("mergeShoppingCartFromCookieWithCustomerIfNeed");
-        log.info("authCustomer.getShoppingCartId() = {}", authCustomer.getShoppingCartId() );
-        log.info("scFromCookie.getId() = {}", authCustomer.getShoppingCartId() );
+        log.info("authCustomer.getShoppingCartId() = {}", authCustomer.getShoppingCartId());
+        log.info("scFromCookie.getId() = {}", authCustomer.getShoppingCartId());
         if (!Objects.equals(scFromCookie.getId(), authCustomer.getShoppingCartId())) {
             scFromCookie = shoppingCartService.mergeCartFromTo(scFromCookie.getId(), authCustomer.getShoppingCartId());
         }
