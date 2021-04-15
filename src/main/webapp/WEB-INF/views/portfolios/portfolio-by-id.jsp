@@ -15,13 +15,13 @@ $(document).ready(function () {
 </script>
 
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">Portfolio&#160;<b>${portfolio.name}</b></div>
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">Portfolio&#160;<b>${currentPortfolio.name}</b></div>
     <div class="titsonfire-card-container mdl-grid">
         <!-- portfolio card -->
         <!-- ITEM IMAGES -->
         <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--1dp">
             <div class="images" id="images">
-                <img id="mainImage" class="item-image" src="${portfolio.images[0]}"/>
+                <img id="mainImage" class="item-image" src="${currentPortfolio.images[0]}"/>
                 <div class="images-navi mdl-grid">
                     <c:forEach items="${currentPortfolio.images}" var="image" varStatus="loop">
                         <c:if test="${loop.index==0}">
