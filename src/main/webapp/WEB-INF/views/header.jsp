@@ -16,6 +16,8 @@
 <spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
 <spring:url value="${webRoot}/about/" var="aboutUrl"/>
 <spring:url value="${webRoot}/portfolios" var="portfoliosUrl"/>
+<spring:url value="${webRoot}/artist-statement" var="statementUrl"/>
+<spring:url value="${webRoot}/contacts" var="contactsUrl"/>
 
 <div class="titsonfire-header mdl-layout__header mdl-layout__header--waterfall">
  <div class="mdl-layout__header-row">
@@ -37,9 +39,9 @@
      <nav class="titsonfire-navigation mdl-navigation">
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-store" href="${commoditiesUrl}">Store</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-portfolios" href="${portfoliosUrl}">Portfolio</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-cv" href="">Artist Statement/CV</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-cv" href="${statementUrl}">Artist Statement/CV</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-about" href="${aboutUrl}">About</a>
-       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-contacts" href="">Contacts</a>
+       <a class="mdl-navigation__link mdl-typography--text-uppercase tab-contacts" href="${contactsUrl}">Contacts</a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-shopping-cart" href="${shoppingCartUrl}"><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav" >shopping_cart</div></a>
        <a class="mdl-navigation__link mdl-typography--text-uppercase tab-account" href="${accountUrl}"><div class="material-icons" >account_circle</div></a>
      </nav>

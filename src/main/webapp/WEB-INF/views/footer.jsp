@@ -8,7 +8,10 @@
 <spring:message code="application_name" var="appName"/>
 <spring:message code="label_help" var="labelHelp"/>
 <spring:message code="label_privacy" var="labelPrivacy"/>
-
+<spring:theme code="webRoot" var="webRoot" />
+<spring:url value="${webRoot}/about/" var="aboutUrl"/>
+<spring:url value="${webRoot}/privacy-policy" var="privacyUrl"/>
+<spring:url value="${webRoot}/insta" var="instaUrl"/>
 
 <footer class="titsonfire-footer mdl-mega-footer">
   <div class="mdl-mega-footer--top-section">
@@ -33,32 +36,9 @@
   </div>
 
   <div class="mdl-mega-footer--bottom-section">
-    <a class="titsonfire-link titsonfire-link-menu mdl-typography--font-light" id="version-dropdown">
-      Store
-      <i class="material-icons">arrow_drop_up</i>
-    </a>
-    <ul class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect" for="version-dropdown">
-      <li class="mdl-menu__item">T-Shirts</li>
-      <li class="mdl-menu__item">Ceramics</li>
-      <li class="mdl-menu__item">Canvases</li>
-      <li class="mdl-menu__item">Archive</li>
-      <li class="mdl-menu__item">Order a custom</li>
-      <li class="mdl-menu__item">Please Read</li>
-    </ul>
-    <a class="titsonfire-link titsonfire-link-menu mdl-typography--font-light" id="developers-dropdown">
-      Portfolio
-      <i class="material-icons">arrow_drop_up</i>
-    </a>
-    <ul class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect" for="developers-dropdown">
-      <li class="mdl-menu__item">Dracula Series</li>
-      <li class="mdl-menu__item">Fonts</li>
-      <li class="mdl-menu__item">Sketchbook Pieces</li>
-      <li class="mdl-menu__item">Gucciholes story</li>
-      <li class="mdl-menu__item">Illustrations</li>
-    </ul>
-    <a class="titsonfire-link mdl-typography--font-light" href="">Instagram</a>
-    <a class="titsonfire-link mdl-typography--font-light" href="">About</a>
-    <a class="titsonfire-link mdl-typography--font-light" href="">Privacy Policy</a>
+    <a class="titsonfire-link mdl-typography--font-light" href="${instagramUrl}">Instagram</a>
+    <a class="titsonfire-link mdl-typography--font-light" href="${aboutUrl}">About</a>
+    <a class="titsonfire-link mdl-typography--font-light" href="${instaUrl}">Privacy Policy</a>
   </div>
 </footer>
 

@@ -15,15 +15,15 @@ $(document).ready(function () {
 </script>
 
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">Portfolio&#160;<b>${portfolio.name}</b></div>
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">Portfolio&#160;<b>${currentPortfolio.name}</b></div>
     <div class="titsonfire-card-container mdl-grid">
         <!-- portfolio card -->
         <!-- ITEM IMAGES -->
         <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--1dp">
             <div class="images" id="images">
-                <img id="mainImage" class="item-image" src="${portfolio.images[0]}"/>
+                <img id="mainImage" class="item-image" src="${currentPortfolio.images[0]}"/>
                 <div class="images-navi mdl-grid">
-                    <c:forEach items="${portfolio.images}" var="image" varStatus="loop">
+                    <c:forEach items="${currentPortfolio.images}" var="image" varStatus="loop">
                         <c:if test="${loop.index==0}">
                             <img  id="img-nav" src="${image}" onClick="mark(this, '${image}');" class="circleImgSelection"/>
                         </c:if>
@@ -38,14 +38,14 @@ $(document).ready(function () {
         <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
             <div class="mdl-grid titsonfire-card-content">
                 <div class="mdl-cell mdl-cell--12-col mdl-typography--font-light mdl-typography--subhead">
-                    <strong>Portfolio</strong>&#160;<span>${portfolio.shortDescription}</span>
+                    <strong>Portfolio</strong>&#160;<span>${currentPortfolio.shortDescription}</span>
                 </div>
-                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline commodity-name">Portfolio&#160; ${portfolio.name}</h3>
+                    <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline commodity-name">Portfolio&#160; ${currentPortfolio.name}</h3>
                     <div class="mdl-cell mdl-cell--6-col mdl-typography--font-light no-padding">
-                        <span class="mdl-typography--font-light mdl-typography--subhead">${portfolio.description}</span>
+                        <span class="mdl-typography--font-light mdl-typography--subhead">${currentPortfolio.description}</span>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
-                         <img class="article-image" src="${portfolio.images[0]}" width="200px" border="0" alt=""/>
+                         <img class="article-image" src="${currentPortfolio.images[0]}" width="200px" border="0" alt=""/>
                     </div>
             </div>
         </div>
