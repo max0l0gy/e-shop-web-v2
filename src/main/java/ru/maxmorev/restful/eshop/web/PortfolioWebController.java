@@ -49,7 +49,6 @@ public class PortfolioWebController {
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         return portfolioService.findBy(id)
                 .map(portfolioDto -> {
-                    uiModel.addAttribute("portfolio", portfolioDto);
                     uiModel.addAttribute("currentPortfolio", portfolioDto);
                     return "portfolio";
                 })
