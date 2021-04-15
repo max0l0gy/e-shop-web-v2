@@ -16,6 +16,11 @@
 <spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
 <spring:url value="${webRoot}/about/" var="aboutUrl"/>
 <spring:url value="${webRoot}/portfolios" var="portfoliosUrl"/>
+<spring:url value="${webRoot}/artist-statement" var="statementUrl"/>
+<spring:url value="${webRoot}/contacts" var="contactsUrl"/>
+<spring:url value="${webRoot}/please-read" var="pleaseReadUrl"/>
+<spring:url value="${webRoot}/commodities/archive" var="commoditiesArchiveUrl"/>
+<spring:url value="${webRoot}/order-custom" var="orderCustomUrl"/>
 
 <div class="titsonfire-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">
@@ -24,12 +29,12 @@
   <nav class="mdl-navigation">
     <a class="mdl-navigation__link tab-store" href="${commoditiesUrl}">Store</a>
     <a class="mdl-navigation__link tab-portfolios" href="${portfoliosUrl}">Portfolio</a>
-    <a class="mdl-navigation__link tab-cv" href="">Artist Statement&#160;/&#160;CV</a>
+    <a class="mdl-navigation__link tab-cv" href="${statementUrl}">Artist Statement&#160;/&#160;CV</a>
     <a class="mdl-navigation__link tab-about" href="${aboutUrl}">About</a>
-    <a class="mdl-navigation__link tab-contacts" href="">Contacts</a>
+    <a class="mdl-navigation__link tab-contacts" href="${contactsUrl}">Contacts</a>
     <div class="titsonfire-drawer-separator"></div>
     <span class="mdl-navigation__link" href="${commoditiesUrl}">STORE</span>
-    <a class="mdl-navigation__link" href=""><b>Please Read</b></a>
+    <a class="mdl-navigation__link" href="${pleaseReadUrl}"><b>Please Read</b></a>
     <c:if test="${not empty types}">
         <c:forEach items="${types}" var="type">
         <c:if test="${not empty currentType}">
@@ -45,9 +50,8 @@
         </c:if>
         </c:forEach>
     </c:if>
-    <a class="mdl-navigation__link tab-canvases" href="">Canvases</a>
-    <a class="mdl-navigation__link tab-archive" href="">Archive</a>
-    <a class="mdl-navigation__link tab-order-custom" href="">Order a custom</a>
+    <a class="mdl-navigation__link tab-archive" href="${commoditiesArchiveUrl}">Archive</a>
+    <a class="mdl-navigation__link tab-order-custom" href="${orderCustomUrl}">Order a custom</a>
     <a class="mdl-navigation__link tab-shopping-cart" href="${shoppingCartUrl}"><div class="material-icons mdl-badge mdl-badge--overlap shopping-cart-nav">shopping_cart</div></a>
     <a class="mdl-navigation__link tab-account" href="${accountUrl}"><div class="material-icons">account_circle</div></a>
     <div class="titsonfire-drawer-separator"></div>
