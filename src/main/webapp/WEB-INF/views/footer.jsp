@@ -36,9 +36,9 @@
   </div>
 
   <div class="mdl-mega-footer--bottom-section">
-    <a class="titsonfire-link mdl-typography--font-light" href="${instagramUrl}">Instagram</a>
+    <a class="titsonfire-link mdl-typography--font-light" href="${instaUrl}">Instagram</a>
     <a class="titsonfire-link mdl-typography--font-light" href="${aboutUrl}">About</a>
-    <a class="titsonfire-link mdl-typography--font-light" href="${instaUrl}">Privacy Policy</a>
+    <a class="titsonfire-link mdl-typography--font-light" href="${privacyUrl}">Privacy Policy</a>
   </div>
 </footer>
 
