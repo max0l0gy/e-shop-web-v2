@@ -713,3 +713,13 @@ img.article-image {
   color: #fff;
   background: #ea38ff;
 }
+/* store page */
+
+.article-image-circle {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: 3px;
+    align: center;
+    border:3px solid rgb(255,64,129);
+}

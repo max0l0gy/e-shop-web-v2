@@ -75,32 +75,26 @@ $(document).ready(function () {
 });
 </script>
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">New from Store</div>
-    <c:if test="${not empty commodities}">
-        <div class="titsonfire-card-container mdl-grid">
-            <c:forEach items="${commodities}" var="commodity">
-                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-                    <div class="mdl-card__media">
-                        <a href="${showCommodityUrl}/${commodity.id}"><img class="article-image" src="${commodity.images[0]}" border="0" alt=""/></a>
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">${commodity.name}</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                        <span class="mdl-typography--font-light mdl-typography--subhead">${commodity.shortDescription}</span>
-                        <div id="attribute-container-100">
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">$TOR€</div>
 
-                        </div>
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border" style="height:50px">
-                        <div class="portfolio-list-action">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-                               href="${showCommodityUrl}/${commodity.id}">${labelPrice} &#160;
-                                ${commodity.branches[0].price} ${commodity.branches[0].currency}</a>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
-    </c:if>
+    <div class="titsonfire-card-container mdl-grid">
+         <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+             <div class="mdl-card__media">
+                 <a href="https://titsonfire.store/web/commodity/100"><img class="article-image-circle" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/9253ce113708491.602d47b9156b6.jpg" border="0" alt=""/></a>
+             </div>
+             <div class="mdl-card__title">
+                 <h2 class="mdl-card__title-text">T-SHIRT</h2>
+             </div>
+             <div class="mdl-card__supporting-text">
+                 <span class="mdl-typography--font-light mdl-typography--subhead">Handmade t-shirts with oil craft</span>
+             </div>
+             <div class="mdl-card__actions mdl-card--border" style="height:50px">
+                 <div class="portfolio-list-action">
+                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                        href="https://titsonfire.store/web/commodity/100">OPEN</a>
+                 </div>
+             </div>
+         </div>
+    </div>
+
 </div>
