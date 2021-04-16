@@ -78,7 +78,7 @@ public class CommodityWebController {
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         uiModel.addAttribute("commodities", commodities);
-        return "commodity/list";
+        return "commodities-by-type";
     }
 
 

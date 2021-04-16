@@ -74,58 +74,33 @@ $(document).ready(function () {
     );
 });
 </script>
-
 <div class="titsonfire-more-section">
-<div class="titsonfire-navigation-subsection mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-    <div class="mdl-tabs__tab-bar">
-        <a href="#t-shirts-panel" class="mdl-tabs__tab is-active">T-Shirts</a>
-        <a href="#ceramics-panel" class="mdl-tabs__tab">Ceramics</a>
-        <a href="#canvases-panel" class="mdl-tabs__tab">Canvases</a>
-        <a href="#archive-panel" class="mdl-tabs__tab">Archive</a>
-        <a href="#order-custom-panel" class="mdl-tabs__tab">Order a custom</a>
-    </div>
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">New from Store</div>
+    <c:if test="${not empty commodities}">
+        <div class="titsonfire-card-container mdl-grid">
+            <c:forEach items="${commodities}" var="commodity">
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                    <div class="mdl-card__media">
+                        <a href="${showCommodityUrl}/${commodity.id}"><img class="article-image" src="${commodity.images[0]}" border="0" alt=""/></a>
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">${commodity.name}</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <span class="mdl-typography--font-light mdl-typography--subhead">${commodity.shortDescription}</span>
+                        <div id="attribute-container-100">
 
-    <div class="mdl-tabs__panel is-active" id="t-shirts-panel">
-        <c:if test="${not empty commodities}">
-                <div class="titsonfire-card-container mdl-grid">
-                    <c:forEach items="${commodities}" var="commodity">
-                        <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-                            <div class="mdl-card__media">
-                                <a href="${showCommodityUrl}/${commodity.id}"><img class="article-image" src="${commodity.images[0]}" border="0" alt=""/></a>
-                            </div>
-                            <div class="mdl-card__title">
-                                <h2 class="mdl-card__title-text">${commodity.name}</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                <span class="mdl-typography--font-light mdl-typography--subhead">${commodity.shortDescription}</span>
-                                <div id="attribute-container-100">
-
-                                </div>
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border" style="height:50px">
-                                <div class="portfolio-list-action">
-                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-                                       href="${showCommodityUrl}/${commodity.id}">${labelPrice} &#160;
-                                        ${commodity.branches[0].price} ${commodity.branches[0].currency}</a>
-                                </div>
-                            </div>
                         </div>
-                    </c:forEach>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border" style="height:50px">
+                        <div class="portfolio-list-action">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                               href="${showCommodityUrl}/${commodity.id}">${labelPrice} &#160;
+                                ${commodity.branches[0].price} ${commodity.branches[0].currency}</a>
+                        </div>
+                    </div>
                 </div>
-        </c:if>
-    </div>
-    <div class="mdl-tabs__panel" id="ceramics-panel">
-        <ul>
-            <li>Ceramics</li>
-            <li>Option</li>
-        </ul>
-    </div>
-    <div class="mdl-tabs__panel" id="canvases-panel">
-        <ul>
-            <li>Canvases</li>
-            <li>Daenerys</li>
-        </ul>
-    </div>
-</div>
-
+            </c:forEach>
+        </div>
+    </c:if>
 </div>
