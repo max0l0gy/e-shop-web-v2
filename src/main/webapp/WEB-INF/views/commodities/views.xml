@@ -5,4 +5,8 @@
     <definition extends="default" name="commodities">
         <put-attribute name="body" value="/WEB-INF/views/commodities/commodities.jsp" />
     </definition>
+
+    <definition extends="default" name="commodities-by-type">
+        <put-attribute name="body" value="/WEB-INF/views/commodities/commodities-by-type.jsp" />
+    </definition>
 </tiles-definitions>
