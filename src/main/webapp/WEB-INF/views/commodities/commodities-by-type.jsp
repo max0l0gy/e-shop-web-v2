@@ -76,7 +76,7 @@ $(document).ready(function () {
 });
 </script>
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast"><a href="${commoditiesUrl}">$TOR€</a>&#160;${currentType.name}</div>
+    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast"><a href="${commoditiesUrl}">STORE</a>&#160;${currentType.name}</div>
     <c:if test="${not empty commodities}">
         <div class="titsonfire-card-container mdl-grid">
             <c:forEach items="${commodities}" var="commodity">
