@@ -78,14 +78,12 @@ $(document).ready(function () {
     <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">STORE</div>
 
     <div class="titsonfire-card-container mdl-grid">
-         <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+         <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--3dp">
+             <a href="https://titsonfire.store/web/commodities/type/T-SHiRT"><img src="https://www2.lunapic.com/editor/premade/crop-circle.gif"/></a>
+         </div>
+         <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--3dp">
              <a href="https://titsonfire.store/web/commodities/type/T-SHiRT"><img src="https://www2.lunapic.com/editor/premade/crop-circle.gif"/></a>
          </div>
     </div>
-     <div class="titsonfire-card-container mdl-grid">
-         <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-             <a href="https://titsonfire.store/web/commodities/type/T-SHiRT"><img src="https://www2.lunapic.com/editor/premade/crop-circle.gif"/></a>
-         </div>
-     </div>
 
 </div>
