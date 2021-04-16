@@ -11,79 +11,24 @@
 <spring:message code="label_colors" var="labelColors"/>
 <spring:message code="label_sizes" var="labelSizes"/>
 
-<script type="text/javascript">
-function showWearAttributes(id, sizes, colors){
-    var content='Sizes:';
-    sizes.forEach(function(size){ content+= showSizeElement(size);});
-    content += '<br/>';
-    content += 'Colors:';
-    colors.forEach(function(color){ content+= showColorElement(color);});
-    $('#attribute-container-'+id).empty();
-    $('#attribute-container-'+id).append(content);
-}
-
-function showAttributes(id, attributes){
-
-    var content="";
-    attributes.forEach(function(prop){
-        content += showCommodityAttribute(prop);
-    });
-    $('#attribute-container-'+id).empty();
-    $('#attribute-container-'+id).append(content);
-
-}
-
-$(document).ready(function () {
-    activateTab('tab-store');
-    var commoditiesJsonStr = '${commodities}';
-    var res = commoditiesJsonStr.replace(/\n/g, " ");//cleanup string
-    var commodities = JSON.parse(res);
-    commodities.forEach( function(commodity) {
-        //process commodity
-        const attributes = commodity.branches[0].attributes;
-        var notWearAttributes = getNotWearAttributes(attributes);
-        if(notWearAttributes.length>0){
-
-            showAttributes(commodity.id, notWearAttributes);
-        }else{
-            //show attributes for wear
-
-            var colors = [];
-            var sizes = [];
-            commodity.branches.forEach( function(branch){
-
-                var wearAttributes = branch.attributes;
-
-                wearAttributes.forEach(function(a){
-                                        if(a.name=="color"){
-                                            if( !colors.includes(a.value) ){
-                                                colors.push(a.value);
-                                            }
-                                        }
-                                        if(a.name=="size"){
-                                             if( !sizes.includes(a.value) ){
-                                                sizes.push(a.value);
-                                             }
-                                        }
-                                    });
-
-            });
-            showWearAttributes(commodity.id, sizes, colors);
-        }
-    }
-    );
-});
-</script>
 <div class="titsonfire-more-section">
     <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">STORE</div>
 
-    <div class="titsonfire-card-container mdl-grid">
-         <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--3dp">
-             <a href="https://titsonfire.store/web/commodities/type/T-SHiRT"><img src="https://www2.lunapic.com/editor/premade/crop-circle.gif"/></a>
-         </div>
-         <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--3dp">
-             <a href="https://titsonfire.store/web/commodities/type/T-SHiRT"><img src="https://www2.lunapic.com/editor/premade/crop-circle.gif"/></a>
-         </div>
-    </div>
+     <div class="mdl-grid">
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-shadow--1dp" style="width:350px;height:350px;align:center;">
+            <a href="https://titsonfire.store/web/commodities/type/T-SHiRT"><img src="https://www2.lunapic.com/editor/premade/crop-circle.gif" height="345px"></a>
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-shadow--1dp" style="width:350px;height:350px;align:center;">
+            <a href="https://titsonfire.store/web/commodities/type/T-SHiRT"><img src="https://www2.lunapic.com/editor/premade/crop-circle.gif" height="345px"></a>
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-shadow--1dp" style="width:350px;height:350px;align:center;">
+             <a href="https://titsonfire.store/web/commodities/type/T-SHiRT"><img src="https://www2.lunapic.com/editor/premade/crop-circle.gif" height="345px"></a>
+        </div>
+
+     </div>
+
 
 </div>
