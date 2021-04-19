@@ -12,7 +12,7 @@
 <spring:message code="label_sizes" var="labelSizes"/>
 
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">STORE</div>
+    <div class="titsonfire-section-title">STORE</div>
 
      <div class="mdl-grid">
 

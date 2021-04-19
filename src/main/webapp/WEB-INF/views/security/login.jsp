@@ -1,37 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <spring:theme code="webRoot" var="webRoot"/>
 <spring:url value="${webRoot}/" var="app_url"/>
 <spring:url value="${webRoot}/customer/account/create/checkout" var="createAccountUrl"/>
 <script type="text/javascript">
-$(document).ready(function () {
-  const queryString = window.location.search;
-  console.log('queryString = ' + queryString);
-  if( queryString.includes('error') ) {
-    $("#security-error").show();
-  } else {
-    $("#security-error").hide();
-  }
-  var btnCreateAcc = document.querySelector('#btn-create-account');
-  btnCreateAcc.addEventListener('click', function() {
-    console.log("${createAccountUrl}");
-    window.location.href = "${createAccountUrl}";
-  } );
+    $(document).ready(function () {
+        const queryString = window.location.search;
+        console.log('queryString = ' + queryString);
+        if (queryString.includes('error')) {
+            $("#security-error").show();
+        } else {
+            $("#security-error").hide();
+        }
+        var btnCreateAcc = document.querySelector('#btn-create-account');
+        btnCreateAcc.addEventListener('click', function () {
+            console.log("${createAccountUrl}");
+            window.location.href = "${createAccountUrl}";
+        });
 
-});
+    });
 </script>
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">TiTS ON FIRE SECURITY</div>
+    <div class="titsonfire-section-title">TiTS ON FIRE SECURITY</div>
     <div class="titsonfire-card-container mdl-grid">
         <!-- static card -->
         <div class="mdl-cell mdl-cell--12-col" style="height:150px">
         </div>
-        <div  id="security-error"  class="mdl-cell mdl-cell--12-col">
+        <div id="security-error" class="mdl-cell mdl-cell--12-col">
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--4">
                 </div>
@@ -79,28 +79,30 @@ $(document).ready(function () {
 
         <!-- CREATE LOGIN -->
         <div class="mdl-cell mdl-cell--12-col">
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--4">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4">
+                </div>
+                <div class="mdl-cell mdl-cell--4">
+                    <button id="btn-create-account"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        CREATE ACCOUNT
+                    </button>
+                </div>
+                <div class="mdl-cell mdl-cell--4">
+                </div>
+                <!-- Forgot password -->
+                <div class="mdl-cell mdl-cell--4">
+                </div>
+                <div class="mdl-cell mdl-cell--4">
+                    <button id="btn-forgot-password"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        FORGOT PASSWORD
+                    </button>
+                </div>
+                <div class="mdl-cell mdl-cell--4">
+                </div>
+                <!--end: sForgot password-->
             </div>
-            <div class="mdl-cell mdl-cell--4">
-                <button id="btn-create-account" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                    CREATE ACCOUNT
-                </button>
-            </div>
-            <div class="mdl-cell mdl-cell--4">
-            </div>
-            <!-- Forgot password -->
-            <div class="mdl-cell mdl-cell--4">
-            </div>
-            <div class="mdl-cell mdl-cell--4">
-                <button id="btn-forgot-password" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                    FORGOT PASSWORD
-                </button>
-            </div>
-            <div class="mdl-cell mdl-cell--4">
-            </div>
-            <!--end: sForgot password-->
-        </div>
         </div>
 
     </div>

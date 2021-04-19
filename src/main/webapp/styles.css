@@ -408,6 +408,10 @@ a img{
   .titsonfire-more-section .titsonfire-section-title {
     margin-left: 12px;
     padding-bottom: 24px;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 40px;
   }
 
   .titsonfire-more-section .titsonfire-section-path {
