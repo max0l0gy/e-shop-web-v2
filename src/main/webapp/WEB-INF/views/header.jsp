@@ -40,7 +40,7 @@
                 <a class="mdl-navigation__link mdl-typography--text-uppercase tab-store"
                    href="${commoditiesUrl}">Store</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase tab-portfolios" href="${portfoliosUrl}">Portfolio</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase tab-cv" href="${statementUrl}">Artist
+                <a class="mdl-navigation__link mdl-typography--text-uppercase tab-artist-statement" href="${statementUrl}">Artist
                     Statement/CV</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase tab-about" href="${aboutUrl}">About</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase tab-contacts" href="${contactsUrl}">Contacts</a>
