@@ -29,12 +29,12 @@
     <nav class="mdl-navigation">
         <a class="mdl-navigation__link tab-store" href="${commoditiesUrl}">Store</a>
         <a class="mdl-navigation__link tab-portfolios" href="${portfoliosUrl}">Portfolio</a>
-        <a class="mdl-navigation__link tab-cv" href="${statementUrl}">Artist Statement&#160;/&#160;CV</a>
+        <a class="mdl-navigation__link tab-artist-statement" href="${statementUrl}">Artist Statement&#160;/&#160;CV</a>
         <a class="mdl-navigation__link tab-about" href="${aboutUrl}">About</a>
         <a class="mdl-navigation__link tab-contacts" href="${contactsUrl}">Contacts</a>
         <div class="titsonfire-drawer-separator"></div>
         <span class="mdl-navigation__link" href="${commoditiesUrl}">STORE</span>
-        <a class="mdl-navigation__link" href="${pleaseReadUrl}"><b>Please Read</b></a>
+        <a class="mdl-navigation__link tab-please-read" href="${pleaseReadUrl}"><b>Please Read</b></a>
         <c:if test="${not empty types}">
             <c:forEach items="${types}" var="type">
                 <c:if test="${not empty currentType}">
