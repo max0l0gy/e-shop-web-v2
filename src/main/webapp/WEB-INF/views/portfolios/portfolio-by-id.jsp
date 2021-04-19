@@ -15,7 +15,7 @@ $(document).ready(function () {
 </script>
 
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">Portfolio&#160;<b>${currentPortfolio.name}</b></div>
+    <div class="titsonfire-section-title">Portfolio&#160;<b>${currentPortfolio.name}</b></div>
     <div class="titsonfire-card-container mdl-grid">
         <!-- portfolio card -->
         <!-- ITEM IMAGES -->

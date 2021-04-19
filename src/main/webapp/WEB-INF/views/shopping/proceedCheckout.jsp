@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <spring:message code="label_buy" var="labelBuy"/>
 <spring:message code="label_price" var="labelPrice"/>
 <spring:message code="label_checkout" var="labelCheckout"/>
@@ -16,7 +16,7 @@
 <spring:message code="label_checkout" var="labelWelcome"/>
 <spring:message code="label_verify_email" var="labelVerifyEmail"/>
 
-<spring:theme code="webRoot" var="webRoot" />
+<spring:theme code="webRoot" var="webRoot"/>
 <spring:url value="${webRoot}/shopping/cart/" var="backUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="profileUrl"/>
 <spring:url value="${webRoot}/commodity" var="showCommodityUrl"/>
@@ -24,139 +24,139 @@
 <script src="https://www.paypal.com/sdk/js?client-id=AZLBDto98XnkWuOsGr78XH78ohzsHneaQY9vzVdWu9w5xSKRhv1HQl2KSCBvtIDoEEQpXzLcCvJ8d9BG&currency=EUR"></script>
 
 <script type="text/javascript">
-const shoppingCartId = ${ShoppingCartCookie};
-const showCommodityUrl = '${showCommodityUrl}';
-const orderId = '${orderId}';
-const customerId = '${customer.id}';
-var shoppingCartObj;
+    const shoppingCartId = ${ShoppingCartCookie};
+    const showCommodityUrl = '${showCommodityUrl}';
+    const orderId = '${orderId}';
+    const customerId = '${customer.id}';
+    var shoppingCartObj;
 
-function paymentConfirm(json){
-    $('#order-id').empty();
-    $('#order-id').append(orderId);
-    showPaymentConfirmed();
-    $('#spinner').hide();
-    showToast("Order #" + orderId +" successfully paid" );
-}
-
-function paymentConfirmError(json) {
-    $('#error-container').hide();
-    $('#payment-confirmed').hide();
-    $('#shopping-cart').hide();
-    $('#payment-info').hide();
-    showErrorFromJson(json);
-    $('#spinner').hide();
-}
-
-function showPaymentContent() {
-    $('#error-container').hide();
-    $('#payment-confirmed').hide();
-    $('#order-cancel-btn').show();
-    $('#shopping-cart').show();
-    $('#payment-info').show();
-}
-
-function showPaymentConfirmed() {
-    $('#shopping-cart').hide();
-    $('#payment-info').hide();
-    $('#error-container').hide();
-    $('#order-cancel-btn').hide();
-    $('#payment-confirmed').show();
-}
-
-function showPaymentCanceled() {
-    $('#error-container').hide();
-    $('#payment-confirmed').hide();
-    $('#order-cancel-btn').hide();
-    $('#shopping-cart').hide();
-    $('#payment-info').hide();
-}
-
-function loadCartSuccess(json) {
-    shoppingCartObj = json;
-    if(shoppingCartObj.itemsAmount>0) {
-        showShoppingCartMeta(shoppingCartObj);
-        showToast("Please checkout for selected items!");
-    }else{
-        showToast("Shopping cart is empty");
+    function paymentConfirm(json) {
+        $('#order-id').empty();
+        $('#order-id').append(orderId);
+        showPaymentConfirmed();
+        $('#spinner').hide();
+        showToast("Order #" + orderId + " successfully paid");
     }
-}
 
-function cancelSuccess(json) {
-    window.location.href = "${backUrl}";
-}
+    function paymentConfirmError(json) {
+        $('#error-container').hide();
+        $('#payment-confirmed').hide();
+        $('#shopping-cart').hide();
+        $('#payment-info').hide();
+        showErrorFromJson(json);
+        $('#spinner').hide();
+    }
 
-function cancelError(json) {
-    showToast("Can not cancel the Order #"+orderId);
-}
+    function showPaymentContent() {
+        $('#error-container').hide();
+        $('#payment-confirmed').hide();
+        $('#order-cancel-btn').show();
+        $('#shopping-cart').show();
+        $('#payment-info').show();
+    }
 
-function cancelOrderAction() {
-    cancelCustomerOrder(orderId, customerId, cancelSuccess, cancelError);
-}
+    function showPaymentConfirmed() {
+        $('#shopping-cart').hide();
+        $('#payment-info').hide();
+        $('#error-container').hide();
+        $('#order-cancel-btn').hide();
+        $('#payment-confirmed').show();
+    }
 
-$(document).ready(function () {
+    function showPaymentCanceled() {
+        $('#error-container').hide();
+        $('#payment-confirmed').hide();
+        $('#order-cancel-btn').hide();
+        $('#shopping-cart').hide();
+        $('#payment-info').hide();
+    }
 
-    showPaymentContent();
-    getShoppingCart(shoppingCartId, loadCartSuccess);
+    function loadCartSuccess(json) {
+        shoppingCartObj = json;
+        if (shoppingCartObj.itemsAmount > 0) {
+            showShoppingCartMeta(shoppingCartObj);
+            showToast("Please checkout for selected items!");
+        } else {
+            showToast("Shopping cart is empty");
+        }
+    }
 
-    activateTab('tab-shopping-cart');
+    function cancelSuccess(json) {
+        window.location.href = "${backUrl}";
+    }
 
-    var btnCancel = document.querySelector('#order-cancel-btn');
-      btnCancel.addEventListener('click', function() {
-        cancelOrderAction();
-      } );
+    function cancelError(json) {
+        showToast("Can not cancel the Order #" + orderId);
+    }
 
-    paypal.Buttons({
+    function cancelOrderAction() {
+        cancelCustomerOrder(orderId, customerId, cancelSuccess, cancelError);
+    }
 
-                //setup style
-                style: {
-                    layout:  'vertical',
-                    color:   'blue',
-                    shape:   'rect',
-                    label:   'paypal'
-                },
+    $(document).ready(function () {
 
-                // Set up the transaction
-                createOrder: function(data, actions) {
-                    var price = getAmountItemsInShoppingCart(shoppingCartObj).price;
-                    return actions.order.create({
-                        purchase_units: [
+        showPaymentContent();
+        getShoppingCart(shoppingCartId, loadCartSuccess);
+
+        activateTab('tab-shopping-cart');
+
+        var btnCancel = document.querySelector('#order-cancel-btn');
+        btnCancel.addEventListener('click', function () {
+            cancelOrderAction();
+        });
+
+        paypal.Buttons({
+
+            //setup style
+            style: {
+                layout: 'vertical',
+                color: 'blue',
+                shape: 'rect',
+                label: 'paypal'
+            },
+
+            // Set up the transaction
+            createOrder: function (data, actions) {
+                var price = getAmountItemsInShoppingCart(shoppingCartObj).price;
+                return actions.order.create({
+                    purchase_units: [
                         {
                             amount: {
-                                value: ''+ price +'',
+                                value: '' + price + '',
                                 currency_code: 'EUR'
                             },
                             description: "Payment for order #" + orderId + " titsonfire.store"
                         }
-                        ]
-                    });
-                },
+                    ]
+                });
+            },
 
-                // Finalize the transaction
-                onApprove: function(data, actions) {
-                    console.log( "DATA" );
-                    console.log( data );
-                    return actions.order.capture().then(function(details) {
-                        // Show a success message to the buyer
-                        $('#spinner').show();
-                        console.log(details);
-                        console.log("Order id = " + data.orderID);
-                        console.log("Inner orderId " + orderId);
-                        showToast('Transaction '+ orderId +' completed by ' + details.payer.name.given_name + '!');
-                        confirmPaymentOrder(customerId, orderId, data.orderID, "Paypal", paymentConfirm, paymentConfirmError);
-                        //confirmOrder
-                    });
-                },
-                //Show a Cancellation Page
-                onCancel: function (data) {
-                    // Show a cancel page, or return to cart
-                    cancelOrderAction();
-                  }
-            }).render('#paypal-button-container');
+            // Finalize the transaction
+            onApprove: function (data, actions) {
+                console.log("DATA");
+                console.log(data);
+                return actions.order.capture().then(function (details) {
+                    // Show a success message to the buyer
+                    $('#spinner').show();
+                    console.log(details);
+                    console.log("Order id = " + data.orderID);
+                    console.log("Inner orderId " + orderId);
+                    showToast('Transaction ' + orderId + ' completed by ' + details.payer.name.given_name + '!');
+                    confirmPaymentOrder(customerId, orderId, data.orderID, "Paypal", paymentConfirm, paymentConfirmError);
+                    //confirmOrder
+                });
+            },
+            //Show a Cancellation Page
+            onCancel: function (data) {
+                // Show a cancel page, or return to cart
+                cancelOrderAction();
+            }
+        }).render('#paypal-button-container');
 
-});
+    });
 </script>
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title mdl-typography--display-1-color-contrast">${labelWelcome}</div>
+    <div class="titsonfire-section-title">${labelWelcome}</div>
     <div class="titsonfire-card-container mdl-grid">
         <!-- checkout card -->
         <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
@@ -169,7 +169,9 @@ $(document).ready(function () {
                     <p id="error-message"></p>
                 </div>
                 <div class="mdl-cell mdl-cell--12-col">
-                    Shopping Cart Subtotal (<div class="data-holder" id="total-items">${shoppingCart.itemsAmount}</div> items):&nbsp;<div class="data-holder" id="total-cart-price">${shoppingCart.totalPrice} </div>
+                    Shopping Cart Subtotal (
+                    <div class="data-holder" id="total-items">${shoppingCart.itemsAmount}</div>
+                    items):&nbsp;<div class="data-holder" id="total-cart-price">${shoppingCart.totalPrice} </div>
                 </div>
                 <div id="delivery-info" class="mdl-cell mdl-cell--6-col">
                     <b>Delivery Address:</b><br/>
@@ -177,7 +179,8 @@ $(document).ready(function () {
                     ${customer.fullName}<br/>
                     ${customer.country}, ${customer.postcode}, ${customer.city}, ${customer.address}
                 </div>
-                <button id="order-cancel-btn" class="mdl-cell mdl-cell--6-col mdl-cell--6-col-phone mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                <button id="order-cancel-btn"
+                        class="mdl-cell mdl-cell--6-col mdl-cell--6-col-phone mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     Back to Cart
                 </button>
                 <div id="payment-info" class="mdl-cell mdl-cell--6-col">
@@ -203,8 +206,8 @@ $(document).ready(function () {
                         <div class="mdl-cell mdl-cell--2-col">&nbsp;</div>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
         <!--end: commodity card-->
     </div>
 </div>
