@@ -7,7 +7,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        activateTab('tab-about');
+        activateTab('tab-contacts');
     });
 
 </script>
