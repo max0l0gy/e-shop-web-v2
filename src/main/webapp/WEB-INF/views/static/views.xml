@@ -7,4 +7,20 @@
         <put-attribute name="body" value="/WEB-INF/views/static/about.jsp" />
     </definition>
 
+    <definition extends="default" name="static/artist-statement">
+        <put-attribute name="body" value="/WEB-INF/views/static/artist-statement.jsp" />
+    </definition>
+
+    <definition extends="default" name="static/order-custom">
+        <put-attribute name="body" value="/WEB-INF/views/static/order-custom.jsp" />
+    </definition>
+
+    <definition extends="default" name="static/please-read">
+        <put-attribute name="body" value="/WEB-INF/views/static/please-read.jsp" />
+    </definition>
+
+    <definition extends="default" name="static/contacts">
+        <put-attribute name="body" value="/WEB-INF/views/static/contacts.jsp" />
+    </definition>
+
 </tiles-definitions>
