@@ -14,13 +14,13 @@
 <spring:url value="${webRoot}/commodities/type" var="commoditiesByTypeUrl"/>
 <spring:url value="${webRoot}/shopping/cart/" var="shoppingCartUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
-<spring:url value="${webRoot}/about/" var="aboutUrl"/>
+<spring:url value="${webRoot}/static/about" var="aboutUrl"/>
 <spring:url value="${webRoot}/portfolios" var="portfoliosUrl"/>
-<spring:url value="${webRoot}/artist-statement" var="statementUrl"/>
-<spring:url value="${webRoot}/contacts" var="contactsUrl"/>
-<spring:url value="${webRoot}/please-read" var="pleaseReadUrl"/>
+<spring:url value="${webRoot}/static/artist-statement" var="statementUrl"/>
+<spring:url value="${webRoot}/static/contacts" var="contactsUrl"/>
+<spring:url value="${webRoot}/static/please-read" var="pleaseReadUrl"/>
 <spring:url value="${webRoot}/commodities/archive" var="commoditiesArchiveUrl"/>
-<spring:url value="${webRoot}/order-custom" var="orderCustomUrl"/>
+<spring:url value="${webRoot}/static/order-custom" var="orderCustomUrl"/>
 
 <div class="titsonfire-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">

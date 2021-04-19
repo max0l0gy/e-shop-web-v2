@@ -36,7 +36,7 @@ public class StaticWebController {
     }
 
     @SneakyThrows
-    @GetMapping(path = {"/{page-name}"})
+    @GetMapping(path = {"/static/{page-name}"})
     public String getStaticPage(
             @PathVariable("page-name") String pageName,
             HttpServletResponse response,
