@@ -14,10 +14,10 @@
 <spring:url value="${webRoot}/commodities/type" var="commoditiesByTypeUrl"/>
 <spring:url value="${webRoot}/shopping/cart/" var="shoppingCartUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
-<spring:url value="${webRoot}/about/" var="aboutUrl"/>
+<spring:url value="${webRoot}/static/about" var="aboutUrl"/>
 <spring:url value="${webRoot}/portfolios" var="portfoliosUrl"/>
-<spring:url value="${webRoot}/artist-statement" var="statementUrl"/>
-<spring:url value="${webRoot}/contacts" var="contactsUrl"/>
+<spring:url value="${webRoot}/static/artist-statement" var="statementUrl"/>
+<spring:url value="${webRoot}/static/contacts" var="contactsUrl"/>
 
 <div class="titsonfire-header mdl-layout__header mdl-layout__header--waterfall">
     <div class="mdl-layout__header-row">

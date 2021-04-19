@@ -9,9 +9,9 @@
 <spring:message code="label_help" var="labelHelp"/>
 <spring:message code="label_privacy" var="labelPrivacy"/>
 <spring:theme code="webRoot" var="webRoot"/>
-<spring:url value="${webRoot}/about/" var="aboutUrl"/>
-<spring:url value="${webRoot}/privacy-policy" var="privacyUrl"/>
-<spring:url value="${webRoot}/insta" var="instaUrl"/>
+<spring:url value="${webRoot}/static/about/" var="aboutUrl"/>
+<spring:url value="${webRoot}/static/privacy-policy" var="privacyUrl"/>
+<spring:url value="${webRoot}/static/insta" var="instaUrl"/>
 
 <footer class="titsonfire-footer mdl-mega-footer">
     <div class="mdl-mega-footer--top-section">
