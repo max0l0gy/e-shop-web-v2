@@ -95,8 +95,7 @@ public class CommodityWebController {
         }
 
         CommodityDto commodity =  cm.get();
-        String overview = commodity.getOverview().replace("\n", "<br/>");
-        commodity.setOverview(overview);
+        commodity.setOverview(commonWebController.replaceNewLineByTeg(commodity.getOverview()));
         uiModel.addAttribute("commodity", commodity);
         uiModel.addAttribute("currentType", commodity.getType());
 

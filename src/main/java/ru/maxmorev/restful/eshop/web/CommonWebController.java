@@ -115,4 +115,8 @@ public class CommonWebController {
         return scFromCookie;
     }
 
+    public String replaceNewLineByTeg(String text) {
+        return text.replace("\n", "<br/>");
+    }
+
 }
