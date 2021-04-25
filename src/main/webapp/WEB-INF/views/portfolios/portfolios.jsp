@@ -29,7 +29,7 @@ $(document).ready(function () {
     <div class="titsonfire-customized-section-image"></div>
 </div>
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title">New from Store</div>
+    <div class="titsonfire-section-title">New from Portfolio</div>
     <c:if test="${not empty portfolios}">
         <div class="titsonfire-card-container mdl-grid">
             <c:forEach items="${portfolios}" var="portfolio">
