@@ -177,9 +177,9 @@
     <div class="titsonfire-section-title">Create Account</div>
     <div class="titsonfire-card-container mdl-grid">
         <!-- customer card -->
-        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text commodity-name"></b></h2>
+                <h2 class="mdl-card__title-text commodity-name"></h2>
             </div>
             <div class="mdl-card__media" style="background-color:white">
 

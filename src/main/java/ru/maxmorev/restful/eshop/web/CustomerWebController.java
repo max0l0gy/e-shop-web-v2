@@ -53,4 +53,14 @@ public class CustomerWebController {
                         .findOrderListForCustomer(customerDTO.getId()));
         return "customer/updateAccount";
     }
+
+    @GetMapping(path = {"/customer/account/reset-password"})
+    public String resetPassword(
+            HttpServletResponse response,
+            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
+            Model uiModel) {
+        commonWebController.addCommonAttributesToModel(uiModel);
+        return "customer/reset-password";
+    }
+
 }

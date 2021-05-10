@@ -8,6 +8,7 @@
 <spring:theme code="webRoot" var="webRoot"/>
 <spring:url value="${webRoot}/" var="app_url"/>
 <spring:url value="${webRoot}/customer/account/create/checkout" var="createAccountUrl"/>
+<spring:url value="${webRoot}/customer/account/reset-password" var="resetPasswordUrl"/>
 <script type="text/javascript">
     $(document).ready(function () {
         const queryString = window.location.search;
@@ -22,7 +23,11 @@
             console.log("${createAccountUrl}");
             window.location.href = "${createAccountUrl}";
         });
-
+        var btnResetPassword = document.querySelector('#btn-reset-password');
+        btnResetPassword.addEventListener('click', function () {
+            console.log("${resetPasswordUrl}");
+            window.location.href = "${resetPasswordUrl}";
+        });
     });
 </script>
 <div class="titsonfire-more-section">
@@ -94,7 +99,7 @@
                 <div class="mdl-cell mdl-cell--4">
                 </div>
                 <div class="mdl-cell mdl-cell--4">
-                    <button id="btn-forgot-password"
+                    <button id="btn-reset-password"
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                         FORGOT PASSWORD
                     </button>

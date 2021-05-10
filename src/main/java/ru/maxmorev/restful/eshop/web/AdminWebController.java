@@ -1,5 +1,6 @@
 package ru.maxmorev.restful.eshop.web;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,9 @@ import static ru.maxmorev.restful.eshop.config.PrefixRedirectAuthenticationSucce
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class AdminWebController {
+    private final CommonWebController commonWebController;
 
     @GetMapping(path = {"/security/in/"})
     public String securityPage(HttpServletRequest request, HttpServletResponse response, Model uiModel) {
@@ -29,6 +32,7 @@ public class AdminWebController {
             request.getSession().setAttribute(REQUESTED_URL_BEFORE_LOGIN, redirectUrl);
                 setRequestedPageToCookie(redirectUrl, response);
         }
+        commonWebController.addCommonAttributesToModel(uiModel);
         return "customer/login";
     }
 
