@@ -10,19 +10,36 @@
 <spring:url value="${webRoot}/security/in/" var="loginUrl"/>
 <spring:url value="${webRoot}/customer/account/reset-password" var="resetPasswordUrl"/>
 <script type="text/javascript">
+    function resetPasswordCodeSuccess(json) {
+        $("#reset-password").hide();
+        $("#reset-password-success").show();
+        showToast("Please check your e-mail. Reset password link sent.");
+    }
+
+    function resetPasswordCodeFail(json) {
+        $("#reset-password").hide();
+        $("#reset-password-fail").show();
+        showErrorFromJson(json);
+    }
+
     function resetPasswordAction() {
         let accountEmail = $("#email").val();
+        const urlService = URL_SERVICES + "/public/customer/reset-password-code/email/{email}";
+
+        console.log("> " + urlService.replace('{email}', accountEmail));
+        sendDataAsJson(urlService.replace('{email}', accountEmail), "GET", null, resetPasswordCodeSuccess, resetPasswordCodeFail);
         console.log("email to reset password " + accountEmail);
     }
 
+    function initialView() {
+        $("#reset-password").show();
+        $("#reset-password-success").hide();
+    }
+
     $(document).ready(function () {
-        const queryString = window.location.search;
-        console.log('queryString = ' + queryString);
-        // if (queryString.includes('error')) {
-        //     $("#security-error").show();
-        // } else {
-        //     $("#security-error").hide();
-        // }
+
+        initialView();
+
         const btnResetPassword = document.querySelector('#btn-reset-password');
         btnResetPassword.addEventListener('click', function () {
             console.log("Reset password");
@@ -39,7 +56,7 @@
 </script>
 <div class="titsonfire-more-section">
     <div class="titsonfire-section-title">TiTS ON FIRE SECURITY</div>
-    <div class="titsonfire-card-container mdl-grid">
+    <div id="reset-password" class="titsonfire-card-container mdl-grid">
         <div class="mdl-cell mdl-cell--12-col" style="height:150px">
         </div>
         <div class="mdl-cell mdl-cell--4">
@@ -82,6 +99,26 @@
                 </div>
                 <!--end: sForgot password-->
             </div>
+        </div>
+        <!-- end: security card -->
+    </div>
+
+    <div id="reset-password-success" class="titsonfire-card-container mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col" style="height:150px">
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">RESET PASSWORD LINK SENT</h2>
+            </div>
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+        <div class="mdl-cell mdl-cell--12-col mdl-shadow--1dp" style="padding:20px;">
+            <span class="mdl-typography--font-light mdl-typography--subhead">Need to reset your password?<br/>
+                Password reset link sent to your email.
+            </span>
         </div>
         <!-- end: security card -->
     </div>

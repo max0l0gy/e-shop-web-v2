@@ -48,10 +48,7 @@ feign:
         connectTimeout: 10000
         readTimeout: 20000
         loggerLevel: basic
-#File upload/download service use Environment variables
-fileioservice:
-  endpoint: ${file_upload_endpoint}
-  accessKey: ${file_upload_accessKey}
+
 
 order:
   expiredMinutes: 15

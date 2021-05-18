@@ -9,6 +9,8 @@ import ru.maxmorev.restful.eshop.feignclient.domain.OrderPaymentCanceledCustomer
 import ru.maxmorev.restful.eshop.feignclient.domain.OrderPaymentCanceledCustomerTemplate;
 import ru.maxmorev.restful.eshop.feignclient.domain.OrderPaymentConfirmedAdminTemplate;
 import ru.maxmorev.restful.eshop.feignclient.domain.OrderPaymentConfirmedTemplate;
+import ru.maxmorev.restful.eshop.feignclient.domain.ResetPassword;
+import ru.maxmorev.restful.eshop.feignclient.domain.ResetPasswordTemplate;
 import ru.maxmorev.restful.eshop.feignclient.domain.VerifyEmailTemplate;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 
@@ -57,4 +59,14 @@ public class NotificationServiceImpl implements NotificationService {
                                 name,
                                 order));
     }
+
+    @Override
+    public MailSendResponse emailPasswordReset(ResetPassword resetPassword) {
+        return mailServiceApi.sendTemplate(
+                new ResetPasswordTemplate()
+                        .create(
+                                resetPassword
+                        ));
+    }
+
 }

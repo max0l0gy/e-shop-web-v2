@@ -2,13 +2,19 @@ package ru.maxmorev.restful.eshop.feignclient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.domain.CustomerInfo;
 import ru.maxmorev.restful.eshop.rest.request.CustomerVerify;
+import ru.maxmorev.restful.eshop.rest.request.UpdatePasswordRequest;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
+
+import javax.validation.Valid;
 
 @FeignClient(name = "eshop-customer-api", url = "${external.customerApi.url}")
 public interface EshopCustomerApi {
@@ -30,5 +36,12 @@ public interface EshopCustomerApi {
 
     @RequestMapping(path = "/customer/id/{id}", method = RequestMethod.GET)
     Customer findById(@PathVariable(name = "id") Long id);
+
+    @GetMapping(path = "/customer/reset-password-code/email/{email}")
+    CustomerDto generateResetPasswordCode(@PathVariable(name = "email") String email);
+
+    @PostMapping(path = "/customer/update-password")
+    CustomerDto updatePassword(@RequestBody
+                               @Valid UpdatePasswordRequest updatePasswordRequest);
 
 }
