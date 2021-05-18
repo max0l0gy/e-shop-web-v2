@@ -60,6 +60,7 @@ public class CustomerWebController {
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel) {
         commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         return "customer/reset-password";
     }
 
