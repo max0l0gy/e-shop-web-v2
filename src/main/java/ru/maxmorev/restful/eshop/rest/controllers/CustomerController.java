@@ -3,6 +3,7 @@ package ru.maxmorev.restful.eshop.rest.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -100,7 +101,7 @@ public class CustomerController {
                 .updatePassword(updatePasswordRequest)
                 .orElseThrow(() -> new UsernameNotFoundException(
                         messageSource.getMessage("customer.error.notFound",
-                                new Object[]{updatePasswordRequest.getCustomerId()}, locale)
+                                new Object[]{updatePasswordRequest.getCustomerEmail()}, locale)
                 ));
     }
 

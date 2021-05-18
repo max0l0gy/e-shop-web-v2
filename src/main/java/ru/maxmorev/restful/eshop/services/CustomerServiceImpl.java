@@ -2,6 +2,7 @@ package ru.maxmorev.restful.eshop.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.domain.CustomerInfo;
@@ -21,6 +22,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final EshopCustomerApi eshopCustomerApi;
     private final NotificationService notificationService;
+    @Value("${web.root}")
+    private String webRoot;
 
     @Override
     public Customer createCustomerAndVerifyByEmail(Customer customer) {
@@ -69,10 +72,21 @@ public class CustomerServiceImpl implements CustomerService {
                 new ResetPassword()
                         .setEmail(customerDto.getEmail())
                         .setName(customerDto.getFullName())
-                        .setSiteUrl("")
-                        .setResetPasswordUrl("" + customerDto.getResetPasswordCode())
+                        .setSiteUrl(webRoot)
+                        .setResetPasswordUrl(getPasswordResetLink(
+                                customerDto.getEmail(),
+                                customerDto.getResetPasswordCode().toString())
+                        )
         );
         return customerDto;
+    }
+
+    private String getPasswordResetLink(String email, String passwordResetCode) {
+        return webRoot +
+                "/customer/account/reset-password/email/" +
+                email +
+                "/code/" +
+                passwordResetCode;
     }
 
     @Override
