@@ -23,9 +23,11 @@ import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.domain.CustomerInfo;
 import ru.maxmorev.restful.eshop.rest.Constants;
 import ru.maxmorev.restful.eshop.rest.request.CustomerVerify;
+import ru.maxmorev.restful.eshop.rest.request.ResetPasswordRequest;
 import ru.maxmorev.restful.eshop.rest.request.UpdatePasswordRequest;
 import ru.maxmorev.restful.eshop.rest.response.CustomerDTO;
 import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
+import ru.maxmorev.restful.eshop.rest.response.Message;
 import ru.maxmorev.restful.eshop.services.CustomerService;
 
 import javax.validation.Valid;
@@ -84,28 +86,38 @@ public class CustomerController {
         return CustomerDTO.of(customerService.findById(id));
     }
 
-    @GetMapping(path = Constants.REST_PUBLIC_URI + "customer/reset-password-code/email/{email}")
+    @PostMapping(path = Constants.REST_PUBLIC_URI + "customer/reset-password-code")
     @ResponseBody
-    public CustomerDto generateResetPasswordCode(@PathVariable(name = "email") String email, Locale locale) {
-        log.info("generateResetPasswordCode email : {}", email);
+    public Message generateResetPasswordCode(
+            @RequestBody ResetPasswordRequest resetPasswordRequest,
+            Locale locale) {
+        log.info("generateResetPasswordCode email : {}", resetPasswordRequest.getCustomerEmail());
         return customerService
-                .generateResetPasswordCode(email)
-                .orElseThrow(() -> new UsernameNotFoundException(messageSource.getMessage("customer.error.notFound.email", new Object[]{email}, locale)));
+                .generateResetPasswordCode(resetPasswordRequest.getCustomerEmail())
+                .map(customerDto -> Message.success("Password reset link sent"))
+                .orElse(resetPasswordError(resetPasswordRequest, locale))
+                ;
+    }
+
+    private Message resetPasswordError(ResetPasswordRequest resetPasswordRequest, Locale locale) {
+       return Message.error(messageSource.getMessage("customer.error.notFound.email",
+                new Object[]{resetPasswordRequest.getCustomerEmail()}, locale), null);
     }
 
     @PostMapping(path = Constants.REST_PUBLIC_URI + "customer/update-password")
     @ResponseBody
-    public CustomerDto updatePassword(@RequestBody
+    public Message updatePassword(@RequestBody
                                       @Valid UpdatePasswordRequest updatePasswordRequest,
                                       Locale locale) {
         return customerService
                 .updatePassword(updatePasswordRequest)
-                .orElseThrow(() -> new UsernameNotFoundException(
-                        messageSource.getMessage("customer.error.notFound",
-                                new Object[]{updatePasswordRequest.getCustomerEmail()}, locale)
-                ));
+                .map(customerDto -> Message.success("Password changed"))
+                .orElse(updatePasswordError(updatePasswordRequest, locale))
+                ;
     }
 
-
+    private Message updatePasswordError(UpdatePasswordRequest updatePasswordRequest, Locale locale) {
+        return Message.error(messageSource.getMessage("customer.error.notFound.email", new Object[]{updatePasswordRequest.getCustomerEmail()}, locale), null);
+    }
 
 }

@@ -24,10 +24,12 @@
 
     function resetPasswordAction() {
         let accountEmail = $("#email").val();
-        const urlService = URL_SERVICES + "/public/customer/reset-password-code/email/{email}";
-        const url = urlService.replace('{email}', accountEmail);
-        console.log("get url " + url);
-        $.get(url, resetPasswordCodeSuccess)
+        const urlService = URL_SERVICES + "/public/customer/reset-password-code";
+        const resetPasswordReq = {
+            customerEmail: accountEmail
+        };
+        console.log("resetPasswordReq > " + resetPasswordReq);
+        sendDataAsJson(urlService, "POST", resetPasswordReq, resetPasswordCodeSuccess, resetPasswordCodeFail);
         console.log("email to reset password " + accountEmail);
     }
 

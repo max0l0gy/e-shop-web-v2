@@ -2,9 +2,15 @@ package ru.maxmorev.restful.eshop.rest.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
+@Getter
+@Setter
+@Accessors(chain = true)
 public class Message {
 
     public final static String SUCCES = "success";
@@ -81,5 +87,17 @@ public class Message {
         }
     }
 
+    public static Message success(String message) {
+        return new Message()
+                .setMessage(message)
+                .setStatus(Message.SUCCES);
+    }
 
+    public static Message error(String message, List<ErrorDetail> errors) {
+        return new Message()
+                .setMessage(message)
+                .setStatus(Message.ERROR)
+                .setErrors(errors)
+                ;
+    }
 }
