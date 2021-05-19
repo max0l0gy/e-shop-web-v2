@@ -40,6 +40,43 @@
           "enabled": false
         }
       }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/customer/reset-password-code/email/test@titsonfire.store"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 10,
+          "email": "test@titsonfire.store",
+          "fullName": "Maxim V Morev",
+          "country": "Russia",
+          "postcode": "111123",
+          "city": "Moscow",
+          "address": "Address test",
+          "dateOfCreation": "2019-08-25T15:46:23.918+0000",
+          "password": "$2a$10$um0PcvHczmxeUEbR3vCBGuOvtNdgJffm72knavG/EFE7JDm9QBEha",
+          "verified": false,
+          "verifyCode": "TKYOC",
+          "shoppingCartId": null,
+          "resetPasswordCode": "15a01c26-45ce-4a25-a951-cf8ed817e3ac",
+          "authorities": [
+            {
+              "authority": "CUSTOMER"
+            }
+          ]
+        }
+      }
     }
   ]
 }

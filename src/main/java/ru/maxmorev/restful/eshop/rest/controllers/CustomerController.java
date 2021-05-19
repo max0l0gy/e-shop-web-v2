@@ -87,9 +87,10 @@ public class CustomerController {
     @GetMapping(path = Constants.REST_PUBLIC_URI + "customer/reset-password-code/email/{email}")
     @ResponseBody
     public CustomerDto generateResetPasswordCode(@PathVariable(name = "email") String email, Locale locale) {
+        log.info("generateResetPasswordCode email : {}", email);
         return customerService
                 .generateResetPasswordCode(email)
-                .orElseThrow(() -> new UsernameNotFoundException(messageSource.getMessage("customer.error.notFound", new Object[]{email}, locale)));
+                .orElseThrow(() -> new UsernameNotFoundException(messageSource.getMessage("customer.error.notFound.email", new Object[]{email}, locale)));
     }
 
     @PostMapping(path = Constants.REST_PUBLIC_URI + "customer/update-password")
