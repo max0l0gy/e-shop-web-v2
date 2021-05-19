@@ -25,9 +25,9 @@
     function resetPasswordAction() {
         let accountEmail = $("#email").val();
         const urlService = URL_SERVICES + "/public/customer/reset-password-code/email/{email}";
-
-        console.log("> " + urlService.replace('{email}', accountEmail));
-        sendDataAsJson(urlService.replace('{email}', accountEmail), "GET", null, resetPasswordCodeSuccess, resetPasswordCodeFail);
+        const url = urlService.replace('{email}', accountEmail);
+        console.log("get url " + url);
+        $.get(url, resetPasswordCodeSuccess)
         console.log("email to reset password " + accountEmail);
     }
 

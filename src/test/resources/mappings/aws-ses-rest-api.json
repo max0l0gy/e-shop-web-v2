@@ -25,6 +25,32 @@
           "messageId": "101frsdresp"
         }
       }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/send/template/",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.template",
+            "equalsTo": "ResetPassword"
+          }
+        ]
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "messageId": "sentIdUU"
+        }
+      }
     }
   ]
 }
