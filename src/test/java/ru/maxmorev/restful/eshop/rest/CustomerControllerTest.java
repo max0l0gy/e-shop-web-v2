@@ -29,7 +29,7 @@ public class CustomerControllerTest {
     @SneakyThrows
     public void generateResetPasswordCode() {
         mockMvc.perform(
-                get("/rest/api/public/customers/reset-password-code/email/test@titsonfire.store")
+                get("/rest/api/public/customer/reset-password-code/email/test@titsonfire.store")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
