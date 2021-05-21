@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -26,6 +27,7 @@ public class Customer extends CustomerInfo implements UserDetails {
     private Boolean verified = false;
     private Long shoppingCartId;
     private Set<CustomerAuthority> authorities;
+    private UUID resetPasswordCode;
 
     @Override
     public String getUsername() {

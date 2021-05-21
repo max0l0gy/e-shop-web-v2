@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
+import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.rest.response.CustomerDTO;
 import ru.maxmorev.restful.eshop.services.OrderPurchaseService;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -64,4 +66,28 @@ public class CustomerWebController {
         return "customer/reset-password";
     }
 
+    @GetMapping(path = {"/customer/account/reset-password/email/{email}/code/{code}"})
+    public String resetPasswordLink(
+            @PathVariable("email") String email,
+            @PathVariable("code") String code,
+            HttpServletResponse response,
+            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
+            Model uiModel) {
+        commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
+        uiModel.addAttribute("email", email);
+        uiModel.addAttribute("code", code);
+        return commonWebController
+                .customerService
+                .findByEmail(email)
+                .map(customer -> getResetPasswordTemplateName(code, customer))
+                .orElse("customer/update-password-link-error");
+    }
+
+    private String getResetPasswordTemplateName(String code, Customer customer) {
+        if (UUID.fromString(code).equals(customer.getResetPasswordCode()))
+            return "customer/update-password-link";
+        else
+            return "customer/update-password-link-error";
+    }
 }
