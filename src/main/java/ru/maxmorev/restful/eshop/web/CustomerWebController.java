@@ -85,9 +85,15 @@ public class CustomerWebController {
     }
 
     private String getResetPasswordTemplateName(String code, Customer customer) {
-        if (UUID.fromString(code).equals(customer.getResetPasswordCode()))
-            return "customer/update-password-link";
-        else
+        try {
+            if (UUID.fromString(code).equals(customer.getResetPasswordCode()))
+                return "customer/update-password-link";
+            else
+                return "customer/update-password-link-error";
+        } catch (IllegalArgumentException uuidException) {
+            log.error("Error in code", uuidException);
             return "customer/update-password-link-error";
+        }
+
     }
 }
