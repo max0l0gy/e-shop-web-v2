@@ -23,7 +23,7 @@
             </div>
             <div class="mdl-card__supporting-text">
                 You are here because your code has expired
-                or there is no user with email address ${email} in our store.
+                or there is no user with email address <b>${email}</b> in our store.
             </div>
         </div>
         <div class="mdl-cell mdl-cell--4">
