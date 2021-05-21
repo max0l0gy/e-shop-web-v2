@@ -6,6 +6,7 @@ import lombok.experimental.Accessors;
 import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 
@@ -17,6 +18,6 @@ public class UpdatePasswordRequest extends JsonMappedValue {
     private String newPassword;
     @NotBlank
     private String customerEmail;
-    @NotBlank
+    @NotNull
     private UUID resetPasswordCode;
 }
