@@ -83,32 +83,25 @@
         <!-- end: security card -->
 
         <!-- CREATE LOGIN -->
-        <div class="mdl-cell mdl-cell--12-col">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4">
-                </div>
-                <div class="mdl-cell mdl-cell--4">
-                    <button id="btn-create-account"
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                        CREATE ACCOUNT
-                    </button>
-                </div>
-                <div class="mdl-cell mdl-cell--4">
-                </div>
-                <!-- Forgot password -->
-                <div class="mdl-cell mdl-cell--4">
-                </div>
-                <div class="mdl-cell mdl-cell--4">
-                    <button id="btn-reset-password"
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                        FORGOT PASSWORD
-                    </button>
-                </div>
-                <div class="mdl-cell mdl-cell--4">
-                </div>
-                <!--end: sForgot password-->
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+            <div style="padding:3px">
+                <button id="btn-create-account"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    CREATE ACCOUNT
+                </button>
+            </div>
+            <div style="padding:3px">
+                <button id="btn-reset-password"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    FORGOT PASSWORD
+                </button>
             </div>
         </div>
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+
 
     </div>
 </div>

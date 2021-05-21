@@ -23,14 +23,14 @@
     }
 
     function updatePasswordAction() {
-        if ($("#password").val() !== $("#repeat-password").val()) {
+        if ($("#new-password").val() !== $("#repeat-password").val()) {
             showToast("The passwords you entered are not identical. Re-enter your new password");
             return;
         }
         const urlService = URL_SERVICES + "/public/customer/update-password";
         const updatePasswordReq = {
             customerEmail: '${email}',
-            newPassword: $("#password").val(),
+            newPassword: $("#new-password").val(),
             resetPasswordCode: '${code}'
         };
         console.log("updatePasswordReq > " + updatePasswordReq);
@@ -97,15 +97,18 @@
         <div class="mdl-cell mdl-cell--4">
         </div>
         <div class="mdl-cell mdl-cell--4">
-            <button id="btn-update-password"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                CHANGE MY PASSWORD
-            </button>
-            <br/>
-            <button id="btn-back-to-login"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                BACK TO LOGIN
-            </button>
+            <div style="padding:3px">
+                <button id="btn-update-password"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    CHANGE MY PASSWORD
+                </button>
+            </div>
+            <div style="padding:3px">
+                <button id="btn-back-to-login"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    BACK TO LOGIN
+                </button>
+            </div>
         </div>
         <div class="mdl-cell mdl-cell--4">
         </div>

@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,11 @@ public class AdminWebController {
     private final CommonWebController commonWebController;
 
     @GetMapping(path = {"/security/in/"})
-    public String securityPage(HttpServletRequest request, HttpServletResponse response, Model uiModel) {
+    public String securityPage(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
+            Model uiModel) {
         log.info("------------------------ securityPage ------------------------");
         HttpSession session = request.getSession();
         SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
@@ -33,6 +39,7 @@ public class AdminWebController {
                 setRequestedPageToCookie(redirectUrl, response);
         }
         commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         return "customer/login";
     }
 
