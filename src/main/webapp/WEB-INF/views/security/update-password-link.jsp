@@ -88,8 +88,6 @@
         <div class="mdl-cell mdl-cell--4">
         </div>
 
-        <div class="mdl-cell mdl-cell--12-col" style="height:150px">
-        </div>
         <div class="mdl-cell mdl-cell--4">
         </div>
         <div class="mdl-cell mdl-cell--4">
@@ -104,31 +102,26 @@
         <div class="mdl-cell mdl-cell--4">
         </div>
 
-        <div class="mdl-cell mdl-cell--12-col">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4">
-                </div>
-                <div class="mdl-cell mdl-cell--4">
-                    <button id="btn-update-password"
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                        CHANGE MY PASSWORD
-                    </button>
-                </div>
-                <div class="mdl-cell mdl-cell--4">
-                </div>
-                <!-- Forgot password -->
-                <div class="mdl-cell mdl-cell--4">
-                </div>
-                <div class="mdl-cell mdl-cell--4">
-                    <button id="btn-back-to-login"
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                        BACK TO LOGIN
-                    </button>
-                </div>
-                <div class="mdl-cell mdl-cell--4">
-                </div>
-                <!--end: sForgot password-->
-            </div>
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+            <button id="btn-update-password"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                CHANGE MY PASSWORD
+            </button>
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+
+        <div class="mdl-cell mdl-cell--4">
+        </div>
+        <div class="mdl-cell mdl-cell--4">
+            <button id="btn-back-to-login"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                BACK TO LOGIN
+            </button>
+        </div>
+        <div class="mdl-cell mdl-cell--4">
         </div>
         <!-- end: security card -->
     </div>
