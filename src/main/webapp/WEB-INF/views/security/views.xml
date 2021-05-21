@@ -11,4 +11,12 @@
         <put-attribute name="body" value="/WEB-INF/views/security/reset-password.jsp" />
     </definition>
 
+    <definition extends="default" name="customer/update-password-link">
+        <put-attribute name="body" value="/WEB-INF/views/security/update-password-link.jsp" />
+    </definition>
+
+    <definition extends="default" name="customer/update-password-link-error">
+        <put-attribute name="body" value="/WEB-INF/views/security/update-password-link-error.jsp" />
+    </definition>
+
 </tiles-definitions>
