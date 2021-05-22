@@ -72,9 +72,9 @@
         <div class="mdl-cell mdl-cell--12-col" style="height:150px">
         </div>
 
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4" style="width:150px;">
         </div>
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4"  style="width:450px;">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">CHANGE YOU PASSWORD</h2>
             </div>
@@ -94,9 +94,9 @@
         <div class="mdl-cell mdl-cell--4">
         </div>
 
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4" style="width:150px;">
         </div>
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4"  style="width:450px;">
             <div style="padding:3px">
                 <button id="btn-update-password"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -119,9 +119,9 @@
     <div id="update-password-success" class="titsonfire-card-container mdl-grid">
         <div class="mdl-cell mdl-cell--12-col" style="height:150px">
         </div>
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4" style="width:150px;">
         </div>
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4"  style="width:450px;">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">Password updated successfully</h2>
             </div>

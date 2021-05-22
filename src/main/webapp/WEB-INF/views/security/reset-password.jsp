@@ -61,7 +61,7 @@
     <div id="reset-password" class="titsonfire-card-container mdl-grid">
         <div class="mdl-cell mdl-cell--12-col" style="height:150px">
         </div>
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4" style="width:150px;">
         </div>
         <div class="mdl-cell mdl-cell--4">
             <div class="mdl-card__title">
@@ -111,7 +111,7 @@
         </div>
         <div class="mdl-cell mdl-cell--4">
         </div>
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4" style="width:450px;">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">RESET PASSWORD LINK SENT</h2>
             </div>
