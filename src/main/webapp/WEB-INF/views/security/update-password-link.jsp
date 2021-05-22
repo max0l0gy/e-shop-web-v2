@@ -124,9 +124,11 @@
         <div class="mdl-cell mdl-cell--4">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">Password updated successfully</h2>
-                <span class="mdl-typography--font-light mdl-typography--subhead">
-                    You have successfully changed your password.
-                </span>
+            </div>
+            <div class="mdl-card__supporting-text">
+            <span class="mdl-typography--font-light mdl-typography--subhead">
+                You have successfully changed your password.
+            </span>
             </div>
         </div>
         <div class="mdl-cell mdl-cell--4">
