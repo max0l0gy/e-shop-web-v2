@@ -52,9 +52,9 @@
             </div>
         </div>
         <!-- security card -->
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4" style="width:150px;">
         </div>
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4"  style="width:450px;">
             <form name='login' action='${app_url}login' method='POST' class="mdl-card">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text ">Welcome</h2>
@@ -83,9 +83,9 @@
         <!-- end: security card -->
 
         <!-- CREATE LOGIN -->
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4" style="width:150px;">
         </div>
-        <div class="mdl-cell mdl-cell--4">
+        <div class="mdl-cell mdl-cell--4"  style="width:450px;">
             <div style="padding:3px">
                 <button id="btn-create-account"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
