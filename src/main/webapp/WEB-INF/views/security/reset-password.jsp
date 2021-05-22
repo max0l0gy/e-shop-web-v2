@@ -114,10 +114,12 @@
         <div class="mdl-cell mdl-cell--4">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">RESET PASSWORD LINK SENT</h2>
-                <span class="mdl-typography--font-light mdl-typography--subhead">
-                    If you have entered a valid email, you will receive a change password instructions.
-                     If you do not receive the email within 15 minutes, contact us info@titsonfire.store
-                </span>
+            </div>
+            <div class="mdl-card__supporting-text">
+             <span class="mdl-typography--font-light mdl-typography--subhead">
+                 If you have entered a valid email, you will receive a change password instructions.&nbsp;
+                 If you do not receive the email within 15 minutes, contact us info@titsonfire.store
+            </span>
             </div>
         </div>
         <div class="mdl-cell mdl-cell--4">
