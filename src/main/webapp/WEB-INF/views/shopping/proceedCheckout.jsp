@@ -20,8 +20,8 @@
 <spring:url value="${webRoot}/shopping/cart/" var="backUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="profileUrl"/>
 <spring:url value="${webRoot}/commodity" var="showCommodityUrl"/>
-<%-- sandbox --%>
-<script src="https://www.paypal.com/sdk/js?client-id=AZLBDto98XnkWuOsGr78XH78ohzsHneaQY9vzVdWu9w5xSKRhv1HQl2KSCBvtIDoEEQpXzLcCvJ8d9BG&currency=EUR"></script>
+<%-- live --%>
+<script src="https://www.paypal.com/sdk/js?client-id=AQ7LCcaS55pHjxBAPQcD-DzWFstEclLuUIBHs1d0FdhQ3npOIFKgy2lerx1L_mmE3bzCfAMoX76qhgOr&currency=USD"></script>
 
 <script type="text/javascript">
     const shoppingCartId = ${ShoppingCartCookie};
@@ -123,7 +123,7 @@
                         {
                             amount: {
                                 value: '' + price + '',
-                                currency_code: 'EUR'
+                                currency_code: 'USD'
                             },
                             description: "Payment for order #" + orderId + " titsonfire.store"
                         }
