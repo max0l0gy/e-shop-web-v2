@@ -20,22 +20,22 @@ import javax.validation.Valid;
 public interface EshopCustomerApi {
 
     @RequestMapping(path = "/customer/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    Customer createCustomer(@RequestBody Customer customer);
+    CustomerDto createCustomer(@RequestBody Customer customer);
 
     @RequestMapping(path = "/admin/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    Customer createAdmin(@RequestBody Customer customer);
+    CustomerDto createAdmin(@RequestBody Customer customer);
 
     @RequestMapping(path = "/update/", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    Customer updateCustomer(@RequestBody CustomerInfo customer);
+    CustomerDto updateCustomer(@RequestBody CustomerInfo customer);
 
     @RequestMapping(path = "/customer/verify/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     CustomerVerify verifyCustomer(@RequestBody CustomerVerify customerVerify);
 
     @RequestMapping(path = "/customer/email/{email}", method = RequestMethod.GET)
-    Customer findByEmail(@PathVariable(name = "email") String email);
+    CustomerDto findByEmail(@PathVariable(name = "email") String email);
 
     @RequestMapping(path = "/customer/id/{id}", method = RequestMethod.GET)
-    Customer findById(@PathVariable(name = "id") Long id);
+    CustomerDto findById(@PathVariable(name = "id") Long id);
 
     @GetMapping(path = "/customer/reset-password-code/email/{email}")
     CustomerDto generateResetPasswordCode(@PathVariable(name = "email") String email);

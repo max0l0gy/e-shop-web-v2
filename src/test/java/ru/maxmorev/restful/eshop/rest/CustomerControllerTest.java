@@ -28,17 +28,31 @@ public class CustomerControllerTest {
 
     @Test
     @SneakyThrows
-    public void generateResetPasswordCode() {
+    public void generateResetPasswordCodeError() {
         mockMvc.perform(
                 post("/rest/api/public/customer/reset-password-code")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(readFileToString("/requests/reset-password.json"))
+                        .content(readFileToString("/requests/reset-password-error.json"))
+        )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status", is("error")))
+
+        ;
+    }
+
+    @Test
+    @SneakyThrows
+    public void generateResetPasswordCodeSuccess() {
+        mockMvc.perform(
+                post("/rest/api/public/customer/reset-password-code")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(readFileToString("/requests/reset-password-success.json"))
         )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status", is("success")))
 
         ;
-
     }
 }

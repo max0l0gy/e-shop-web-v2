@@ -13,6 +13,7 @@ import ru.maxmorev.restful.eshop.rest.request.UpdatePasswordRequest;
 import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -24,10 +25,12 @@ public class CustomerServiceImpl implements CustomerService {
     private final NotificationService notificationService;
     @Value("${web.root}")
     private String webRoot;
+    @Value("${resetPassword.time-interval-between-notification-with-reset-passwordCode.timestamp-milli:7200000}")
+    Long timeIntervalBetweenNotificationWithResetPasswordCode;
 
     @Override
-    public Customer createCustomerAndVerifyByEmail(Customer customer) {
-        Customer created = eshopCustomerApi.createCustomer(customer);
+    public CustomerDto createCustomerAndVerifyByEmail(Customer customer) {
+        CustomerDto created = eshopCustomerApi.createCustomer(customer);
         notificationService.emailVerification(
                 created.getEmail(),
                 created.getFullName(),
@@ -36,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional<Customer> findByEmail(String email) {
+    public Optional<CustomerDto> findByEmail(String email) {
         return ServiceExseptionSuppressor.suppress(() -> eshopCustomerApi.findByEmail(email));
     }
 
@@ -51,23 +54,36 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer findById(Long id) {
+    public CustomerDto findById(Long id) {
         return eshopCustomerApi.findById(id);
     }
 
     @Override
-    public Customer updateInfo(CustomerInfo i) {
+    public CustomerDto updateInfo(CustomerInfo i) {
         return eshopCustomerApi.updateCustomer(i);
     }
 
     @Override
     public Optional<CustomerDto> generateResetPasswordCode(String email) {
-        return ServiceExseptionSuppressor.suppress(() -> eshopCustomerApi.generateResetPasswordCode(email))
+        return findByEmail(email)
+                .flatMap(this::ifResetPasswordCodeTimestampValid)
+                .flatMap(customerDto->ServiceExseptionSuppressor.suppress(() -> eshopCustomerApi.generateResetPasswordCode(email)))
                 .map(this::notifyResetPassword)
                 ;
     }
 
+    Optional<CustomerDto> ifResetPasswordCodeTimestampValid(CustomerDto customerDto) {
+        if(Objects.isNull(customerDto.getResetPasswordCode()))
+            return Optional.of(customerDto);
+        if (Objects.isNull(customerDto.getResetPasswordCodeGeneratedTimestamp()))
+            return Optional.of(customerDto);
+        if (customerDto.getCurrentTimestamp() - customerDto.getResetPasswordCodeGeneratedTimestamp() > timeIntervalBetweenNotificationWithResetPasswordCode)
+            return Optional.of(customerDto);
+        return Optional.empty();
+    }
+
     private CustomerDto notifyResetPassword(CustomerDto customerDto) {
+
         notificationService.emailPasswordReset(
                 new ResetPassword()
                         .setEmail(customerDto.getEmail())

@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
 import ru.maxmorev.restful.eshop.domain.Customer;
-import ru.maxmorev.restful.eshop.rest.response.CustomerDTO;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
+import ru.maxmorev.restful.eshop.rest.response.CustomerInfoDto;
 import ru.maxmorev.restful.eshop.services.OrderPurchaseService;
 
 import javax.servlet.http.Cookie;
@@ -47,7 +48,7 @@ public class CustomerWebController {
         log.info("customerId {}", id);
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
-        CustomerDTO customerDTO = commonWebController.customerService.findByEmail(id).map(CustomerDTO::of).get();
+        CustomerInfoDto customerDTO = commonWebController.customerService.findByEmail(id).map(CustomerInfoDto::of).get();
         uiModel.addAttribute("customer", customerDTO.toJsonString());
         uiModel.addAttribute(
                 "orders",
@@ -84,7 +85,7 @@ public class CustomerWebController {
                 .orElse("customer/update-password-link-error");
     }
 
-    private String getResetPasswordTemplateName(String code, Customer customer) {
+    private String getResetPasswordTemplateName(String code, CustomerDto customer) {
         try {
             if (UUID.fromString(code).equals(customer.getResetPasswordCode()))
                 return "customer/update-password-link";

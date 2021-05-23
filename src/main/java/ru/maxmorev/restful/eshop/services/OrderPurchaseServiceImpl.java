@@ -9,6 +9,7 @@ import ru.maxmorev.restful.eshop.feignclient.EshopCommodityApi;
 import ru.maxmorev.restful.eshop.feignclient.EshopCustomerOrderApi;
 import ru.maxmorev.restful.eshop.rest.request.*;
 import ru.maxmorev.restful.eshop.rest.response.CommodityDto;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 import ru.maxmorev.restful.eshop.rest.response.OrderGridDto;
 import ru.maxmorev.restful.eshop.rest.response.PurchaseDto;
@@ -31,7 +32,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
     private final PaymentServiceStrategy paymentServiceStrategy;
 
     @Override
-    public CustomerOrder createOrderFor(Customer customer) {
+    public CustomerOrder createOrderFor(CustomerDto customer) {
         List<CustomerOrder> awaitingForPayment = eshopCustomerOrderApi
                 .customerOrderListByStatus(customer.getId(), CustomerOrderStatus.AWAITING_PAYMENT.name());
         log.info("awaitingForPayment.size() = {}", awaitingForPayment.size());
@@ -80,7 +81,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
 
     CustomerOrder confirmOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
         CustomerOrder order = eshopCustomerOrderApi.confirmOrder(orderPaymentConfirmation);
-        Customer customer = customerService.findById(order.getCustomerId());
+        CustomerDto customer = customerService.findById(order.getCustomerId());
         ShoppingCart shoppingCart = eshopCustomerOrderApi.getShoppingCart(customer.getShoppingCartId());
         eshopCustomerOrderApi.cleanShoppingCart(shoppingCart.getId());
         notificationService.orderPaymentConfirmation(
@@ -142,7 +143,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
                 case PAYMENT_APPROVED:
                     //send emails to customer and admin
                     CustomerOrderDto orderDto = convertForCustomer(order);
-                    Customer customer = customerService.findById(customderId);
+                    CustomerDto customer = customerService.findById(customderId);
                     notificationService.orderCancelCustomer(customer.getEmail(), customer.getFullName(), orderDto);
                     eshopCustomerOrderApi.customerOrderCancel(new OrderIdRequest(orderId, customderId));
                     //eshopCustomerOrderApi.setOrderStatus(order.getId(), CustomerOrderStatus.CANCELED_BY_CUSTOMER.name());

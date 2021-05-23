@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import ru.maxmorev.restful.eshop.config.ManagerConfig;
 import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.feignclient.EshopCustomerApi;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.services.NotificationService;
 import ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor;
 
@@ -20,9 +21,9 @@ public class DefaultManager {
     private final EshopCustomerApi eshopCustomerApi;
     private final NotificationService notificationService;
 
-    public Optional<Customer> createDefaultManager() {
+    public Optional<CustomerDto> createDefaultManager() {
         log.info("::: createDefaultManager");
-        Optional<Customer> co = ServiceExseptionSuppressor.suppress(() -> eshopCustomerApi.findByEmail(managerConfig.getEmail()));
+        Optional<CustomerDto> co = ServiceExseptionSuppressor.suppress(() -> eshopCustomerApi.findByEmail(managerConfig.getEmail()));
         if (co.isEmpty()) {
             log.info("::: createDefaultManager ::: create default manager");
             Customer c = Customer.builder()
@@ -34,7 +35,7 @@ public class DefaultManager {
                     .postcode(managerConfig.getPostcode())
                     .city(managerConfig.getCity())
                     .build();
-            Customer created = eshopCustomerApi.createAdmin(c);
+            CustomerDto created = eshopCustomerApi.createAdmin(c);
             //send verification email
             log.info("::: createDefaultManager ::: send verifyCode to default manager");
             notificationService.emailVerification(

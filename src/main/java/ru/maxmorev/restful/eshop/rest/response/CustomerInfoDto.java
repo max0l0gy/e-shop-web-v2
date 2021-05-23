@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ru.maxmorev.restful.eshop.domain.CustomerInfo;
 import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 
 @Getter
@@ -13,7 +12,7 @@ import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CustomerDTO extends JsonMappedValue {
+public class CustomerInfoDto extends JsonMappedValue {
     private Long id;
     private String email;
     private String fullName;
@@ -22,8 +21,8 @@ public class CustomerDTO extends JsonMappedValue {
     private String city;
     private String address;
 
-    public static CustomerDTO of(CustomerInfo info) {
-        return CustomerDTO.builder()
+    public static CustomerInfoDto of(CustomerDto info) {
+        return CustomerInfoDto.builder()
                 .id(info.getId())
                 .email(info.getEmail())
                 .fullName(info.getFullName())
