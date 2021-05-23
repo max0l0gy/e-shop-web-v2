@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
 import ru.maxmorev.restful.eshop.domain.Customer;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.rest.response.ShoppingCartDto;
 import ru.maxmorev.restful.eshop.services.CommodityDtoService;
 import ru.maxmorev.restful.eshop.services.CustomerService;
@@ -102,7 +103,7 @@ public class CommonWebController {
             uiModel.addAttribute(ShoppingCookie.SHOPPiNG_CART_ITEMS_AMOUNT, scFromCookie.getItemsAmount());
             return scFromCookie;
         }
-        Customer authCustomer = customerService.findByEmail(id).get();
+        CustomerDto authCustomer = customerService.findByEmail(id).get();
         log.info("mergeShoppingCartFromCookieWithCustomerIfNeed");
         log.info("authCustomer.getShoppingCartId() = {}", authCustomer.getShoppingCartId());
         log.info("scFromCookie.getId() = {}", authCustomer.getShoppingCartId());

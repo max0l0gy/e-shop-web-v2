@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ru.maxmorev.restful.eshop.domain.CustomerAuthority;
 
+import java.util.Collection;
 import java.util.Set;
 
 @Getter
@@ -12,6 +13,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class CheckAuthResponse {
 
-    private Set<CustomerAuthority> authorities;
+    private Collection<CustomerAuthority> authorities;
 
 }

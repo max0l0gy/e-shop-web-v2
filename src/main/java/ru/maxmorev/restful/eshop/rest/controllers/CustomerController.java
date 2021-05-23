@@ -3,14 +3,12 @@ package ru.maxmorev.restful.eshop.rest.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +23,8 @@ import ru.maxmorev.restful.eshop.rest.Constants;
 import ru.maxmorev.restful.eshop.rest.request.CustomerVerify;
 import ru.maxmorev.restful.eshop.rest.request.ResetPasswordRequest;
 import ru.maxmorev.restful.eshop.rest.request.UpdatePasswordRequest;
-import ru.maxmorev.restful.eshop.rest.response.CustomerDTO;
 import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
+import ru.maxmorev.restful.eshop.rest.response.CustomerInfoDto;
 import ru.maxmorev.restful.eshop.rest.response.Message;
 import ru.maxmorev.restful.eshop.services.CustomerService;
 
@@ -55,22 +53,22 @@ public class CustomerController {
 
     @RequestMapping(path = Constants.REST_PUBLIC_URI + "customer/", method = RequestMethod.POST)
     @ResponseBody
-    public CustomerDTO createCustomer(@RequestBody @Valid Customer customer, Locale locale) {
+    public CustomerInfoDto createCustomer(@RequestBody @Valid Customer customer, Locale locale) {
         log.info("Customer : {}", customer);
-        return CustomerDTO.of(customerService.createCustomerAndVerifyByEmail(customer));
+        return CustomerInfoDto.of(customerService.createCustomerAndVerifyByEmail(customer));
     }
 
     @RequestMapping(path = Constants.REST_CUSTOMER_URI + "update/", method = RequestMethod.PUT)
     @ResponseBody
-    public CustomerDTO updateCustomer(@RequestBody @Valid CustomerInfo customer, Locale locale) {
+    public CustomerInfoDto updateCustomer(@RequestBody @Valid CustomerInfo customer, Locale locale) {
         log.info("Customer update : {}", customer);
         String id = getAuthenticationCustomerId();
         log.info("Authentication id = {}", id);
         /* user can update only self data */
         if (!id.equals(customer.getEmail()))
             throw new BadCredentialsException("Not Authenticated");
-        Customer findByEmail = customerService.updateInfo(customer);
-        return CustomerDTO.of(findByEmail);
+        CustomerDto findByEmail = customerService.updateInfo(customer);
+        return CustomerInfoDto.of(findByEmail);
     }
 
     @RequestMapping(path = Constants.REST_PUBLIC_URI + "customer/verify/", method = RequestMethod.POST)
@@ -82,8 +80,8 @@ public class CustomerController {
     @SneakyThrows
     @GetMapping(path = Constants.REST_MANAGER_URI + "customer/id/{id}")
     @ResponseBody
-    public CustomerDTO findCustomer(@PathVariable(name = "id") Long id, Locale locale) {
-        return CustomerDTO.of(customerService.findById(id));
+    public CustomerInfoDto findCustomer(@PathVariable(name = "id") Long id, Locale locale) {
+        return CustomerInfoDto.of(customerService.findById(id));
     }
 
     @PostMapping(path = Constants.REST_PUBLIC_URI + "customer/reset-password-code")

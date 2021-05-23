@@ -5,6 +5,7 @@ import ru.maxmorev.restful.eshop.domain.CapturedOrderStatus;
 import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.domain.CustomerOrder;
 import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 import ru.maxmorev.restful.eshop.rest.response.OrderGridDto;
 
@@ -15,7 +16,7 @@ public interface OrderPurchaseService {
 
     CustomerOrderDto findOrder(Long id, Long customerId);
 
-    CustomerOrder createOrderFor(Customer customer);
+    CustomerOrder createOrderFor(CustomerDto customer);
 
     CapturedOrderStatus checkOrder(OrderPaymentConfirmation orderPaymentConfirmation);
 

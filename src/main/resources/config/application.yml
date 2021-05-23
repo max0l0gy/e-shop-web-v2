@@ -68,3 +68,7 @@ manager:
 web.root: ${WEB_ROOT}
 web.host: ${WEB_HOST}
 security.defaultRedirectPage: /customer/account/update/
+
+resetPassword:
+  time-interval-between-notification-with-reset-passwordCode:
+    timestamp-milli: 7200000

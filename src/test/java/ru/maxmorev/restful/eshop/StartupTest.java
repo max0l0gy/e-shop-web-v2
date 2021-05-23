@@ -2,7 +2,6 @@ package ru.maxmorev.restful.eshop;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,14 +10,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.http.HttpStatus;
-import ru.maxmorev.restful.eshop.domain.Customer;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.startup.DefaultManager;
 
 import java.util.Optional;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -50,7 +49,7 @@ class StartupTest {
                         .withStatus(HttpStatus.OK.value())
                         .withHeader("Content-Type", "application/json")
                         .withBodyFile("mailSend.ok.json")));
-        Optional<Customer> co = defaultManager.createDefaultManager();
+        Optional<CustomerDto> co = defaultManager.createDefaultManager();
         assertTrue(co.isPresent());
     }
 
@@ -66,7 +65,7 @@ class StartupTest {
                         .withStatus(HttpStatus.OK.value())
                         .withHeader("Content-Type", "application/json")
                         .withBodyFile("EshopCustomerApi/findManagerByDefaultEmail.json")));
-        Optional<Customer> co = defaultManager.createDefaultManager();
+        Optional<CustomerDto> co = defaultManager.createDefaultManager();
         assertTrue(co.isEmpty());
     }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
 import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.domain.CustomerOrder;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.rest.response.ShoppingCartDto;
 import ru.maxmorev.restful.eshop.services.CommodityDtoService;
 import ru.maxmorev.restful.eshop.services.CustomerService;
@@ -52,7 +53,7 @@ public class ShoppingCartWebController {
 
         //create transaction order and hold items for 10 minutes
         String id = commonWebController.getAuthenticationCustomerId();
-        Customer authCustomer = commonWebController.customerService.findByEmail(id).get();
+        CustomerDto authCustomer = commonWebController.customerService.findByEmail(id).get();
         CustomerOrder order = orderPurchaseService.createOrderFor(authCustomer);
         uiModel.addAttribute("orderId", order.getId());
         uiModel.addAttribute("customer", authCustomer);
