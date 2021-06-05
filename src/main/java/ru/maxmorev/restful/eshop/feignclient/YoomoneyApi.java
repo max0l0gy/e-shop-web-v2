@@ -13,13 +13,13 @@ import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.RestResponse;
 
 @FeignClient(name = "eshop-yoomoney-api", url = "${external.yoomoney.url}")
 public interface YoomoneyApi {
-    @PostMapping("/payments")
+    @PostMapping("/v1/payments")
     RestResponse<EmbeddedPaymentResponse> initial(PaymentRequest paymentRequest);
 
-    @GetMapping("/payments/{paymentId}")
+    @GetMapping("/v1/payments/{paymentId}")
     RestResponse<EmbeddedPaymentResponse> getPayment(@PathVariable("paymentId") String paymentId);
 
-    @PostMapping("/refunds")
+    @PostMapping("/v1/refunds")
     RestResponse<RefundResponse> refunds(
             @RequestHeader("Idempotence-Key") String idempotenceKey,
             RefundRequest refundRequest);
