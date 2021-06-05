@@ -6,19 +6,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import ru.maxmorev.restful.eshop.annotation.PaymentProvider;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
-import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.domain.CustomerOrder;
-import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
+import ru.maxmorev.restful.eshop.feignclient.YoomoneyApi;
+import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.EmbeddedPaymentResponse;
+import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.PaymentRequest;
+import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.RestResponse;
 import ru.maxmorev.restful.eshop.rest.response.ShoppingCartDto;
-import ru.maxmorev.restful.eshop.services.CommodityDtoService;
-import ru.maxmorev.restful.eshop.services.CustomerService;
 import ru.maxmorev.restful.eshop.services.OrderPurchaseService;
-import ru.maxmorev.restful.eshop.services.ShoppingCartService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @Slf4j
 @Controller
@@ -27,6 +28,7 @@ public class ShoppingCartWebController {
 
     private final OrderPurchaseService orderPurchaseService;
     private final CommonWebController commonWebController;
+    private final YoomoneyApi yoomoneyApi;
 
     @GetMapping(path = {"/shopping/cart/"})
     public String getShoppingCart(
@@ -46,18 +48,32 @@ public class ShoppingCartWebController {
             Model uiModel) throws IOException {
         //merge shopping cart after login
         ShoppingCartDto scFromCookie = commonWebController.mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
-        if (scFromCookie.getShoppingSet().size() == 0) {
+        if (scFromCookie.getShoppingSet().isEmpty()) {
             //redirect to cart
             response.sendRedirect("/shopping/cart");
         }
-
         //create transaction order and hold items for 10 minutes
         String id = commonWebController.getAuthenticationCustomerId();
-        CustomerDto authCustomer = commonWebController.customerService.findByEmail(id).get();
-        CustomerOrder order = orderPurchaseService.createOrderFor(authCustomer);
-        uiModel.addAttribute("orderId", order.getId());
-        uiModel.addAttribute("customer", authCustomer);
+        commonWebController.customerService.findByEmail(id).ifPresent(authCustomer -> {
+            CustomerOrder order = orderPurchaseService.createOrderFor(authCustomer);
+            PaymentRequest paymentRequest = new PaymentRequest()
+                    .setIdempotenceKey(String.valueOf(order.getId()))
+                    .setAmount(BigDecimal.valueOf(scFromCookie.getTotalPrice()))
+                    .setDescription("Order No. " + order.getId());
+            RestResponse<EmbeddedPaymentResponse> yoomoneyPayment = yoomoneyApi.initial(paymentRequest);
+            if (null != yoomoneyPayment.getData()) {
+                log.info("yoomoney status : {}", yoomoneyPayment.getData().getStatus());
+                order.setPaymentID(yoomoneyPayment.getData().getId());
+                order.setPaymentProvider(PaymentProvider.Yoomoney);
+                uiModel.addAttribute("confirmationToken", yoomoneyPayment.getData().getConfirmation().getConfirmationToken());
+                //TODO implement payment initial process for OrderPurchaseService issue https://github.com/users/max0l0gy/projects/1#card-62528080
+            }
 
+            uiModel.addAttribute("orderId", order.getId());
+            uiModel.addAttribute("customer", authCustomer);
+            uiModel.addAttribute("customerOrder", order);
+
+        });
         commonWebController.addCommonAttributesToModel(uiModel);
         return "shopping/proceedToCheckout";
     }
