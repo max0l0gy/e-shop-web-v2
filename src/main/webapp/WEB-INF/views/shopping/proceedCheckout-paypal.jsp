@@ -20,12 +20,8 @@
 <spring:url value="${webRoot}/shopping/cart/" var="backUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="profileUrl"/>
 <spring:url value="${webRoot}/commodity" var="showCommodityUrl"/>
-
-<spring:url value="${webRoot}/shopping/cart/payment/completed" var="confirmationUrl"/>
-
 <%-- live --%>
-<!--Library implementation-->
-<script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AQ7LCcaS55pHjxBAPQcD-DzWFstEclLuUIBHs1d0FdhQ3npOIFKgy2lerx1L_mmE3bzCfAMoX76qhgOr&currency=RUB"></script>
 
 <script type="text/javascript">
     const shoppingCartId = ${ShoppingCartCookie};
@@ -109,23 +105,53 @@
             cancelOrderAction();
         });
 
-        //Widget initialization. All parameters are required.
-        const checkout = new window.YooMoneyCheckoutWidget({
-            confirmation_token: '${confirmationToken}', //Token that must be obtained from YooMoney before the payment process
-            return_url: '${confirmationUrl}/order-id/${orderId}/paymentId/${customerOrder.paymentID}', //URL to the payment completion page
-            error_callback: function(error) {
-                //Processing of initialization errors
-                console.log("checkout error");
-                console.log(error);
-            }
-        });
+        paypal.Buttons({
 
-        //Display of payment form in the container
-        checkout.render('payment-form')
-            //After the payment form is displayed, the render method returns Promise (optional use).
-            .then(() => {
-                //Code that must be executed after the payment form is displayed.
-            });
+            //setup style
+            style: {
+                layout: 'vertical',
+                color: 'blue',
+                shape: 'rect',
+                label: 'paypal'
+            },
+
+            // Set up the transaction
+            createOrder: function (data, actions) {
+                var price = getAmountItemsInShoppingCart(shoppingCartObj).price;
+                return actions.order.create({
+                    purchase_units: [
+                        {
+                            amount: {
+                                value: '' + price + '',
+                                currency_code: 'RUB'
+                            },
+                            description: "Payment for order #" + orderId + " titsonfire.store"
+                        }
+                    ]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function (data, actions) {
+                console.log("DATA");
+                console.log(data);
+                return actions.order.capture().then(function (details) {
+                    // Show a success message to the buyer
+                    $('#spinner').show();
+                    console.log(details);
+                    console.log("Order id = " + data.orderID);
+                    console.log("Inner orderId " + orderId);
+                    showToast('Transaction ' + orderId + ' completed by ' + details.payer.name.given_name + '!');
+                    confirmPaymentOrder(customerId, orderId, data.orderID, "Paypal", paymentConfirm, paymentConfirmError);
+                    //confirmOrder
+                });
+            },
+            //Show a Cancellation Page
+            onCancel: function (data) {
+                // Show a cancel page, or return to cart
+                cancelOrderAction();
+            }
+        }).render('#paypal-button-container');
 
     });
 </script>
@@ -167,9 +193,6 @@
 
                     </div>
                 </div>
-                <!--HTML element in which the payment form will be displayed-->
-                <div id="payment-form"></div>
-
                 <div id="payment-confirmed" class="mdl-cell mdl-cell--6-col">
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--2-col">&nbsp;</div>

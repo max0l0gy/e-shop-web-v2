@@ -40,6 +40,8 @@ external:
     url: http://paypal-rest-api:8080
   portfolio:
     url: http://portfolio-rest-api:8080
+  yoomoney:
+    url: http://yoomoney-rest-api:8080
 
 feign:
   client:
