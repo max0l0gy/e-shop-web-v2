@@ -121,8 +121,8 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
 
 
     @Override
-    public CustomerOrderDto findOrder(Long id, Long customerId) {
-        return convertForCustomer(eshopCustomerOrderApi.findCustomerOrder(customerId, id));
+    public CustomerOrderDto findOrder(Long orderId, Long customerId) {
+        return convertForCustomer(eshopCustomerOrderApi.findCustomerOrder(customerId, orderId));
     }
 
     private void moveItemsFromOrderToBranch(CustomerOrder o) {

@@ -15,7 +15,9 @@ import ru.maxmorev.restful.eshop.feignclient.YoomoneyApi;
 import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.EmbeddedPaymentResponse;
 import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.PaymentRequest;
 import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.RestResponse;
+import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
 import ru.maxmorev.restful.eshop.rest.request.PaymentInitialRequest;
+import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 import ru.maxmorev.restful.eshop.rest.response.ShoppingCartDto;
 import ru.maxmorev.restful.eshop.services.OrderPurchaseService;
@@ -24,6 +26,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -99,15 +102,34 @@ public class ShoppingCartWebController {
         commonWebController.addCommonAttributesToModel(uiModel);
         return commonWebController.customerService
                 .findByEmail(customerEmail)
-                .map(customer -> orderPurchaseService.findOrder(orderId, customer.getId()))
+                .map(customer -> confirmOrder(orderId, customer))
                 .map(order -> processOrderAndPaymentConditions(uiModel, order))
                 .orElse("shopping/payment-error")
                 ;
     }
 
-    private String processOrderAndPaymentConditions(Model uiModel, CustomerOrderDto order) {
-        uiModel.addAttribute("customerOrder", order);
-        EmbeddedPaymentResponse payment = yoomoneyApi.getPayment(order.getPaymentID()).getData();
+    private Optional<CustomerOrder> confirmOrder(Long orderId, CustomerDto customer) {
+        CustomerOrderDto customerOrder = orderPurchaseService.findOrder(orderId, customer.getId());
+        return orderPurchaseService.confirmPaymentOrder(
+                new OrderPaymentConfirmation(
+                        customerOrder.getId(),
+                        customerOrder.getCustomerId(),
+                        customerOrder.getPaymentID(),
+                        "Yoomoney"
+                )
+        );
+    }
+
+    private String processOrderAndPaymentConditions(Model uiModel, Optional<CustomerOrder> order) {
+        return order
+                .map(customerOrder -> checkOrderAndPayment(uiModel, customerOrder))
+                .orElse("shopping/order-confirmation-error");
+
+    }
+
+    private String checkOrderAndPayment(Model uiModel, CustomerOrder customerOrder) {
+        uiModel.addAttribute("customerOrder", customerOrder);
+        EmbeddedPaymentResponse payment = yoomoneyApi.getPayment(customerOrder.getPaymentID()).getData();
         uiModel.addAttribute("payment", payment);
         log.info("payment paid: {}", payment.getPaid());
         if (payment.getPaid()) {

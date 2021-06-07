@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface OrderPurchaseService {
 
-    CustomerOrderDto findOrder(Long id, Long customerId);
+    CustomerOrderDto findOrder(Long orderId, Long customerId);
 
     CustomerOrder createOrderFor(CustomerDto customer);
 
