@@ -1,5 +1,7 @@
 package ru.maxmorev.restful.eshop.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -97,9 +100,19 @@ public class ShoppingCartWebController {
         log.info("check conditions");
         String customerEmail = commonWebController.getAuthenticationCustomerId();
         commonWebController.addCommonAttributesToModel(uiModel);
+        ObjectMapper jsonMapper = new ObjectMapper();
+
         return commonWebController.customerService
                 .findByEmail(customerEmail)
-                .map(customer -> orderPurchaseService.findOrder(orderId, customer.getId()))
+                .map(customer -> {
+                    List<CustomerOrderDto> orders = orderPurchaseService.findOrderListForCustomer(customer.getId());
+                    try {
+                        log.info("Customer orders: {}", jsonMapper.writeValueAsString(orders));
+                    } catch (JsonProcessingException e) {
+                        e.printStackTrace();
+                    }
+                    return orderPurchaseService.findOrder(orderId, customer.getId());
+                })
                 .map(order -> processOrderAndPaymentConditions(uiModel, order))
                 .orElse("shopping/payment-error")
                 ;
