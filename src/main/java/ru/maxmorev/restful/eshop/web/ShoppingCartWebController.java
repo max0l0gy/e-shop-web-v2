@@ -91,7 +91,6 @@ public class ShoppingCartWebController {
     @GetMapping(path = {"/payment/completed/orderid/{orderId}"})
     public String paymentCompleted(
             @PathVariable("orderId") Long orderId,
-            @PathVariable("paymentId") String paymentId,
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel) {
