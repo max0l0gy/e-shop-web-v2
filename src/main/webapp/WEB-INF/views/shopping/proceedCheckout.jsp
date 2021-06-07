@@ -112,7 +112,7 @@
         //Widget initialization. All parameters are required.
         const checkout = new window.YooMoneyCheckoutWidget({
             confirmation_token: '${confirmationToken}', //Token that must be obtained from YooMoney before the payment process
-            return_url: '${confirmationUrl}/order-id/${orderId}/paymentId/${customerOrder.paymentID}', //URL to the payment completion page
+            return_url: '${confirmationUrl}/orderid/${orderId}', //URL to the payment completion page
             error_callback: function(error) {
                 //Processing of initialization errors
                 console.log("checkout error");
