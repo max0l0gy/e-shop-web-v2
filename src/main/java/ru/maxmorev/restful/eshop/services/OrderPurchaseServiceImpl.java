@@ -80,9 +80,10 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
     }
 
     CustomerOrder confirmOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
-        CustomerOrder order = eshopCustomerOrderApi.confirmOrder(orderPaymentConfirmation);
-        CustomerDto customer = customerService.findById(order.getCustomerId());
-        ShoppingCart shoppingCart = eshopCustomerOrderApi.getShoppingCart(customer.getShoppingCartId());
+        log.info("Confirming order: {}", orderPaymentConfirmation.getOrderId());
+        var order = eshopCustomerOrderApi.confirmOrder(orderPaymentConfirmation);
+        var customer = customerService.findById(order.getCustomerId());
+        var shoppingCart = eshopCustomerOrderApi.getShoppingCart(customer.getShoppingCartId());
         eshopCustomerOrderApi.cleanShoppingCart(shoppingCart.getId());
         notificationService.orderPaymentConfirmation(
                 customer.getEmail(),

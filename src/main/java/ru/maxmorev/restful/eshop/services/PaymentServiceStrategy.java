@@ -12,6 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PaymentServiceStrategy {
     private final PaymentServicePayPal paymentServicePayPal;
+    private final PaymentServiceYoomoney paymentServiceYoomoney;
     private Map<String, PaymentService> paymentServiceMapMapByProviderName;
 
     public Optional<PaymentService> getByPaymentProviderName(String paymentProvider) {
@@ -22,6 +23,7 @@ public class PaymentServiceStrategy {
     public void initStrategy() {
         paymentServiceMapMapByProviderName = new HashMap<>();
         paymentServiceMapMapByProviderName.put("Paypal", paymentServicePayPal);
+        paymentServiceMapMapByProviderName.put("Yoomoney", paymentServiceYoomoney);
     }
 
 }
