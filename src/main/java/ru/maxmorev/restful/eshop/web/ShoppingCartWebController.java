@@ -88,15 +88,16 @@ public class ShoppingCartWebController {
     }
 
     @SneakyThrows
-    @GetMapping(path = {"/payment/completed/order-id/{order-id}/payment-id/{paymentId}"})
+    @GetMapping(path = {"/payment/completed/order-id/{orderId}/payment-id/{paymentId}"})
     public String paymentCompleted(
-            @PathVariable("order-id") Long orderId,
-            @PathVariable("payment-id") String paymentId,
+            @PathVariable("orderId") Long orderId,
+            @PathVariable("paymentId") String paymentId,
             HttpServletResponse response,
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel) {
         log.info("check conditions");
         String customerEmail = commonWebController.getAuthenticationCustomerId();
+        commonWebController.addCommonAttributesToModel(uiModel);
         return commonWebController.customerService
                 .findByEmail(customerEmail)
                 .map(customer -> orderPurchaseService.findOrder(orderId, customer.getId()))
