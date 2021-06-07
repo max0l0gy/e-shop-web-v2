@@ -19,4 +19,11 @@
         </put-attribute>
     </definition>
 
+    <definition extends="default" name="shopping/payment-completed">
+        <put-attribute name="body">
+            <definition template="/WEB-INF/views/shopping/payment-completed.jsp">
+            </definition>
+        </put-attribute>
+    </definition>
+
 </tiles-definitions>

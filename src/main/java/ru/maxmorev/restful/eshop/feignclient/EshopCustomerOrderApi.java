@@ -2,7 +2,11 @@ package ru.maxmorev.restful.eshop.feignclient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.maxmorev.restful.eshop.domain.CustomerOrder;
 import ru.maxmorev.restful.eshop.domain.OrderGrid;
 import ru.maxmorev.restful.eshop.domain.ShoppingCart;
+import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.RestResponse;
 import ru.maxmorev.restful.eshop.rest.request.CreateOrderRequest;
 import ru.maxmorev.restful.eshop.rest.request.OrderIdRequest;
 import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
+import ru.maxmorev.restful.eshop.rest.request.PaymentInitialRequest;
 import ru.maxmorev.restful.eshop.rest.request.RemoveFromCartRequest;
 import ru.maxmorev.restful.eshop.rest.request.ShoppingCartSetRequest;
 import ru.maxmorev.restful.eshop.rest.response.Message;
@@ -20,6 +26,7 @@ import ru.maxmorev.restful.eshop.rest.response.OrderGridDto;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 
 @FeignClient(name = "eshop-customer-order-api", url = "${external.customerOrderApi.url}")
 public interface EshopCustomerOrderApi {
@@ -63,24 +70,26 @@ public interface EshopCustomerOrderApi {
     @RequestMapping(path = "/shoppingCart/new/", method = RequestMethod.POST)
     ShoppingCart createEmptySoppingCart();
 
-    @RequestMapping(path = "/shoppingCart/id/{id}", method = RequestMethod.GET)
-    ShoppingCart getShoppingCart(@PathVariable(name = "id", required = true) Long id);
+    @GetMapping(path = "/shoppingCart/id/{id}")
+    ShoppingCart getShoppingCart(@PathVariable(name = "id") Long id);
 
-    @RequestMapping(path = "/shoppingCart/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/shoppingCart/")
     ShoppingCart addToShoppingCartSet(@RequestBody @Valid ShoppingCartSetRequest requestShoppingCartSet);
 
-    @RequestMapping(path = "/shoppingCart/", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(path = "/shoppingCart/")
     ShoppingCart removeFromShoppingCartSet(@RequestBody RemoveFromCartRequest removeFromCartRequest);
 
-    @RequestMapping(path = "/shoppingCart/{id}/clear", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/shoppingCart/{id}/clear")
     ShoppingCart cleanShoppingCart(@PathVariable(name = "id") Long id);
 
-    @RequestMapping(path = "/shoppingCart/merge/from/{fromId}/to/{toId}", method = RequestMethod.POST)
+    @PostMapping(path = "/shoppingCart/merge/from/{fromId}/to/{toId}")
     ShoppingCart mergeCartFromTo(@PathVariable(name = "fromId") Long from,
                                  @PathVariable(name = "toId") Long to);
 
-
-    @RequestMapping(path = "/order/list/expired", method = RequestMethod.GET)
+    @GetMapping(path = "/order/list/expired")
     List<CustomerOrder> findExpiredOrders();
+
+    @PutMapping(path = "/order/payment/initial")
+    RestResponse<CustomerOrder> paymentInitial(@RequestBody PaymentInitialRequest paymentRequest);
 
 }
