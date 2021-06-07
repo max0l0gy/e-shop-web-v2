@@ -87,6 +87,7 @@ public class ShoppingCartWebController {
 
         });
         commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.getShoppingCartFromCookie(cartCookie, response);
         return "shopping/proceedToCheckout";
     }
 
@@ -100,6 +101,7 @@ public class ShoppingCartWebController {
         log.info("check conditions");
         String customerEmail = commonWebController.getAuthenticationCustomerId();
         commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.getShoppingCartFromCookie(cartCookie, response);
         return commonWebController.customerService
                 .findByEmail(customerEmail)
                 .map(customer -> confirmOrder(orderId, customer))
