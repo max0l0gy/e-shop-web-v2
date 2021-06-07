@@ -21,7 +21,7 @@
 <spring:url value="${webRoot}/customer/account/update/" var="profileUrl"/>
 <spring:url value="${webRoot}/commodity" var="showCommodityUrl"/>
 
-<spring:url value="${webRoot}/shopping/cart/payment/completed" var="confirmationUrl"/>
+<spring:url value="${webRoot}/payment/completed" var="confirmationUrl"/>
 
 <%-- live --%>
 <!--Library implementation-->

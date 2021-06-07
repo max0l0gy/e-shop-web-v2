@@ -63,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/adm/**").hasAuthority("ADMIN")
                 .antMatchers(Constants.REST_MANAGER_URI + "**").hasAuthority("ADMIN")
                 .antMatchers("/shopping/cart/checkout/").hasAuthority("CUSTOMER")
+                .antMatchers("/payment/completed/**").hasAuthority("CUSTOMER")
                 .antMatchers("/customer/account/update/").hasAuthority("CUSTOMER")
                 .antMatchers(Constants.REST_CUSTOMER_URI + "**").hasAuthority("CUSTOMER")
                 .and()

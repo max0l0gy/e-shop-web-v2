@@ -55,12 +55,12 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
             purchases.add(purchaseInfo);
         });
         //subtract branch amount in commodityApi
-        purchases.forEach(purchaseInfo -> {
-            eshopCommodityApi.addAmountToBranch(purchaseInfo.getBranchId(), -purchaseInfo.getAmount().intValue());
-        });
+        purchases.forEach(purchaseInfo -> eshopCommodityApi.addAmountToBranch(purchaseInfo.getBranchId(), -purchaseInfo.getAmount().intValue()));
         //create order in OrderApi
         return eshopCustomerOrderApi.createOrder(new CreateOrderRequest(customer.getId(), purchases));
     }
+
+
 
     @Override
     public CapturedOrderStatus checkOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
@@ -233,4 +233,8 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
         return convert(eshopCustomerOrderApi.adminAllCustomerOrderList(page, rows, sortBy, order));
     }
 
+    @Override
+    public Optional<CustomerOrder> paymentInitial(PaymentInitialRequest paymentInitialRequest) {
+        return Optional.ofNullable(eshopCustomerOrderApi.paymentInitial(paymentInitialRequest).getData());
+    }
 }
