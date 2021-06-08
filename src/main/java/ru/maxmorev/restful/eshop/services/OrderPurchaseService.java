@@ -35,4 +35,6 @@ public interface OrderPurchaseService {
 
     Optional<CustomerOrder> paymentInitial(PaymentInitialRequest paymentInitialRequest);
 
+    CustomerOrderDto convertForCustomer(CustomerOrder order);
+
 }

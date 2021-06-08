@@ -194,7 +194,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
                 .build();
     }
 
-    CustomerOrderDto convertForCustomer(CustomerOrder order) {
+    public CustomerOrderDto convertForCustomer(CustomerOrder order) {
         CustomerOrderDto orderDto = convert(order);
         orderDto.setActions(CustomerOrderDto.getCustomerAvailableActions(orderDto.getStatus()));
         return orderDto;

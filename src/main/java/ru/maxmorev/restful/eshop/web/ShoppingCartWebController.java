@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+import static ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus.AWAITING_PAYMENT;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -104,32 +106,38 @@ public class ShoppingCartWebController {
         commonWebController.getShoppingCartFromCookie(cartCookie, response);
         return commonWebController.customerService
                 .findByEmail(customerEmail)
-                .map(customer -> confirmOrder(orderId, customer))
+                .map(customer -> {
+                    uiModel.addAttribute("customer", customer);
+                    return confirmOrder(orderId, customer);
+                })
                 .map(order -> processOrderAndPaymentConditions(uiModel, order))
                 .orElse("shopping/payment-error")
                 ;
     }
 
-    private Optional<CustomerOrder> confirmOrder(Long orderId, CustomerDto customer) {
+    private Optional<CustomerOrderDto> confirmOrder(Long orderId, CustomerDto customer) {
         CustomerOrderDto customerOrder = orderPurchaseService.findOrder(orderId, customer.getId());
-        return orderPurchaseService.confirmPaymentOrder(
-                new OrderPaymentConfirmation(
-                        customerOrder.getId(),
-                        customerOrder.getCustomerId(),
-                        customerOrder.getPaymentID(),
-                        "Yoomoney"
-                )
-        );
+        if (AWAITING_PAYMENT.equals(customerOrder.getStatus())) {
+            return orderPurchaseService.confirmPaymentOrder(
+                    new OrderPaymentConfirmation(
+                            customerOrder.getId(),
+                            customerOrder.getCustomerId(),
+                            customerOrder.getPaymentID(),
+                            "Yoomoney"
+                    )
+            ).map(orderPurchaseService::convertForCustomer);
+        }
+        return Optional.of(customerOrder);
     }
 
-    private String processOrderAndPaymentConditions(Model uiModel, Optional<CustomerOrder> order) {
+    private String processOrderAndPaymentConditions(Model uiModel, Optional<CustomerOrderDto> order) {
         return order
                 .map(customerOrder -> checkOrderAndPayment(uiModel, customerOrder))
                 .orElse("shopping/order-confirmation-error");
 
     }
 
-    private String checkOrderAndPayment(Model uiModel, CustomerOrder customerOrder) {
+    private String checkOrderAndPayment(Model uiModel, CustomerOrderDto customerOrder) {
         uiModel.addAttribute("customerOrder", customerOrder);
         EmbeddedPaymentResponse payment = yoomoneyApi.getPayment(customerOrder.getPaymentID()).getData();
         uiModel.addAttribute("payment", payment);
