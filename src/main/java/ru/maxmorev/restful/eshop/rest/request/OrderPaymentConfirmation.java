@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import ru.maxmorev.restful.eshop.annotation.PaymentProvider;
 
 import javax.validation.constraints.AssertTrue;
@@ -18,6 +19,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@Accessors(chain = true)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderPaymentConfirmation extends OrderIdRequest {

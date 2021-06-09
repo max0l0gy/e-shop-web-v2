@@ -2,7 +2,6 @@ package ru.maxmorev.restful.eshop.services;
 
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
 import ru.maxmorev.restful.eshop.domain.CapturedOrderStatus;
-import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.domain.CustomerOrder;
 import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
 import ru.maxmorev.restful.eshop.rest.request.PaymentInitialRequest;
@@ -15,13 +14,11 @@ import java.util.Optional;
 
 public interface OrderPurchaseService {
 
-    CustomerOrderDto findOrder(Long orderId, Long customerId);
+    Optional<CustomerOrderDto> findOrder(Long orderId, Long customerId);
 
     CustomerOrder createOrderFor(CustomerDto customer);
 
-    CapturedOrderStatus checkOrder(OrderPaymentConfirmation orderPaymentConfirmation);
-
-    Optional<CustomerOrder> confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation);
+    Optional<CustomerOrderDto> confirmPaymentOrder(Long orderId, Long customerId);
 
     void cancelOrderByCustomer(Long orderId, Long customerId);
 

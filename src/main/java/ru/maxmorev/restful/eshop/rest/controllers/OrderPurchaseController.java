@@ -28,7 +28,7 @@ public class OrderPurchaseController {
     Message confirmOrder(@RequestBody
                          @Valid OrderPaymentConfirmation orderPaymentConfirmation,
                          Locale locale) {
-        return orderPurchaseService.confirmPaymentOrder(orderPaymentConfirmation)
+        return orderPurchaseService.confirmPaymentOrder(orderPaymentConfirmation.getOrderId(), orderPaymentConfirmation.getCustomerId())
                 .map(order -> new Message(Message.SUCCES, messageSource.getMessage("message_success", new Object[]{}, locale)))
                 .orElseGet(() -> new Message(
                                 Message.ERROR,
@@ -50,8 +50,8 @@ public class OrderPurchaseController {
             @PathVariable(name = "customerId") Long customerId,
             @PathVariable(name = "id") Long orderId,
             Locale locale) {
-
-        return orderPurchaseService.findOrder(orderId, customerId);
+        return orderPurchaseService.findOrder(orderId, customerId)
+                .orElseThrow(()->new RuntimeException("Order not found"));
     }
 
     @GetMapping(path = Constants.REST_CUSTOMER_URI + "order/list/{customerId}")
