@@ -19,6 +19,8 @@ external:
     url: http://localhost:${wiremock.server.port}
   portfolio:
     url: http://localhost:${wiremock.server.port}
+  yoomoney:
+    url: http://localhost:${wiremock.server.port}
 
 wiremock:
   server:

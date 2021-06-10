@@ -4,10 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
-import ru.maxmorev.restful.eshop.domain.*;
+import ru.maxmorev.restful.eshop.domain.CapturedOrderStatus;
+import ru.maxmorev.restful.eshop.domain.CustomerOrder;
+import ru.maxmorev.restful.eshop.domain.OrderGrid;
+import ru.maxmorev.restful.eshop.domain.ShoppingCart;
 import ru.maxmorev.restful.eshop.feignclient.EshopCommodityApi;
 import ru.maxmorev.restful.eshop.feignclient.EshopCustomerOrderApi;
-import ru.maxmorev.restful.eshop.rest.request.*;
+import ru.maxmorev.restful.eshop.rest.request.CommodityBranchDto;
+import ru.maxmorev.restful.eshop.rest.request.CreateOrderRequest;
+import ru.maxmorev.restful.eshop.rest.request.OrderIdRequest;
+import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
+import ru.maxmorev.restful.eshop.rest.request.PaymentInitialRequest;
+import ru.maxmorev.restful.eshop.rest.request.PurchaseInfoRequest;
 import ru.maxmorev.restful.eshop.rest.response.CommodityDto;
 import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
@@ -19,6 +27,9 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus.AWAITING_PAYMENT;
+import static ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor.suppress;
 
 @Slf4j
 @Service("orderPurchaseService")
@@ -59,24 +70,21 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
         //create order in OrderApi
         return eshopCustomerOrderApi.createOrder(new CreateOrderRequest(customer.getId(), purchases));
     }
-
-
-
     @Override
-    public CapturedOrderStatus checkOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
-        return null;
-    }
-
-    @Override
-    public Optional<CustomerOrder> confirmPaymentOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
-        log.info("Check in payment confirmation. Payment Id: {}", orderPaymentConfirmation.getPaymentId());
-        log.info("orderId: {}", orderPaymentConfirmation.getOrderId());
-        log.info("Payment Provider : {}", orderPaymentConfirmation.getPaymentProvider());
-        return paymentServiceStrategy
-                .getByPaymentProviderName(orderPaymentConfirmation.getPaymentProvider())
-                .flatMap(paymentService -> paymentService.getOrder(orderPaymentConfirmation.getPaymentId()))
-                .filter(capturedOrder -> capturedOrder.getStatus().isCompleted())
-                .map(capturedOrder -> confirmOrder(orderPaymentConfirmation));
+    public Optional<CustomerOrderDto> confirmPaymentOrder(Long orderId, Long customerId) {
+        return findOrder(orderId, customerId)
+                .filter(customerOrderDto -> AWAITING_PAYMENT.equals(customerOrderDto.getStatus()))
+                .filter(this::checkOrderPaymentCompleted)
+                .map(customerOrderDto -> confirmOrder(
+                        OrderPaymentConfirmation.builder().
+                                customerId(customerOrderDto.getCustomerId())
+                                .orderId(customerOrderDto.getId())
+                                .paymentId(customerOrderDto.getPaymentID())
+                                .paymentProvider(customerOrderDto.getPaymentProvider().name())
+                                .build()
+                ))
+                .map(this::convertForCustomer)
+                ;
     }
 
     CustomerOrder confirmOrder(OrderPaymentConfirmation orderPaymentConfirmation) {
@@ -93,21 +101,13 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
         return order;
     }
 
-    CustomerOrder orderPaymentNotConfirmedByAPI(OrderPaymentConfirmation orderPaymentConfirmation) {
-        log.info("Payment not confirmed by API paymentId {} ",
-                orderPaymentConfirmation.getPaymentId());
-        return eshopCustomerOrderApi
-                .findCustomerOrder(
-                        orderPaymentConfirmation.getCustomerId(),
-                        orderPaymentConfirmation.getOrderId()
-                );
-    }
-
-
     @Override
     public void cleanExpiredOrders() {
         List<CustomerOrder> expiredOrders = eshopCustomerOrderApi.findExpiredOrders();
         expiredOrders.forEach(o -> {
+
+            Optional<CustomerOrderDto> confirmed = confirmPaymentOrder(o.getId(), o.getCustomerId());
+            log.info("Order {} payment confirmed {}", o.getId(), confirmed.isPresent());
             //return amount to commodity
             moveItemsFromOrderToBranch(o);
             //remove order
@@ -122,8 +122,10 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
 
 
     @Override
-    public CustomerOrderDto findOrder(Long orderId, Long customerId) {
-        return convertForCustomer(eshopCustomerOrderApi.findCustomerOrder(customerId, orderId));
+    public Optional<CustomerOrderDto> findOrder(Long orderId, Long customerId) {
+        return suppress(() -> eshopCustomerOrderApi.findCustomerOrder(customerId, orderId))
+                .map(this::convertForCustomer)
+                ;
     }
 
     private void moveItemsFromOrderToBranch(CustomerOrder o) {
@@ -237,5 +239,13 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
     @Override
     public Optional<CustomerOrder> paymentInitial(PaymentInitialRequest paymentInitialRequest) {
         return Optional.ofNullable(eshopCustomerOrderApi.paymentInitial(paymentInitialRequest).getData());
+    }
+
+    private boolean checkOrderPaymentCompleted(CustomerOrderDto customerOrderDto) {
+        return paymentServiceStrategy
+                .getByPaymentProviderName(customerOrderDto.getPaymentProvider().name())
+                .flatMap(paymentService -> paymentService.getOrder(customerOrderDto.getPaymentID()))
+                .map(capturedOrder -> capturedOrder.getStatus().isCompleted())
+                .orElse(false);
     }
 }

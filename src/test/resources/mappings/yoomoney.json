@@ -1,0 +1,36 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/v1/payments/2CV55440UT6646827"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "success",
+          "data": {
+            "id": "2840bb6e-000f-5000-a000-151e92335af3",
+            "status": "succeeded",
+            "paid": true,
+            "amount": {
+              "value": 2.00,
+              "currency": "RUB"
+            },
+            "confirmation": null,
+            "description": "Order No. 72",
+            "created_at": "2021-05-26T19:55:26.472Z"
+          }
+        }
+      }
+    }
+  ]
+}

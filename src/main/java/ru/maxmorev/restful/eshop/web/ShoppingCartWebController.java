@@ -15,9 +15,7 @@ import ru.maxmorev.restful.eshop.feignclient.YoomoneyApi;
 import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.EmbeddedPaymentResponse;
 import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.PaymentRequest;
 import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.RestResponse;
-import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
 import ru.maxmorev.restful.eshop.rest.request.PaymentInitialRequest;
-import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 import ru.maxmorev.restful.eshop.rest.response.ShoppingCartDto;
 import ru.maxmorev.restful.eshop.services.OrderPurchaseService;
@@ -27,8 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Optional;
-
-import static ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus.AWAITING_PAYMENT;
 
 @Slf4j
 @Controller
@@ -108,27 +104,19 @@ public class ShoppingCartWebController {
                 .findByEmail(customerEmail)
                 .map(customer -> {
                     uiModel.addAttribute("customer", customer);
-                    return confirmOrder(orderId, customer);
+                    return customer;
                 })
+                .map(customerDto ->
+                        Optional.ofNullable(
+                                orderPurchaseService.confirmPaymentOrder(orderId, customerDto.getId())
+                                        .orElseGet(() -> orderPurchaseService.findOrder(orderId, customerDto.getId()).orElse(null))
+                        )
+                )
                 .map(order -> processOrderAndPaymentConditions(uiModel, order))
                 .orElse("shopping/payment-error")
                 ;
     }
 
-    private Optional<CustomerOrderDto> confirmOrder(Long orderId, CustomerDto customer) {
-        CustomerOrderDto customerOrder = orderPurchaseService.findOrder(orderId, customer.getId());
-        if (AWAITING_PAYMENT.equals(customerOrder.getStatus())) {
-            return orderPurchaseService.confirmPaymentOrder(
-                    new OrderPaymentConfirmation(
-                            customerOrder.getId(),
-                            customerOrder.getCustomerId(),
-                            customerOrder.getPaymentID(),
-                            "Yoomoney"
-                    )
-            ).map(orderPurchaseService::convertForCustomer);
-        }
-        return Optional.of(customerOrder);
-    }
 
     private String processOrderAndPaymentConditions(Model uiModel, Optional<CustomerOrderDto> order) {
         return order

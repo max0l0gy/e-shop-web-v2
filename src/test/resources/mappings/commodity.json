@@ -1,0 +1,83 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/manager/branch/5"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 5,
+          "commodityId": 4,
+          "amount": 5,
+          "price": 3500.0,
+          "currency": "EUR",
+          "attributes": [
+            {
+              "name": "size",
+              "value": "s",
+              "measure": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/commodity/4"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 4,
+          "name": "t-shirt",
+          "shortDescription": "test description",
+          "overview": "Overview t-shirt test",
+          "dateOfCreation": "2019-08-25T15:46:23.918+0000",
+          "type": {
+            "id": 1,
+            "name": "TypeTest",
+            "description": "test"
+          },
+          "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Duke_%28Java_mascot%29_waving.svg/800px-Duke_%28Java_mascot%29_waving.svg.png"
+          ],
+          "branches": [
+            {
+              "id": 5,
+              "commodityId": 4,
+              "amount": 5,
+              "price": 3500.0,
+              "currency": "EUR",
+              "attributes": [
+                {
+                  "name": "size",
+                  "value": "s",
+                  "measure": null
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
