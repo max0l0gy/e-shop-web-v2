@@ -70,6 +70,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
         //create order in OrderApi
         return eshopCustomerOrderApi.createOrder(new CreateOrderRequest(customer.getId(), purchases));
     }
+
     @Override
     public Optional<CustomerOrderDto> confirmPaymentOrder(Long orderId, Long customerId) {
         return findOrder(orderId, customerId)
@@ -107,11 +108,13 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
         expiredOrders.forEach(o -> {
 
             Optional<CustomerOrderDto> confirmed = confirmPaymentOrder(o.getId(), o.getCustomerId());
-            log.info("Order {} payment confirmed {}", o.getId(), confirmed.isPresent());
-            //return amount to commodity
-            moveItemsFromOrderToBranch(o);
-            //remove order
-            eshopCustomerOrderApi.removeExpiredOrder(o.getId());
+            log.info("Order was in WAITING FOR PAYMENT status {} payment confirmed {}", o.getId(), confirmed.isPresent());
+            if (confirmed.isEmpty()) {
+                //return amount to commodity
+                moveItemsFromOrderToBranch(o);
+                //remove order
+                eshopCustomerOrderApi.removeExpiredOrder(o.getId());
+            }
         });
     }
 
