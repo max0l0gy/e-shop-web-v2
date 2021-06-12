@@ -2,18 +2,22 @@ package ru.maxmorev.restful.eshop.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+import org.springframework.test.context.junit4.SpringRunner;
 import ru.maxmorev.restful.eshop.domain.CapturedOrder;
 import ru.maxmorev.restful.eshop.services.PaymentServicePayPal;
 
 import java.util.Optional;
 
-@Slf4j
+@SpringBootTest
+@AutoConfigureMockMvc
 @AutoConfigureWireMock(port = 0)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringRunner.class)
 public class PaymentServicePayPalTest {
     @Autowired
     PaymentServicePayPal paymentServicePayPal;

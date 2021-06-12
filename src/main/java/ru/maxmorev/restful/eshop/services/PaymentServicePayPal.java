@@ -32,7 +32,7 @@ public class PaymentServicePayPal implements PaymentService {
     }
 
     @Override
-    public Optional<CapturedOrderRefundResponse> refundCapturedOrder(String captureId) {
+    public Optional<CapturedOrderRefundResponse> refundCapturedOrder(String orderId, String captureId) {
         RefundResponse refund = null;
         try {
             refund = payPalApi.refund(captureId);

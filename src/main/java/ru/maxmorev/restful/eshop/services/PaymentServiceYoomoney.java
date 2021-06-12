@@ -5,10 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.maxmorev.restful.eshop.domain.CapturedOrder;
 import ru.maxmorev.restful.eshop.domain.CapturedOrderRefundResponse;
+import ru.maxmorev.restful.eshop.domain.CapturedOrderRefundStatus;
 import ru.maxmorev.restful.eshop.feignclient.YoomoneyApi;
 import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.EmbeddedPaymentResponse;
+import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.RefundRequest;
+import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.RestResponse;
 import ru.maxmorev.restful.eshop.mapper.PaymentServiceYoomoneyMapper;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -30,7 +34,41 @@ public class PaymentServiceYoomoney implements PaymentService {
     }
 
     @Override
-    public Optional<CapturedOrderRefundResponse> refundCapturedOrder(String captureId) {
-        return Optional.empty();
+    public Optional<CapturedOrderRefundResponse> refundCapturedOrder(String orderId, String captureId) {
+        return Optional.ofNullable(yoomoneyApi.getPayment(orderId))
+                .map(paymentResponse -> {
+                    log.info("response status: {}", paymentResponse.getStatus());
+                    log.info("response data not empty {}", Objects.isNull(paymentResponse.getData()));
+                    return paymentResponse;
+                })
+                .filter(restResponse -> Objects.isNull(restResponse.getData()))
+                .map(RestResponse::getData)
+                .filter(EmbeddedPaymentResponse::getPaid)
+                .map(payment -> new RefundRequest()
+                        .setAmount(payment.getAmount())
+                        .setPaymentId(payment.getId())
+                )
+                .map(refundRequest -> yoomoneyApi.refunds(orderId, refundRequest))
+                .map(restResponse -> {
+                    log.info("response status: {}", restResponse.getStatus());
+                    log.info("response data not empty {}", Objects.isNull(restResponse.getData()));
+                    return restResponse;
+                })
+                .filter(restResponse -> Objects.isNull(restResponse.getData()))
+                .map(RestResponse::getData)
+                .map(refundResponse -> new CapturedOrderRefundResponse()
+                        .setPaymentId(refundResponse.getPaymentId())
+                        .setId(refundResponse.getId())
+                        .setAmount(refundResponse.getAmount())
+                        .setStatus(map(refundResponse.getStatus()))
+                );
+    }
+
+    private CapturedOrderRefundStatus map(String status) {
+        if ("succeeded".equals(status))
+            return new CapturedOrderRefundStatus().setStatus(CapturedOrderRefundStatus.COMPLETED);
+        if ("canceled".equals(status))
+            return new CapturedOrderRefundStatus().setStatus(CapturedOrderRefundStatus.CANCELLED);
+        return new CapturedOrderRefundStatus().setStatus(CapturedOrderRefundStatus.UNDEFINED);
     }
 }

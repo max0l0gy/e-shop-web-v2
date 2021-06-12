@@ -34,6 +34,37 @@
     {
       "request": {
         "method": "GET",
+        "url": "/api/manager/branch/20"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 20,
+          "commodityId": 4,
+          "amount": 5,
+          "price": 3500.0,
+          "currency": "EUR",
+          "attributes": [
+            {
+              "name": "size",
+              "value": "m",
+              "measure": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
         "url": "/api/v1/commodity/4"
       },
       "response": {

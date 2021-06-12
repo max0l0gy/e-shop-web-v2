@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface PaymentService {
 
     Optional<CapturedOrder> getOrder(String orderId);
-    Optional<CapturedOrderRefundResponse> refundCapturedOrder(String captureId);
+    Optional<CapturedOrderRefundResponse> refundCapturedOrder(String orderId, String captureId);
 
 }

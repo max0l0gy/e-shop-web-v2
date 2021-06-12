@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
-import ru.maxmorev.restful.eshop.domain.CapturedOrderStatus;
 import ru.maxmorev.restful.eshop.domain.CustomerOrder;
 import ru.maxmorev.restful.eshop.domain.OrderGrid;
 import ru.maxmorev.restful.eshop.domain.ShoppingCart;
@@ -44,6 +43,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
 
     @Override
     public CustomerOrder createOrderFor(CustomerDto customer) {
+        //TODO REFACTORING https://github.com/users/max0l0gy/projects/1#card-62987896
         List<CustomerOrder> awaitingForPayment = eshopCustomerOrderApi
                 .customerOrderListByStatus(customer.getId(), CustomerOrderStatus.AWAITING_PAYMENT.name());
         log.info("awaitingForPayment.size() = {}", awaitingForPayment.size());
@@ -138,8 +138,9 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
     }
 
     @Override
-    public void cancelOrderByCustomer(Long orderId, Long customderId) {
-        CustomerOrder order = eshopCustomerOrderApi.findCustomerOrder(customderId, orderId);
+    public void cancelOrderByCustomer(Long orderId, Long customerId) {
+        //TODO avoid switch, replace with strategy https://github.com/users/max0l0gy/projects/1#card-62987855
+        CustomerOrder order = eshopCustomerOrderApi.findCustomerOrder(customerId, orderId);
         if (
                 CustomerOrderStatus.AWAITING_PAYMENT.equals(order.getStatus())
                         || CustomerOrderStatus.PAYMENT_APPROVED.equals(order.getStatus())
@@ -147,12 +148,18 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
             moveItemsFromOrderToBranch(order);
             switch (order.getStatus()) {
                 case PAYMENT_APPROVED:
-                    //send emails to customer and admin
                     CustomerOrderDto orderDto = convertForCustomer(order);
-                    CustomerDto customer = customerService.findById(customderId);
-                    notificationService.orderCancelCustomer(customer.getEmail(), customer.getFullName(), orderDto);
-                    eshopCustomerOrderApi.customerOrderCancel(new OrderIdRequest(orderId, customderId));
-                    //eshopCustomerOrderApi.setOrderStatus(order.getId(), CustomerOrderStatus.CANCELED_BY_CUSTOMER.name());
+                    paymentServiceStrategy
+                            .getByPaymentProviderName(orderDto.getPaymentProvider().name())
+                            .flatMap(paymentService -> paymentService.refundCapturedOrder(String.valueOf(orderDto.getId()), orderDto.getPaymentID()))
+                            .filter(capturedOrderRefundResponse -> capturedOrderRefundResponse.getStatus().isCompleted())
+                            .map(capturedOrderRefundResponse -> {
+                                CustomerDto customer = customerService.findById(customerId);
+                                notificationService.orderCancelCustomer(customer.getEmail(), customer.getFullName(), orderDto);
+                                eshopCustomerOrderApi.customerOrderCancel(new OrderIdRequest(orderId, customerId));
+                                //TODO create event in the system
+                                return capturedOrderRefundResponse;
+                            });
                     break;
                 case AWAITING_PAYMENT:
                     eshopCustomerOrderApi.removeExpiredOrder(order.getId());
@@ -164,11 +171,11 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
     }
 
     CustomerOrderDto convert(CustomerOrder order) {
-        List<PurchaseDto> purchaseDtos = new ArrayList<>();
+        List<PurchaseDto> purchases = new ArrayList<>();
         order.getPurchases().forEach(op -> {
             CommodityBranchDto cb = eshopCommodityApi.getCommodityBranch(op.getId().getBranchId());
             CommodityDto c = eshopCommodityApi.findCommodityById(cb.getCommodityId());
-            purchaseDtos.add(PurchaseDto
+            purchases.add(PurchaseDto
                     .builder()
                     .name(c.getName())
                     .overview(c.getOverview())
@@ -176,8 +183,8 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
                     .type(c.getType().getName())
                     .commodityId(c.getId())
                     .dateOfCreation(c.getDateOfCreation())
-                    .price(cb.getPrice())
-                    .amount(cb.getAmount())
+                    .price(op.getPurchaseInfo().getPrice())
+                    .amount(op.getPurchaseInfo().getAmount())
                     .branchId(cb.getId())
                     .currency(Currency.getInstance(cb.getCurrency()))
                     .images(c.getImages())
@@ -194,8 +201,8 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
                 .paymentID(order.getPaymentID())
                 .paymentProvider(order.getPaymentProvider())
                 .status(order.getStatus())
-                .purchases(purchaseDtos)
-                .totalPrice(purchaseDtos.stream().mapToDouble(p -> p.getAmount() * p.getPrice()).sum())
+                .purchases(purchases)
+                .totalPrice(purchases.stream().mapToDouble(p -> p.getAmount() * p.getPrice()).sum())
                 .build();
     }
 

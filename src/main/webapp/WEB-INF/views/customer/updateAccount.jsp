@@ -97,7 +97,7 @@
         <div id="update-info" class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
             <c:if test="${not empty customer}">
                 <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text commodity-name"></b></h2>
+                    <h2 class="mdl-card__title-text commodity-name"></h2>
                 </div>
                 <div class="mdl-card__media" style="background-color:white">
 
