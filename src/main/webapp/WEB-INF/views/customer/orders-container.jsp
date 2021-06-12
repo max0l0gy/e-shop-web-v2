@@ -5,7 +5,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<spring:url value="/commodity" var="showCommodityUrl"/>
+<spring:url value="${webRoot}/commodity" var="commodityUrl"/>
 
 <c:forEach items="${orders}" var="order">
 <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--2dp">
@@ -17,7 +17,7 @@
         Total price: ${order.totalPrice}
         </div>
         <c:forEach items="${order.purchases}" var="purchase">
-        <a class="mdl-cell mdl-cell--6-col" href="${showCommodityUrl}/${purchase.commodityId}" target="_blank">
+        <a class="mdl-cell mdl-cell--6-col" href="${commodityUrl}/${purchase.commodityId}" target="_blank">
         <img  src="${purchase.images[0]}" width="150px" border="0" alt="" />
         <img  src="${purchase.images[1]}" width="150px" border="0" alt="" />
         </a>
