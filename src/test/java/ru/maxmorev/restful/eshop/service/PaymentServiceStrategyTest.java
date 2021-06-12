@@ -1,11 +1,13 @@
 package ru.maxmorev.restful.eshop.service;
 
-import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+import org.springframework.test.context.junit4.SpringRunner;
 import ru.maxmorev.restful.eshop.annotation.PaymentProvider;
 import ru.maxmorev.restful.eshop.domain.CapturedOrder;
 import ru.maxmorev.restful.eshop.domain.CapturedOrderRefundResponse;
@@ -14,12 +16,13 @@ import ru.maxmorev.restful.eshop.services.PaymentServiceStrategy;
 
 import java.util.Optional;
 
-@Slf4j
+@SpringBootTest
+@AutoConfigureMockMvc
 @AutoConfigureWireMock(port = 0)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class PaymentServiceStrategyTest {
+@RunWith(SpringRunner.class)
+public class PaymentServiceStrategyTest {
     @Autowired
-    private PaymentServiceStrategy paymentServiceStrategy;
+    PaymentServiceStrategy paymentServiceStrategy;
 
     @Test
     public void isPaypalStrategyExist() {
@@ -48,10 +51,11 @@ class PaymentServiceStrategyTest {
      @Test
     public void refundCompleted() {
         String captureId = "85W962518S850170V";
+        String orderId = "123";
          paymentServiceStrategy
                  .getByPaymentProviderName((PaymentProvider.Paypal.name()))
                  .ifPresent(paymentService -> {
-                     Optional<CapturedOrderRefundResponse> order = paymentService.refundCapturedOrder(captureId);
+                     Optional<CapturedOrderRefundResponse> order = paymentService.refundCapturedOrder(orderId, captureId);
                      Assertions.assertTrue(order.isPresent());
                      order.ifPresent(refundResponse -> {
                          Assertions.assertEquals("4BH36132M15490109", refundResponse.getId());
