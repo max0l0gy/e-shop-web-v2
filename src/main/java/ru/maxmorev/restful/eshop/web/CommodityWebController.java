@@ -102,7 +102,7 @@ public class CommodityWebController {
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         //TODO improve this part and remove from the code the definition of special type of commodity "wear" t-shirt
-        if (cm.get().getType().getName().toLowerCase().equals("t-shirt")) {
+        if (cm.get().getType().getName().equalsIgnoreCase("t-shirt")) {
             return "commodity/show-wear";
         }
         return "commodity/show-commodity";
