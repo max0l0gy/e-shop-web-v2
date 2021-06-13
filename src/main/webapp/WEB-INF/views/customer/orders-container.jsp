@@ -15,7 +15,7 @@
         <spring:message code="order.status.${order.status}" var="labelStatus"/>
         Order #${order.id} Status: <b>${labelStatus}</b><br/>
         Date <fmt:formatDate value="${order.dateOfCreation}" pattern="yy-MMM-dd HH:mm"/>&nbsp;
-        Total price: ${order.totalPrice}
+        Total price: ${order.totalPrice} ${order.purchases[0].currency.currencyCode}
         </div>
         <c:forEach items="${order.purchases}" var="purchase">
         <a class="mdl-cell mdl-cell--6-col" href="${commodityUrl}/${purchase.commodityId}" target="_blank">
@@ -25,7 +25,7 @@
         <div class="mdl-cell mdl-cell--6-col mdl-card__supporting-text">
         ${purchase.name}&nbsp;${purchase.shortDescription}<br/>
         Amount:${purchase.amount}<br/>
-        Price:${purchase.price*purchase.amount}<br/>
+        Price:${purchase.price*purchase.amount}&nbsp;${purchase.currency.currencyCode}<br/>
         </div>
         </c:forEach>
         <!-- Accent-colored flat button -->

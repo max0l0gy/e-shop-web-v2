@@ -1,7 +1,5 @@
 package ru.maxmorev.restful.eshop.rest.response;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
 import lombok.Value;
 import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
