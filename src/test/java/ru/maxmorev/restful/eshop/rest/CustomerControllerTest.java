@@ -32,7 +32,7 @@ public class CustomerControllerTest {
         mockMvc.perform(
                 post("/rest/api/public/customer/reset-password-code")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(readFileToString("/requests/reset-password-error.json"))
+                        .content(readFileToString("requests/reset-password-error.json"))
         )
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -47,7 +47,7 @@ public class CustomerControllerTest {
         mockMvc.perform(
                 post("/rest/api/public/customer/reset-password-code")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(readFileToString("/requests/reset-password-success.json"))
+                        .content(readFileToString("requests/reset-password-success.json"))
         )
                 .andDo(print())
                 .andExpect(status().isOk())

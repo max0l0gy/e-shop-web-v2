@@ -42,6 +42,9 @@ external:
     url: http://portfolio-rest-api:8080
   yoomoney:
     url: http://yoomoney-rest-api:8080
+  ecb:
+    url: https://www.ecb.europa.eu
+    daily-xml: "/stats/eurofxref/eurofxref-daily.xml"
 
 feign:
   client:

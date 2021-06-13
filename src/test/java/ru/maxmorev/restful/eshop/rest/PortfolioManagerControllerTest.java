@@ -35,7 +35,7 @@ public class PortfolioManagerControllerTest {
         mockMvc.perform(
                 post("/rest/api/private/portfolios")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(readFileToString("/requests/portfolio-create.json"))
+                        .content(readFileToString("requests/portfolio-create.json"))
                         .with(user("some-manager@titsonfire.store")
                                 .password("customer")
                                 .authorities((GrantedAuthority) () -> "ADMIN"))
@@ -59,7 +59,7 @@ public class PortfolioManagerControllerTest {
         mockMvc.perform(
                 put("/rest/api/private/portfolios")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(readFileToString("/requests/portfolio-update.json"))
+                        .content(readFileToString("requests/portfolio-update.json"))
                         .with(user("some-manager@titsonfire.store")
                                 .password("customer")
                                 .authorities((GrantedAuthority) () -> "ADMIN"))
