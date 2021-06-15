@@ -259,11 +259,11 @@ function showShoppingCart(shoppingCart){
     $('#cart-container').empty();
     $('#cart-container').append(content);
 
-    $('#total-items').empty();
-    $('#total-items').append('<b>'+totalItems+'</b>');
-
-    $('#total-cart-price').empty();
-    $('#total-cart-price').append('<b>£'+totalPrice+'</b>');
+    // $('#total-items').empty();
+    // $('#total-items').append('<b>'+totalItems+'</b>');
+    //
+    // $('#total-cart-price').empty();
+    // $('#total-cart-price').append('<b>'+totalPrice+'</b>');
     showShoppingCartIconDataBadge(totalItems);
     componentHandler.upgradeDom();
 
