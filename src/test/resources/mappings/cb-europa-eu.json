@@ -1,0 +1,22 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/stats/eurofxref/eurofxref-daily.xml"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/xml"
+        },
+        "bodyFileName": "responses/eurofxref-daily.xml"
+      }
+    }
+  ]
+}

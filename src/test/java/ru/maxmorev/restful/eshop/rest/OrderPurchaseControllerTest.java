@@ -34,7 +34,7 @@ public class OrderPurchaseControllerTest {
         mockMvc.perform(
                 post("/rest/api/customer/order/confirm/")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(readFileToString("/requests/confirm-payment.json"))
+                .content(readFileToString("requests/confirm-payment.json"))
                         .with(user("some-customer@titsonfire.store")
                                 .password("customer")
                                 .authorities((GrantedAuthority) () -> "CUSTOMER"))

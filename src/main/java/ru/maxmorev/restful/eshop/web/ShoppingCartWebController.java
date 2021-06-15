@@ -18,6 +18,7 @@ import ru.maxmorev.restful.eshop.feignclient.domain.yoomoney.RestResponse;
 import ru.maxmorev.restful.eshop.rest.request.PaymentInitialRequest;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 import ru.maxmorev.restful.eshop.rest.response.ShoppingCartDto;
+import ru.maxmorev.restful.eshop.services.CurrencyRateService;
 import ru.maxmorev.restful.eshop.services.OrderPurchaseService;
 
 import javax.servlet.http.Cookie;
@@ -34,6 +35,7 @@ public class ShoppingCartWebController {
     private final OrderPurchaseService orderPurchaseService;
     private final CommonWebController commonWebController;
     private final YoomoneyApi yoomoneyApi;
+    private final CurrencyRateService currencyRateService;
 
     @GetMapping(path = {"/shopping/cart/"})
     public String getShoppingCart(
@@ -42,8 +44,19 @@ public class ShoppingCartWebController {
             Model uiModel) throws IOException {
         log.info("Listing shopping cart");
         commonWebController.addCommonAttributesToModel(uiModel);
-        commonWebController.mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
+        addShoppingCartAttributes(response, cartCookie, uiModel);
         return "shopping/cart";
+    }
+
+    private void addShoppingCartAttributes(HttpServletResponse response, Cookie cartCookie, Model uiModel) {
+        ShoppingCartDto shoppingCartDto = commonWebController.mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
+        uiModel.addAttribute("shoppingCart", shoppingCartDto);
+        uiModel.addAttribute("shoppingCartTotalPrice", shoppingCartDto.getTotalPrice());
+        uiModel.addAttribute("shoppingCartTotalPriceRub", convertUsdToRubles(shoppingCartDto));
+    }
+
+    private Optional<BigDecimal> convertUsdToRubles(ShoppingCartDto shoppingCartDto) {
+        return currencyRateService.getCurrencyRateContainer().convertUsdToRub(shoppingCartDto.getTotalPrice());
     }
 
     @SneakyThrows
@@ -64,7 +77,7 @@ public class ShoppingCartWebController {
             CustomerOrder order = orderPurchaseService.createOrderFor(authCustomer);
             PaymentRequest paymentRequest = new PaymentRequest()
                     .setIdempotenceKey(String.valueOf(order.getId()))
-                    .setAmount(BigDecimal.valueOf(scFromCookie.getTotalPrice()))
+                    .setAmount(scFromCookie.getTotalPrice())
                     .setDescription("Order No. " + order.getId());
             RestResponse<EmbeddedPaymentResponse> yoomoneyPayment = yoomoneyApi.initial(paymentRequest);
             if (null != yoomoneyPayment.getData()) {
@@ -86,6 +99,7 @@ public class ShoppingCartWebController {
         });
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.getShoppingCartFromCookie(cartCookie, response);
+        addShoppingCartAttributes(response, cartCookie, uiModel);
         return "shopping/proceedToCheckout";
     }
 

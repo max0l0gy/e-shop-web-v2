@@ -14,6 +14,10 @@ spring:
   messages:
     basename: i18n/messages,i18n/application # for multiple properties just use comma separated values
     encoding: UTF-8
+  cache:
+    cache-names: currencyRate
+    caffeine:
+      spec: maximumSize=20,expireAfterAccess=300s
 management:
   endpoints:
     web:
@@ -42,6 +46,9 @@ external:
     url: http://portfolio-rest-api:8080
   yoomoney:
     url: http://yoomoney-rest-api:8080
+  ecb:
+    url: https://www.ecb.europa.eu
+    daily-xml: "/stats/eurofxref/eurofxref-daily.xml"
 
 feign:
   client:

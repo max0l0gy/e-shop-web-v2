@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Value;
 import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -27,8 +29,8 @@ public class ShoppingCartDto  extends JsonMappedValue {
         return shoppingSet != null ? shoppingSet.stream().mapToInt(ShoppingCartSetDto::getAmount).sum() : 0;
     }
 
-    public double getTotalPrice() {
-        return shoppingSet != null ? shoppingSet.stream().mapToDouble(scs->scs.getAmount()*scs.getBranch().getPrice()).sum(): 0.0d;
+    public BigDecimal getTotalPrice() {
+        return shoppingSet != null ? shoppingSet.stream().map(scs->BigDecimal.valueOf(scs.getAmount()*scs.getBranch().getPrice())).reduce(BigDecimal.ZERO, BigDecimal::add).setScale(2, RoundingMode.HALF_UP): BigDecimal.ZERO;
     }
 
     private String getCurrencyCode() {

@@ -21,6 +21,9 @@ external:
     url: http://localhost:${wiremock.server.port}
   yoomoney:
     url: http://localhost:${wiremock.server.port}
+  ecb:
+    url: http://localhost:${wiremock.server.port}
+    daily-xml: "/stats/eurofxref/eurofxref-daily.xml"
 
 wiremock:
   server:

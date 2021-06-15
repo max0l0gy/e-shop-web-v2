@@ -3,16 +3,18 @@ package ru.maxmorev.restful.eshop.feignclient;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+import org.springframework.test.context.junit4.SpringRunner;
 import ru.maxmorev.restful.eshop.feignclient.domain.paypal.Order;
-
 @Slf4j
+@SpringBootTest
+@RunWith(SpringRunner.class)
 @AutoConfigureWireMock(port = 0)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class PayPalApiTest {
+public class PayPalApiTest {
     @Autowired
     private PayPalApi payPalApi;
 

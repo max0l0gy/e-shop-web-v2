@@ -79,8 +79,10 @@
         <div class="mdl-cell mdl-cell--12-col" id="cart-title">
             <h4>Items will be reserved for ${labelExpiredMinutes} minutes</h4>
             Shopping Cart Subtotal (
-            <div class="data-holder" id="total-items">5</div>
-            items):&nbsp;<div class="data-holder" id="total-cart-price">£</div>
+            <div class="data-holder" id="total-items">${shoppingCart.itemsAmount}</div>
+            items):&nbsp;
+            <div class="data-holder" id="total-cart-price">${shoppingCartTotalPrice}</div>
+            <div class="data-holder" id="total-cart-price-rub"><strong>= ${shoppingCartTotalPriceRub}</strong></div>
         </div>
 
         <tiles:insertAttribute name="cart-container"/>
