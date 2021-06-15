@@ -77,12 +77,12 @@
                  alt="Shopping cart is Empty"/>
         </div>
         <div class="mdl-cell mdl-cell--12-col" id="cart-title">
-            <h4>Items will be reserved for ${labelExpiredMinutes} minutes</h4>
-            Shopping Cart Subtotal (
-            <div class="data-holder" id="total-items">${shoppingCart.itemsAmount}</div>
-            items):&nbsp;
-            <div class="data-holder" id="total-cart-price">${shoppingCartTotalPrice}</div>
-            <div class="data-holder" id="total-cart-price-rub"><strong>= ${shoppingCartTotalPriceRub}</strong></div>
+            <div class="mdl-grid" style="font-size: 16px;">
+                <div class="mdl-cell mdl-cell--12-col">Items will be reserved for ${labelExpiredMinutes} minutes</div>
+                <div class="mdl-cell mdl-cell--12-col"> Shopping Cart Subtotal (${shoppingCart.itemsAmount} items):&nbsp;</div>
+                <div class="mdl-cell mdl-cell--12-col">Total Price: <strong>${shoppingCartTotalPrice} USD</strong></div>
+                <div class="mdl-cell mdl-cell--12-col">=<strong>${shoppingCartTotalPriceRub} RUB</strong></div>
+            </div>
         </div>
 
         <tiles:insertAttribute name="cart-container"/>
