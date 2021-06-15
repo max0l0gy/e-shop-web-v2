@@ -55,8 +55,8 @@ public class ShoppingCartWebController {
         uiModel.addAttribute("shoppingCartTotalPriceRub", convertUsdToRubles(shoppingCartDto));
     }
 
-    private Optional<BigDecimal> convertUsdToRubles(ShoppingCartDto shoppingCartDto) {
-        return currencyRateService.getCurrencyRateContainer().convertUsdToRub(shoppingCartDto.getTotalPrice());
+    private BigDecimal convertUsdToRubles(ShoppingCartDto shoppingCartDto) {
+        return currencyRateService.getCurrencyRateContainer().convertUsdToRub(shoppingCartDto.getTotalPrice()).orElseThrow();
     }
 
     @SneakyThrows
@@ -66,8 +66,8 @@ public class ShoppingCartWebController {
             @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
             Model uiModel) {
         //merge shopping cart after login
-        ShoppingCartDto scFromCookie = commonWebController.mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
-        if (scFromCookie.getShoppingSet().isEmpty()) {
+        ShoppingCartDto shoppingCart = commonWebController.mergeShoppingCartFromCookieWithCustomerIfNeed(cartCookie, response, uiModel);
+        if (shoppingCart.getShoppingSet().isEmpty()) {
             //redirect to cart
             response.sendRedirect("/shopping/cart");
         }
@@ -77,8 +77,8 @@ public class ShoppingCartWebController {
             CustomerOrder order = orderPurchaseService.createOrderFor(authCustomer);
             PaymentRequest paymentRequest = new PaymentRequest()
                     .setIdempotenceKey(String.valueOf(order.getId()))
-                    .setAmount(scFromCookie.getTotalPrice())
-                    .setDescription("Order No. " + order.getId());
+                    .setAmount(convertUsdToRubles(shoppingCart))
+                    .setDescription("Order No. " + order.getId() );
             RestResponse<EmbeddedPaymentResponse> yoomoneyPayment = yoomoneyApi.initial(paymentRequest);
             if (null != yoomoneyPayment.getData()) {
                 log.info("yoomoney status : {}", yoomoneyPayment.getData().getStatus());

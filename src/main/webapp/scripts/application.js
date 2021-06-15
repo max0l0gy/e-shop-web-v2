@@ -244,7 +244,7 @@ function showShoppingCart(shoppingCart){
         content += '<a class="mdl-cell mdl-cell--4-col"  href="'+showCommodityUrl+'/'+set.commodityInfo.id+'"><img src="'+set.commodityInfo.images[0]+'" width="250px"/>';
         content += '</a>'
         content += '<div class="mdl-cell mdl-cell--4-col">';
-        content += '<b>'+set.branch.price+' £</b>&nbsp;';
+        content += '<b>'+set.branch.price+' USD</b>&nbsp;';
         content += '<a href="'+showCommodityUrl+'/'+set.commodityInfo.id+'">'+set.commodityInfo.name+'</a><br/>';
         content += attributesContent;
         content += 'quantity: ' + set.amount +' | price: '+set.branch.price +'<br/><br/>';
