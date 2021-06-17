@@ -1,6 +1,7 @@
 package ru.maxmorev.restful.eshop.rest.controllers;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.*;
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class OrderPurchaseController {
@@ -66,6 +68,7 @@ public class OrderPurchaseController {
     Message customerOrderCancel(
             @Valid @RequestBody OrderIdRequest order,
             Locale locale) {
+        log.info("Customer Order Cancellation order.id={} started", order.getOrderId());
         orderPurchaseService.cancelOrderByCustomer(order.getOrderId(), order.getCustomerId());
         return new Message(Message.SUCCES, messageSource.getMessage("message_success", new Object[]{}, locale));
     }
