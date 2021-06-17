@@ -35,7 +35,7 @@ public class PaymentServiceYoomoney implements PaymentService {
 
     @Override
     public Optional<CapturedOrderRefundResponse> refundCapturedOrder(String orderId, String captureId) {
-        return Optional.ofNullable(yoomoneyApi.getPayment(orderId))
+        return Optional.ofNullable(yoomoneyApi.getPayment(captureId))
                 .map(paymentResponse -> {
                     log.info("response status: {}", paymentResponse.getStatus());
                     log.info("response data not empty {}", Objects.isNull(paymentResponse.getData()));
