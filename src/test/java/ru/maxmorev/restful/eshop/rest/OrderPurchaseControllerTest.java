@@ -12,6 +12,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 import static org.hamcrest.Matchers.is;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -19,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.maxmorev.restful.eshop.TestUtils.readFileToString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -43,6 +47,25 @@ public class OrderPurchaseControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status", is("success")))
                 .andExpect(jsonPath("$.message", is("Success")))
+        ;
+    }
+
+    @Test
+    @SneakyThrows
+    public void adminAllCustomerOrderList() {
+        mockMvc.perform(
+                get("/rest/api/private/order/list/")
+                        .with(user("some-customer@titsonfire.store")
+                                .password("customer")
+                                .authorities((GrantedAuthority) () -> "ADMIN"))
+        )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.totalPages", is(1)))
+                .andExpect(jsonPath("$.currentPage", is(1)))
+                .andExpect(jsonPath("$.orderData").isArray())
+                .andExpect(jsonPath("$.orderData[?(@.id == 25)].dateOfCreation", is(Collections.singletonList("2019-08-23T15:46:25.918+0000"))))
+
         ;
     }
 }
