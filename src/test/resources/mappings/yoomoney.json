@@ -31,6 +31,42 @@
           }
         }
       }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/v1/refunds",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.payment_id",
+            "equalsTo": "2840bb6e-000f-5000-a000-151e92335af3"
+          }
+        ]
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "success",
+          "data": {
+            "id": "216749f7-0016-50be-b000-078d43a63ae4",
+            "status": "succeeded",
+            "amount": {
+              "value": 2.0,
+              "currency": "RUB"
+            },
+            "created_at": "2017-10-04T19:27:51.407Z",
+            "payment_id": "2840bb6e-000f-5000-a000-151e92335af3"
+          }
+        }
+      }
     }
   ]
 }

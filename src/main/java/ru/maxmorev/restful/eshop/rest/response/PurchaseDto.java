@@ -1,6 +1,7 @@
 package ru.maxmorev.restful.eshop.rest.response;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Value;
 import ru.maxmorev.restful.eshop.rest.JsonMappedValue;
 import ru.maxmorev.restful.eshop.rest.request.AttributeDto;
@@ -11,18 +12,18 @@ import java.util.List;
 
 @Value
 @Builder
+@EqualsAndHashCode(callSuper = true)
 public class PurchaseDto extends JsonMappedValue {
-    private Integer amount;//amount of items
-    private Long branchId;//branchId
-    private Long commodityId;
-    private String name;
-    private String shortDescription;
-    private String overview;
-    private Date dateOfCreation;
-    private String type;
-    private List<String> images;
-    private Float price; //price for 1 item in branch
-    private Currency currency; //current price currency
-    private List<AttributeDto> attributes;
-
+    Integer amount;//amount of items
+    Long branchId;//branchId
+    Long commodityId;
+    String name;
+    String shortDescription;
+    String overview;
+    Date dateOfCreation;
+    String type;
+    List<String> images;
+    Float price; //price for 1 item in branch
+    Currency currency; //current price currency
+    List<AttributeDto> attributes;
 }
