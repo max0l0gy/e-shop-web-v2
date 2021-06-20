@@ -149,6 +149,7 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
             switch (order.getStatus()) {
                 case PAYMENT_APPROVED:
                     CustomerOrderDto orderDto = convertForCustomer(order);
+                    log.info("Starting order cancellation: {}", orderDto.getPaymentID());
                     paymentServiceStrategy
                             .getByPaymentProviderName(orderDto.getPaymentProvider().name())
                             .flatMap(paymentService -> paymentService.refundCapturedOrder(String.valueOf(orderDto.getId()), orderDto.getPaymentID()))

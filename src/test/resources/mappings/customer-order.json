@@ -169,6 +169,47 @@
     {
       "request": {
         "method": "GET",
+        "url": "/order/102/customer/233",
+        "bodyPatterns": []
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 102,
+          "version": 2,
+          "dateOfCreation": "2019-08-25T15:46:23.918+0000",
+          "status": "PAYMENT_APPROVED",
+          "paymentProvider": "Yoomoney",
+          "paymentID": "2CV55440UT6646827",
+          "customerId": 233,
+          "purchases": [
+            {
+              "id": {
+                "branchId": 5,
+                "orderId": 16
+              },
+              "purchaseInfo": {
+                "amount": 2,
+                "price": 45.0,
+                "commodityName": "T-SHIRT 01",
+                "commodityImageUri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/SSL_Deep_Inspection_Explanation.svg/1050px-SSL_Deep_Inspection_Explanation.svg.png"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
         "url": "/order/list/customer/101"
       },
       "response": {
@@ -276,6 +317,58 @@
               ]
             }
           ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "DELETE",
+        "url": "/order/expired/101"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "success",
+          "url": null,
+          "message": "Success",
+          "errors": null
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/order/by/customer/cancellation/",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.orderId",
+            "equalsTo": 102
+          }
+        ]
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "status": "success",
+          "url": null,
+          "message": "Success",
+          "errors": null
         }
       }
     }

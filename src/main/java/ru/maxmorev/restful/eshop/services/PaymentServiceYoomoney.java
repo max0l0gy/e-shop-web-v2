@@ -35,13 +35,14 @@ public class PaymentServiceYoomoney implements PaymentService {
 
     @Override
     public Optional<CapturedOrderRefundResponse> refundCapturedOrder(String orderId, String captureId) {
+        log.info("Starting payment refund: {}", captureId);
         return Optional.ofNullable(yoomoneyApi.getPayment(captureId))
                 .map(paymentResponse -> {
                     log.info("response status: {}", paymentResponse.getStatus());
-                    log.info("response data not empty {}", Objects.isNull(paymentResponse.getData()));
+                    log.info("response data not empty {}", Objects.nonNull(paymentResponse.getData()));
                     return paymentResponse;
                 })
-                .filter(restResponse -> Objects.isNull(restResponse.getData()))
+                .filter(restResponse -> Objects.nonNull(restResponse.getData()))
                 .map(RestResponse::getData)
                 .filter(EmbeddedPaymentResponse::getPaid)
                 .map(payment -> new RefundRequest()
@@ -51,10 +52,10 @@ public class PaymentServiceYoomoney implements PaymentService {
                 .map(refundRequest -> yoomoneyApi.refunds(orderId, refundRequest))
                 .map(restResponse -> {
                     log.info("response status: {}", restResponse.getStatus());
-                    log.info("response data not empty {}", Objects.isNull(restResponse.getData()));
+                    log.info("response data not empty {}", Objects.nonNull(restResponse.getData()));
                     return restResponse;
                 })
-                .filter(restResponse -> Objects.isNull(restResponse.getData()))
+                .filter(restResponse -> Objects.nonNull(restResponse.getData()))
                 .map(RestResponse::getData)
                 .map(refundResponse -> new CapturedOrderRefundResponse()
                         .setPaymentId(refundResponse.getPaymentId())

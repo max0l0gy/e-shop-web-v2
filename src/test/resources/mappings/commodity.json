@@ -109,6 +109,37 @@
           ]
         }
       }
+    },
+    {
+      "request": {
+        "method": "PUT",
+        "url": "/api/manager/branch/5/amount/inc/2"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": 5,
+          "commodityId": 4,
+          "amount": 7,
+          "price": 3500.0,
+          "currency": "EUR",
+          "attributes": [
+            {
+              "name": "size",
+              "value": "s",
+              "measure": null
+            }
+          ]
+        }
+      }
     }
   ]
 }
