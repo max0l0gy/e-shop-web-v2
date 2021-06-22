@@ -17,7 +17,7 @@
         <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Founded by Russian artist Victoria Romanovich in 2018</div>
         <p class="mdl-typography--font-light">TITS ON FIRE is an artistic and fashion label</p>
     </div>
-    <div class=".titsonfire-about-section-image"></div>
+    <div class="titsonfire-about-section-image"></div>
 </div>
 <div class="titsonfire-more-section">
     <div class="titsonfire-section-title">ABOUT</div>
