@@ -17,7 +17,7 @@
         <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">I analyze and transform reality into forms or plots</div>
         <p class="mdl-typography--font-light">the combination of grotesque or imaginary images that caricatures of modern society and its stereotypes</p>
     </div>
-    <div class="titsonfire-customized-section-image"></div>
+    <div class="titsonfire-artist-statement-section-image"></div>
 </div>
 <div class="titsonfire-more-section">
     <div class="titsonfire-section-title">ARTIST STATEMENT / CV</div>
