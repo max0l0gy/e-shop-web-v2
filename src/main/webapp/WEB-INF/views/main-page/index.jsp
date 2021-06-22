@@ -78,13 +78,11 @@
 </script>
 <div class="titsonfire-customized-section">
     <div class="titsonfire-customized-section-text">
-        <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Customised by you, for you
-        </div>
+        <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">HIGH VOLTAGE ART</div>
         <p class="mdl-typography--font-light">
-            Put the stuff that you care about right on your home screen: the latest news, the weather or a stream of
-            your recent photos.
+           choose a section and follow me on an exciting journey
             <br>
-            <a href="" class="titsonfire-link mdl-typography--font-light">Customise your phone</a>
+            ceramics, canvases, T-shirts and more
         </p>
     </div>
     <div class="titsonfire-customized-section-image"></div>

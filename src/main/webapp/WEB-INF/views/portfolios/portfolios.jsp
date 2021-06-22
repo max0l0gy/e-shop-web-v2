@@ -18,15 +18,13 @@ $(document).ready(function () {
 
 <div class="titsonfire-customized-section">
     <div class="titsonfire-customized-section-text">
-        <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Write something about portfolio
+        <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">CERAMICS, ILLUSTRATIONS, TEXTURES, MIXED MEDIA
         </div>
         <p class="mdl-typography--font-light">
-            Why it should be here
-            <br>
-            <a href="" class="titsonfire-link mdl-typography--font-light">I like you portfolio</a>
+            endless love with a brush<br>
         </p>
     </div>
-    <div class="titsonfire-customized-section-image"></div>
+    <div class="titsonfire-portfolio-section-image"></div>
 </div>
 <div class="titsonfire-more-section">
     <div class="titsonfire-section-title">New from Portfolio</div>

@@ -392,8 +392,20 @@ a img{
   height: 400px;
 }
 
+.titsonfire-portfolio-section-image {
+  background: url('images/titsonfire-portfolio-section-image.jpg') center top no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
+.titsonfire-artist-statement-section-image {
+  background: url('images/titsonfire-artist-statement-section-image.jpg') center top no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
 .titsonfire-about-section-image {
-  background: url('images/mainpage-01.jpg') center top no-repeat;
+  background: url('images/titsonfire-about-section-image.jpg') center top no-repeat;
   background-size: cover;
   height: 400px;
 }
