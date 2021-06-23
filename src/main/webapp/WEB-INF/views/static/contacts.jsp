@@ -14,10 +14,10 @@
 
 <div class="titsonfire-customized-section">
     <div class="titsonfire-customized-section-text">
-        <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Insta me</div>
-        <p class="mdl-typography--font-light">Email me</p>
+        <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast"><a href="https://www.instagram.com/titsonfire.store/">instagram</a></div>
+        <p class="mdl-typography--font-light">Email me: info@titsonfire.store</p>
     </div>
-    <div class="titsonfire-customized-section-image"></div>
+    <div class="titsonfire-contacts-section-image"></div>
 </div>
 <div class="titsonfire-more-section">
     <div class="titsonfire-section-title">CONTACTS</div>
@@ -26,12 +26,14 @@
 
             <div class="mdl-cell mdl-cell--6-col mdl-typography--font-light no-padding">
                 <span class="mdl-typography--font-light mdl-typography--subhead">
-                    Some thing about contacts
+                    If you have any questions about orders, proposals for cooperation or a request for custom, please contact us at any of the resources
                 </span>
             </div>
             <div class="mdl-cell mdl-cell--6-col mdl-typography--font-light no-padding">
                 <span class="mdl-typography--font-light mdl-typography--subhead">
-                    Some about concept of contacts
+                <a href="https://www.instagram.com/titsonfire.store/">instagram</a><br/>
+                <a href="https://www.instagram.com/titsonfire.artist/">my personal instagram</a><br/>
+                Email me: info@titsonfire.store<br/>
                 </span>
             </div>
 
