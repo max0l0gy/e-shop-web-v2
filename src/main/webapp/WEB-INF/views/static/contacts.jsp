@@ -14,7 +14,7 @@
 
 <div class="titsonfire-customized-section">
     <div class="titsonfire-customized-section-text">
-        <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast"><a href="https://www.instagram.com/titsonfire.store/">instagram</a></div>
+        <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast"><a href="https://www.instagram.com/titsonfire.artist">instagram</a></div>
         <p class="mdl-typography--font-light">Email me: info@titsonfire.store</p>
     </div>
     <div class="titsonfire-contacts-section-image"></div>
@@ -31,9 +31,8 @@
             </div>
             <div class="mdl-cell mdl-cell--6-col mdl-typography--font-light no-padding">
                 <span class="mdl-typography--font-light mdl-typography--subhead">
-                <a href="https://www.instagram.com/titsonfire.store/">instagram</a><br/>
-                <a href="https://www.instagram.com/titsonfire.artist/">my personal instagram</a><br/>
-                Email me: info@titsonfire.store<br/>
+                <a href="https://www.instagram.com/titsonfire.artist/">instagram</a><br/>
+                Email me: info@titsonfire.store <br/>
                 </span>
             </div>
 
