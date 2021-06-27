@@ -11,7 +11,7 @@
 <spring:theme code="webRoot" var="webRoot"/>
 <spring:url value="${webRoot}/static/about/" var="aboutUrl"/>
 <spring:url value="${webRoot}/static/privacy-policy" var="privacyUrl"/>
-<spring:url value="https://www.instagram.com/titsonfire.store" var="instaUrl"/>
+<spring:url value="https://www.instagram.com/titsonfire.artist" var="instaUrl"/>
 
 <footer class="titsonfire-footer mdl-mega-footer">
     <div class="mdl-mega-footer--top-section">
