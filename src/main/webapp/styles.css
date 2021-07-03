@@ -410,6 +410,12 @@ a img{
   height: 400px;
 }
 
+.titsonfire-contacts-section-image {
+  background: url('images/titsonfire-contacts-section-image.jpg') center top no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
 .titsonfire-more-section {
   padding: 30px 0;
   max-width: 1044px;
