@@ -35,6 +35,42 @@
                 </span>
             </div>
 
+            <div class="mdl-cell mdl-cell--6-col mdl-typography--font-light no-padding">
+                <img class="article-image" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/8adad7122761329.60e06f6fb7046.jpg" border="0" alt="">
+            </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-typography--font-light no-padding">
+                <h2>Victoria Romanovich</h2>
+                <h2>CV</h2>
+                born 1995<br/>
+                based in Moscow</br>
+                <a href="https://www.behance.net/titsonfire-artist" target="_blank">behance</a></br>
+                <a href="https://www.instagram.com/titsonfire.artist" target="_blank">instagram</a></br>
+                <h2>Education</h2>
+                2016 - 2019 B.A. (Hons) in Fine Arts, University of Hertsfordshire<br/>
+                2014 - 2015 B.A. (Hons) in Fashion Design, University of Hertsfordshire (one year)<br/>
+                2014 IELTS test (6.0)<br/>
+                2013-2014  B.A. (Hons) Foundation, University of Hertsfordshire<br/>
+                2012 - 2013 Pre - Foundation course, University of Hertsfordshire<br/>
+            </div>
+
+            <div class="mdl-cell mdl-cell--6-col mdl-typography--font-light no-padding">
+                <h2>Group exibitions</h2>
+                2021<br/>
+                Vozrozhdeniye, Dirty Hands ceramic studio, Moscow. Curated by Anastasia Dmitrenko. Ceramic object Reborn.
+                2019<br/>
+                Soup, ZIL Cultural Centre, Moscow. Parallel programme of 8th Moscow biennale of contemporary art. Curated by Ian Charlesworth. Ceramic installation Inversion of Reality.
+                Praxis, British School of Art and Design, ARTPLAY, Moscow, self-curated. Online performance in Instagram GUCCIHOLE
+                Situation, British School of Art and Design, ARTPLAY, Moscow, self-curated. Ceramic installation Inversion of Reality.
+                2018<br/>
+                Contrast|Construct, MARS Centre of Contemporary Art, Moscow, 6th Moscow International Biennale for Young Art. Curated by Moст | Most. Installation of Guccihole project Make you leave by the broom.
+                2017<br/>
+                Cosmopolitan Beauty Awards, Triumph Gallery, Moscow. Part of competition Creation of objects based on cosmetics. Canvas for Lacost Brand, acryl. Curated by Cosmopolitan magazine.
+                2016<br/>
+                Bread, Open air exibition (street Lower Syromyatnicheskaya,10). Curated by Valentin Boiangiu.
+                2015<br/>
+                Wrap Competition, British School of Art and Design, ARTPLAY, Moscow, Curated by LUSH company. Prints on fabric for Knot Wrap designs.
+            </div>
+
         </div>
     </div>
 </div>
