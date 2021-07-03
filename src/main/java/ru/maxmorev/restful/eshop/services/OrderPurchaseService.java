@@ -3,6 +3,7 @@ package ru.maxmorev.restful.eshop.services;
 import ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus;
 import ru.maxmorev.restful.eshop.domain.CapturedOrderStatus;
 import ru.maxmorev.restful.eshop.domain.CustomerOrder;
+import ru.maxmorev.restful.eshop.feignclient.domain.MailSendResponse;
 import ru.maxmorev.restful.eshop.rest.request.OrderPaymentConfirmation;
 import ru.maxmorev.restful.eshop.rest.request.PaymentInitialRequest;
 import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
