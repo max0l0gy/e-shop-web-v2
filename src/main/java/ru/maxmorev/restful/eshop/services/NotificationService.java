@@ -10,5 +10,6 @@ public interface NotificationService {
     MailSendResponse orderPaymentConfirmation(String email, String name, long orderId);
     MailSendResponse orderCancelCustomer(String email, String name, CustomerOrderDto order);
     MailSendResponse emailPasswordReset(ResetPassword resetPassword);
+    MailSendResponse preparingToShip(String email, String name, long orderId);
 
 }

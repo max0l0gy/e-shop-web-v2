@@ -5,13 +5,14 @@ import org.springframework.stereotype.Service;
 import ru.maxmorev.restful.eshop.config.ManagerConfig;
 import ru.maxmorev.restful.eshop.feignclient.MailServiceApi;
 import ru.maxmorev.restful.eshop.feignclient.domain.MailSendResponse;
-import ru.maxmorev.restful.eshop.feignclient.domain.OrderPaymentCanceledCustomerAdminTemplate;
-import ru.maxmorev.restful.eshop.feignclient.domain.OrderPaymentCanceledCustomerTemplate;
-import ru.maxmorev.restful.eshop.feignclient.domain.OrderPaymentConfirmedAdminTemplate;
-import ru.maxmorev.restful.eshop.feignclient.domain.OrderPaymentConfirmedTemplate;
+import ru.maxmorev.restful.eshop.feignclient.domain.ses.templates.OrderPaymentCanceledCustomerAdminTemplate;
+import ru.maxmorev.restful.eshop.feignclient.domain.ses.templates.OrderPaymentCanceledCustomerTemplate;
+import ru.maxmorev.restful.eshop.feignclient.domain.ses.templates.OrderPaymentConfirmedAdminTemplate;
+import ru.maxmorev.restful.eshop.feignclient.domain.ses.templates.OrderPaymentConfirmedTemplate;
 import ru.maxmorev.restful.eshop.feignclient.domain.ResetPassword;
-import ru.maxmorev.restful.eshop.feignclient.domain.ResetPasswordTemplate;
-import ru.maxmorev.restful.eshop.feignclient.domain.VerifyEmailTemplate;
+import ru.maxmorev.restful.eshop.feignclient.domain.ses.templates.PreparingToShipTemplate;
+import ru.maxmorev.restful.eshop.feignclient.domain.ses.templates.ResetPasswordTemplate;
+import ru.maxmorev.restful.eshop.feignclient.domain.ses.templates.VerifyEmailTemplate;
 import ru.maxmorev.restful.eshop.rest.response.CustomerOrderDto;
 
 @Service
@@ -67,6 +68,15 @@ public class NotificationServiceImpl implements NotificationService {
                         .create(
                                 resetPassword
                         ));
+    }
+
+    @Override
+    public MailSendResponse preparingToShip(String email, String name, long orderId) {
+        return mailServiceApi.sendTemplate(
+                new PreparingToShipTemplate()
+                        .create(email,
+                                name,
+                                orderId));
     }
 
 }

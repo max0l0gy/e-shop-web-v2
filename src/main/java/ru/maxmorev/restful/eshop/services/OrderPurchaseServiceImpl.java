@@ -9,6 +9,7 @@ import ru.maxmorev.restful.eshop.domain.OrderGrid;
 import ru.maxmorev.restful.eshop.domain.ShoppingCart;
 import ru.maxmorev.restful.eshop.feignclient.EshopCommodityApi;
 import ru.maxmorev.restful.eshop.feignclient.EshopCustomerOrderApi;
+import ru.maxmorev.restful.eshop.feignclient.domain.MailSendResponse;
 import ru.maxmorev.restful.eshop.rest.request.CommodityBranchDto;
 import ru.maxmorev.restful.eshop.rest.request.CreateOrderRequest;
 import ru.maxmorev.restful.eshop.rest.request.OrderIdRequest;
@@ -28,6 +29,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus.AWAITING_PAYMENT;
+import static ru.maxmorev.restful.eshop.annotation.CustomerOrderStatus.PREPARING_TO_SHIP;
 import static ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor.suppress;
 
 @Slf4j
@@ -120,9 +122,25 @@ public class OrderPurchaseServiceImpl implements OrderPurchaseService {
 
     @Override
     public CustomerOrder setOrderStatus(Long id, CustomerOrderStatus status) {
-        return eshopCustomerOrderApi.setOrderStatus(id, status.name());
+        CustomerOrder customerOrder = eshopCustomerOrderApi.setOrderStatus(id, status.name());
+        sendNotificationToCustomerIfNeeded(id, status, customerOrder);
+        //TODO save notification id in event storage or log storage
+        return customerOrder;
     }
 
+    private Optional<MailSendResponse> sendNotificationToCustomerIfNeeded(Long id, CustomerOrderStatus status, CustomerOrder customerOrder) {
+        //TODO use strategy pattern
+        if (PREPARING_TO_SHIP.equals(status)) {
+            return suppress(() -> customerService.findById(customerOrder.getCustomerId()))
+                    .map(customer -> notificationService.preparingToShip(
+                            customer.getEmail(),
+                            customer.getFullName(),
+                            id
+                    ));
+
+        }
+        return Optional.empty();
+    }
 
     @Override
     public Optional<CustomerOrderDto> findOrder(Long orderId, Long customerId) {
