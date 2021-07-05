@@ -2,6 +2,7 @@ package ru.maxmorev.restful.eshop.feignclient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,9 @@ public interface EshopCommodityApi {
 
     @RequestMapping(path = "/api/v1/branches/amount/gt/0/type/name/{typeName}", method = RequestMethod.GET)
     List<CommodityDto> findWithBranchesAmountGt0AndType(@PathVariable(name = "typeName") String typeName);
+
+    @GetMapping(path = "/api/v1/branches/amount/eq/0/type/name/{typeName}")
+    List<CommodityDto> findWithBranchesAmountEq0AndType(@PathVariable(name = "typeName") String typeName);
 
     @RequestMapping(path = "/api/v1/commodity/{id}", method = RequestMethod.GET)
     CommodityDto findCommodityById(@PathVariable(name = "id") Long id);
