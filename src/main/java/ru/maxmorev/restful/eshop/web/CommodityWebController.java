@@ -2,7 +2,6 @@ package ru.maxmorev.restful.eshop.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -11,9 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
 import ru.maxmorev.restful.eshop.rest.response.CommodityDto;
 import ru.maxmorev.restful.eshop.rest.response.CommodityTypeDto;
-import ru.maxmorev.restful.eshop.services.CommodityDtoService;
-import ru.maxmorev.restful.eshop.services.CustomerService;
-import ru.maxmorev.restful.eshop.services.ShoppingCartService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -74,6 +70,23 @@ public class CommodityWebController {
         CommodityTypeDto type = commonWebController.commodityDtoService.findTypeByName(name)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid type"));
         List<CommodityDto> commodities = commonWebController.commodityDtoService.findWithBranchesAmountGt0AndType(name);
+        uiModel.addAttribute("currentType", type);
+        commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
+        uiModel.addAttribute("commodities", commodities);
+        return "commodities-by-type";
+    }
+
+    @GetMapping(path = {"/archive/commodities/type/{name}"})
+    public String archiveCommodityListByType(
+            HttpServletResponse response,
+            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
+            @PathVariable(value = "name", required = true) String name,
+            Model uiModel) {
+
+        CommodityTypeDto type = commonWebController.commodityDtoService.findTypeByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid type"));
+        List<CommodityDto> commodities = commonWebController.commodityDtoService.findWithBranchesAmountEq0AndType(name);
         uiModel.addAttribute("currentType", type);
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);

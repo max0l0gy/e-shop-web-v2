@@ -37,6 +37,11 @@ public class CommodityDtoServiceImpl implements CommodityDtoService {
     }
 
     @Override
+    public List<CommodityDto> findWithBranchesAmountEq0AndType(String typeName) {
+        return eshopCommodityApi.findWithBranchesAmountEq0AndType(typeName);
+    }
+
+    @Override
     public Optional<CommodityTypeDto> findTypeByName(String name) {
         return ServiceExseptionSuppressor.suppress(() -> eshopCommodityApi.findTypeByName(name));
     }
