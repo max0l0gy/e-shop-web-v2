@@ -11,6 +11,7 @@
 <spring:message code="label_contacts" var="labelContacts"/>
 <spring:url value="${webRoot}/logout" var="logoutUrl"/>
 <spring:url value="${webRoot}/commodities" var="commoditiesUrl"/>
+<spring:url value="${webRoot}/commodities/archive" var="archiveUrl"/>
 <spring:url value="${webRoot}/commodities/type" var="commoditiesByTypeUrl"/>
 <spring:url value="${webRoot}/shopping/cart/" var="shoppingCartUrl"/>
 <spring:url value="${webRoot}/customer/account/update/" var="accountUrl"/>
@@ -37,8 +38,8 @@
         <!-- Navigation -->
         <div class="titsonfire-navigation-container">
             <nav class="titsonfire-navigation mdl-navigation">
-                <a class="mdl-navigation__link mdl-typography--text-uppercase tab-store"
-                   href="${commoditiesUrl}">Store</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase tab-store" href="${commoditiesUrl}">Store</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase tab-archive" href="${archiveUrl}">Archive</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase tab-portfolios" href="${portfoliosUrl}">Portfolio</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase tab-artist-statement" href="${statementUrl}">Artist
                     Statement/CV</a>
