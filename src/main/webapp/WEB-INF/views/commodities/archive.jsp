@@ -23,11 +23,11 @@
      <div class="mdl-grid">
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-shadow--1dp" style="width:350px;height:350px;align:center;">
-            <a href="https://titsonfire.store/web/commodities/archive/type/T-SHiRT"><img src="${webRoot}/images/store-t-shirts.png" height="345px"></a>
+            <a href="https://titsonfire.store/web/commodities/archive/type/T-SHiRT"><img src="${webRoot}/images/archive-store-t-shirts.png" height="345px"></a>
         </div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone mdl-shadow--1dp" style="width:350px;height:350px;align:center;">
-            <a href="https://titsonfire.store/web/commodities/archive/type/CERAMICS"><img src="${webRoot}/images/store-ceramics.png" height="345px"></a>
+            <a href="https://titsonfire.store/web/commodities/archive/type/CERAMICS"><img src="${webRoot}/images/archive-store-ceramics.png" height="345px"></a>
         </div>
 
      </div>
