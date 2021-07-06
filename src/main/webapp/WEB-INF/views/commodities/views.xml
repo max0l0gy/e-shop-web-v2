@@ -2,6 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
+
     <definition extends="default" name="commodities">
         <put-attribute name="body" value="/WEB-INF/views/commodities/commodities.jsp" />
     </definition>
@@ -9,4 +10,13 @@
     <definition extends="default" name="commodities-by-type">
         <put-attribute name="body" value="/WEB-INF/views/commodities/commodities-by-type.jsp" />
     </definition>
+
+    <definition extends="default" name="archive">
+        <put-attribute name="body" value="/WEB-INF/views/commodities/archive.jsp" />
+    </definition>
+
+    <definition extends="default" name="archive-commodities-by-type">
+        <put-attribute name="body" value="/WEB-INF/views/commodities/archive-commodities-by-type.jsp" />
+    </definition>
+
 </tiles-definitions>

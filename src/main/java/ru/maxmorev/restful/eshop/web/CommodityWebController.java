@@ -52,11 +52,8 @@ public class CommodityWebController {
 
         log.info("Listing branches");
         //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
-        List<CommodityDto> commodities = commonWebController.commodityDtoService.findWithBranchesAmountGt0();
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
-        uiModel.addAttribute("commodities", commodities);
-        log.info("Number of commodities: " + commodities.size());
         return "commodities";
     }
 
@@ -77,24 +74,6 @@ public class CommodityWebController {
         return "commodities-by-type";
     }
 
-    @GetMapping(path = {"/archive/commodities/type/{name}"})
-    public String archiveCommodityListByType(
-            HttpServletResponse response,
-            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
-            @PathVariable(value = "name", required = true) String name,
-            Model uiModel) {
-
-        CommodityTypeDto type = commonWebController.commodityDtoService.findTypeByName(name)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid type"));
-        List<CommodityDto> commodities = commonWebController.commodityDtoService.findWithBranchesAmountEq0AndType(name);
-        uiModel.addAttribute("currentType", type);
-        commonWebController.addCommonAttributesToModel(uiModel);
-        commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
-        uiModel.addAttribute("commodities", commodities);
-        return "commodities-by-type";
-    }
-
-
     @GetMapping(path = "/commodity/{id}")
     public String commodity(
             HttpServletResponse response,
@@ -111,7 +90,6 @@ public class CommodityWebController {
         commodity.setOverview(commonWebController.replaceNewLineByTeg(commodity.getOverview()));
         uiModel.addAttribute("commodity", commodity);
         uiModel.addAttribute("currentType", commodity.getType());
-
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         //TODO improve this part and remove from the code the definition of special type of commodity "wear" t-shirt
@@ -121,5 +99,31 @@ public class CommodityWebController {
         return "commodity/show-commodity";
     }
 
+    @GetMapping(path = {"/commodities/archive/type/{name}"})
+    public String archiveCommodityListByType(
+            HttpServletResponse response,
+            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
+            @PathVariable(value = "name", required = true) String name,
+            Model uiModel) {
+        CommodityTypeDto type = commonWebController.commodityDtoService.findTypeByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid type"));
+        List<CommodityDto> commodities = commonWebController.commodityDtoService.findWithBranchesAmountEq0AndType(name);
+        uiModel.addAttribute("currentType", type);
+        commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
+        uiModel.addAttribute("commodities", commodities);
+        return "archive-commodities-by-type";
+    }
+
+    @GetMapping(path = "/commodities/archive")
+    public String archive(
+            HttpServletResponse response,
+            @CookieValue(value = ShoppingCookie.SHOPPiNG_CART_NAME, required = false) Cookie cartCookie,
+            Model uiModel) {
+        //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
+        commonWebController.addCommonAttributesToModel(uiModel);
+        commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
+        return "archive";
+    }
 
 }
