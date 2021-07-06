@@ -7,7 +7,7 @@
 
 <spring:theme code="webRoot" var="webRoot"/>
 <spring:url value="${webRoot}/commodity" var="showCommodityUrl"/>
-<spring:url value="${webRoot}/commodities" var="commoditiesUrl"/>
+<spring:url value="${webRoot}/commodities/archive" var="archiveUrl"/>
 <spring:message code="label_price" var="labelPrice"/>
 <spring:message code="label_colors" var="labelColors"/>
 <spring:message code="label_sizes" var="labelSizes"/>
@@ -80,7 +80,7 @@
     });
 </script>
 <div class="titsonfire-more-section">
-    <div class="titsonfire-section-title"><a href="${commoditiesUrl}">ARCHIVE</a>&#160;${currentType.name}</div>
+    <div class="titsonfire-section-title"><a href="${archiveUrl}">ARCHIVE</a>&#160;${currentType.name}</div>
     <c:if test="${not empty commodities}">
         <div class="titsonfire-card-container mdl-grid">
             <c:forEach items="${commodities}" var="commodity">
