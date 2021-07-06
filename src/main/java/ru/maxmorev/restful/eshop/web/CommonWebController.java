@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import ru.maxmorev.restful.eshop.annotation.ShoppingCookie;
-import ru.maxmorev.restful.eshop.domain.Customer;
 import ru.maxmorev.restful.eshop.rest.response.CustomerDto;
 import ru.maxmorev.restful.eshop.rest.response.ShoppingCartDto;
 import ru.maxmorev.restful.eshop.services.CommodityDtoService;
@@ -40,7 +39,6 @@ public class CommonWebController {
      */
     protected void addCommonAttributesToModel(Model uiModel) {
         uiModel.addAttribute("types", commodityDtoService.findAllTypes());
-        uiModel.addAttribute("portfoliosNews", portfolioService.portfoliosDistinctLimit(5L));
     }
 
     protected void addShoppingCartAttributesToModel(

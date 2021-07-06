@@ -22,14 +22,6 @@ public class PortfolioService {
                 portfolios.getData() : Collections.emptyList();
     }
 
-    public List<PortfolioDto> portfoliosDistinctLimit(long limit) {
-        return portfolios()
-                .stream()
-                .distinct()
-                .limit(limit)
-                .collect(Collectors.toList());
-    }
-
     public Optional<PortfolioDto> findBy(Long id) {
         return Optional.ofNullable(portfolioApi.find(id).getData());
     }

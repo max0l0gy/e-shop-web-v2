@@ -61,24 +61,7 @@
         <a class="mdl-navigation__link tab-account" href="${accountUrl}">
             <div class="material-icons">account_circle</div>
         </a>
-        <div class="titsonfire-drawer-separator"></div>
-        <span class="mdl-navigation__link tab-portfolios" href="${portfoliosUrl}">Portfolio</span>
-        <c:forEach items="${portfoliosNews}" var="portfolio">
-            <c:if test="${not empty currentPortfolio}">
-                <c:if test="${currentPortfolio.id == portfolio.id}">
-                    <a class="mdl-navigation__link is-active tab-portfolio-${portfolio.id}"
-                       href="${portfoliosUrl}/${portfolio.id}">${portfolio.name}</a>
-                </c:if>
-                <c:if test="${currentPortfolio.id != portfolio.id}">
-                    <a class="mdl-navigation__link tab-portfolio-${portfolio.id}"
-                       href="${portfoliosUrl}/${portfolio.id}">${portfolio.name}</a>
-                </c:if>
-            </c:if>
-            <c:if test="${empty currentPortfolio}">
-                <a class="mdl-navigation__link tab-portfolio-${portfolio.id}"
-                   href="${portfoliosUrl}/${portfolio.id}">${portfolio.name}</a>
-            </c:if>
-        </c:forEach>
+
     </nav>
 </div>
 
