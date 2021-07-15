@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Accessors(chain = true)
-public class PortfolioDto {
+public class PortfolioDto implements Comparable<PortfolioDto> {
     protected Long id;
 
     private String name;
@@ -18,4 +18,9 @@ public class PortfolioDto {
     private String shortDescription;
 
     protected List<String> images = new ArrayList<>();
+
+    @Override
+    public int compareTo(PortfolioDto portfolioDto) {
+        return getId().compareTo(portfolioDto.getId());
+    }
 }
