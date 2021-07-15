@@ -24,6 +24,6 @@ public class CommodityDto extends CommodityInfoDto implements Comparable<Commodi
 
     @Override
     public int compareTo(CommodityDto that) {
-        return this.getId().compareTo(((CommodityDto) that).getId());
+        return this.getId().compareTo(that.getId());
     }
 }
