@@ -7,8 +7,11 @@ import ru.maxmorev.restful.eshop.rest.response.CommodityDto;
 import ru.maxmorev.restful.eshop.rest.response.CommodityTypeDto;
 import ru.maxmorev.restful.eshop.util.ServiceExseptionSuppressor;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -46,4 +49,18 @@ public class CommodityDtoServiceImpl implements CommodityDtoService {
         return ServiceExseptionSuppressor.suppress(() -> eshopCommodityApi.findTypeByName(name));
     }
 
+    @Override
+    public List<CommodityDto> findNewCommoditiesForMailPage() {
+        List<CommodityDto> commodities = new ArrayList<>();
+        findAllTypes().forEach(type -> commodities.addAll(findLastFourNewItems(type)));
+        return commodities;
+    }
+
+    private List<CommodityDto> findLastFourNewItems(CommodityTypeDto type) {
+        return findWithBranchesAmountGt0AndType(type.getName())
+                .stream()
+                .sorted(Collections.reverseOrder())
+                .limit(4)
+                .collect(Collectors.toList());
+    }
 }
