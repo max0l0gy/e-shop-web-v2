@@ -19,7 +19,8 @@ public class PortfolioService {
     public List<PortfolioDto> portfolios() {
         PortfolioResponse<List<PortfolioDto>> portfolios = portfolioApi.list();
         return portfolios.getData() != null ?
-                portfolios.getData() : Collections.emptyList();
+                portfolios.getData().stream().sorted(Collections.reverseOrder()).collect(Collectors.toList())
+                : Collections.emptyList();
     }
 
     public Optional<PortfolioDto> findBy(Long id) {

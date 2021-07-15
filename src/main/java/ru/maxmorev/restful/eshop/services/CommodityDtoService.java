@@ -14,5 +14,6 @@ public interface CommodityDtoService {
     List<CommodityDto> findWithBranchesAmountGt0AndType(String typeName);
     List<CommodityDto> findWithBranchesAmountEq0AndType(String typeName);
     Optional<CommodityTypeDto> findTypeByName(String name);
+    List<CommodityDto> findNewCommoditiesForMailPage();
 
 }
