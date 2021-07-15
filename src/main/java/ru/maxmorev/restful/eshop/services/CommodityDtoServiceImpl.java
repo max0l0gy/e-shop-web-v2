@@ -1,8 +1,10 @@
 package ru.maxmorev.restful.eshop.services;
 
+import com.sun.tools.javadoc.Main;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import ru.maxmorev.restful.eshop.config.MainPageConfig;
 import ru.maxmorev.restful.eshop.feignclient.EshopCommodityApi;
 import ru.maxmorev.restful.eshop.rest.response.CommodityDto;
 import ru.maxmorev.restful.eshop.rest.response.CommodityTypeDto;
@@ -19,9 +21,7 @@ import java.util.stream.Collectors;
 public class CommodityDtoServiceImpl implements CommodityDtoService {
 
     private final EshopCommodityApi eshopCommodityApi;
-
-    @Value("${main-page.newItemsAmount}")
-    private int newItemsAmount;
+    private final MainPageConfig mainPageConfig;
 
     @Override
     public List<CommodityDto> findWithBranchesAmountGt0() {
@@ -64,7 +64,7 @@ public class CommodityDtoServiceImpl implements CommodityDtoService {
         return findWithBranchesAmountGt0AndType(type.getName())
                 .stream()
                 .sorted(Collections.reverseOrder())
-                .limit(newItemsAmount)
+                .limit(mainPageConfig.newItemsAmount)
                 .collect(Collectors.toList());
     }
 }
