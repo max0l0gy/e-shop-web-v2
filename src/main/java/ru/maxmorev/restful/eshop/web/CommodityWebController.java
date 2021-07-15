@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -35,8 +34,7 @@ public class CommodityWebController {
         log.info("----- commodityList");
         log.info("URL PARAMETERS {}", Collections.list(request.getParameterNames()));
         //TODO add pagination https://github.com/users/max0l0gy/projects/1#card-53611563
-        List<CommodityDto> commodities = commonWebController.commodityDtoService.findWithBranchesAmountGt0()
-                .stream().limit(4L).collect(Collectors.toList());
+        List<CommodityDto> commodities = commonWebController.commodityDtoService.findNewCommoditiesForMainPage();
         commonWebController.addCommonAttributesToModel(uiModel);
         commonWebController.addShoppingCartAttributesToModel(cartCookie, response, uiModel);
         uiModel.addAttribute("commodities", commodities);
