@@ -81,3 +81,6 @@ security.defaultRedirectPage: /customer/account/update/
 resetPassword:
   time-interval-between-notification-with-reset-passwordCode:
     timestamp-milli: 7200000
+
+main-page:
+  newItemsAmount: 2
