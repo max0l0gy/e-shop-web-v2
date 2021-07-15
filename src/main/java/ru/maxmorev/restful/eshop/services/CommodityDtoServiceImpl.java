@@ -50,7 +50,7 @@ public class CommodityDtoServiceImpl implements CommodityDtoService {
     }
 
     @Override
-    public List<CommodityDto> findNewCommoditiesForMailPage() {
+    public List<CommodityDto> findNewCommoditiesForMainPage() {
         List<CommodityDto> commodities = new ArrayList<>();
         findAllTypes().forEach(type -> commodities.addAll(findLastFourNewItems(type)));
         return commodities;
