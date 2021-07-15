@@ -19,11 +19,7 @@ public class CommodityDto extends CommodityInfoDto implements Comparable<Commodi
     @JsonIgnore
     public String getLastImageUri() {
         int size = getImages().size();
-        if (size > 0) {
-            return getImages().get(size - 1);
-        } else {
-            return "";
-        }
+        return size > 0 ? getImages().get(size - 1) : "";
     }
 
     @Override
