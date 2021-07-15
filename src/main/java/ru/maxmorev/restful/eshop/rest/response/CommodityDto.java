@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CommodityDto extends CommodityInfoDto implements Comparable {
+public class CommodityDto extends CommodityInfoDto implements Comparable<CommodityDto> {
 
     private List<CommodityBranchDto> branches;
 
@@ -27,7 +27,7 @@ public class CommodityDto extends CommodityInfoDto implements Comparable {
     }
 
     @Override
-    public int compareTo(Object that) {
+    public int compareTo(CommodityDto that) {
         return this.getId().compareTo(((CommodityDto) that).getId());
     }
 }
